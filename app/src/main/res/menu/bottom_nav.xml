@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/shishizhuangtai"
+        android:id="@+id/jiankong"
+        android:title="监控" />
+
+    <item
+        android:icon="@drawable/ic_settings"
+        android:id="@+id/setting"
+        android:title="设置" />
+    <item
+        android:icon="@drawable/ic_user"
+        android:id="@+id/user"
+        android:title="我的" />
+</menu>
