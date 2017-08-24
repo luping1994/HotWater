@@ -50,7 +50,7 @@ public class SettingFragment extends Fragment {
 
     class PagerAdapter extends FragmentPagerAdapter {
 
-        private final String[] title = new String[]{"温度/水位", "工作时间"};
+        private final String[] title = new String[]{"温度/水位设置", "工作时间设置"};
 
         public PagerAdapter(FragmentManager fm) {
             super(fm);

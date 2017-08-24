@@ -97,7 +97,6 @@ public class WorkstateFragment extends Fragment {
             binding.hengwenbushuifa.setEnabled(true);
             binding.xiyumoduanhuishuifa.setEnabled(true);
             binding.shitangmoduanfa.setEnabled(true);
-            binding.xieshuifa2.setEnabled(true);
         }else {
             binding.tynB1.setEnabled(false);
             binding.tynB2.setEnabled(false);
@@ -112,7 +111,6 @@ public class WorkstateFragment extends Fragment {
             binding.hengwenbushuifa.setEnabled(false);
             binding.xiyumoduanhuishuifa.setEnabled(false);
             binding.shitangmoduanfa.setEnabled(false);
-            binding.xieshuifa2.setEnabled(false);
         }
     }
 }
