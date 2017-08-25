@@ -1,33 +1,57 @@
 package net.suntrans.hotwater;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 
+import net.suntrans.hotwater.bean.CmdMsg;
 import net.suntrans.hotwater.databinding.ActivityMainBinding;
 import net.suntrans.hotwater.ui.fragment.SettingFragment;
 import net.suntrans.hotwater.ui.fragment.StatusFragment;
 import net.suntrans.hotwater.ui.fragment.UserFragment;
+import net.suntrans.hotwater.utils.LogUtil;
+import net.suntrans.hotwater.utils.RxBus;
+import net.suntrans.hotwater.utils.UiUtils;
+import net.suntrans.hotwater.websocket.WebSocketService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 
 public class MainActivity extends AppCompatActivity implements StatusFragment.OnFragmentInteractionListener {
-
+     int i=0;
     private ActivityMainBinding binding;
     private Fragment[] fragments;
+    private WebSocketService.ibinder binder;
+    private ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            binder = (WebSocketService.ibinder) service;
+        }
 
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +61,11 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         }
+
+        Intent intent = new Intent();
+        intent.setClass(this, WebSocketService.class);
+        bindService(intent, connection, Context.BIND_AUTO_CREATE);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -78,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
                 switch (position){
                     case 0:
                         binding.bottomNav.setSelectedItemId(R.id.jiankong);
-
                         break;
                     case 1:
                         binding.bottomNav.setSelectedItemId(R.id.setting);
@@ -94,6 +122,42 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
 
             }
         });
+       final String[] s = {"read1","read2","read3","read4"};
+
+        binding.logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("action",s[i]);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                binder.sendOrder(jsonObject.toString());
+                i++;
+                if (i>3)
+                    i=0;
+            }
+        });
+        RxBus.getInstance().toObserverable(CmdMsg.class)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Subscriber<CmdMsg>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(CmdMsg cmdMsg) {
+                        System.out.println(cmdMsg.msg);
+                    }
+                });
     }
 
     @Override
@@ -120,4 +184,10 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+      unbindService(connection);
+
+    }
 }

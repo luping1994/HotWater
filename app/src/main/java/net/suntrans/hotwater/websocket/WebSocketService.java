@@ -42,8 +42,6 @@ public class WebSocketService extends Service implements WebSocketWrapper.onRece
     @Override
     public IBinder onBind(Intent intent) {
         LogUtil.i("service is onBind!");
-
-
         binder = new ibinder() {
             @Override
             public boolean sendOrder(String order) {
