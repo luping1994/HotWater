@@ -27,7 +27,6 @@ public class RxBus
 
     public RxBus()
     {
-
         bus = new SerializedSubject<>(PublishSubject.create());
     }
 

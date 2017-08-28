@@ -120,7 +120,6 @@ public class WebSocketService extends Service implements WebSocketWrapper.onRece
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
-
                 mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
                 netInfo = mConnectivityManager.getActiveNetworkInfo();
                 if (netInfo != null && netInfo.isAvailable()) {

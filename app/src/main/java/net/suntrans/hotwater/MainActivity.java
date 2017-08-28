@@ -41,17 +41,20 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
      int i=0;
     private ActivityMainBinding binding;
     private Fragment[] fragments;
-    private WebSocketService.ibinder binder;
+    public WebSocketService.ibinder binder;
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             binder = (WebSocketService.ibinder) service;
+            fragment.getData();
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
         }
     };
+    private StatusFragment fragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        StatusFragment fragment = new StatusFragment();
+        fragment = new StatusFragment();
         SettingFragment fragment1 = new SettingFragment();
         UserFragment fragment2 = new UserFragment();
         fragments = new Fragment[]{fragment, fragment1, fragment2};
@@ -150,18 +153,22 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
 
                     @Override
                     public void onError(Throwable e) {
-
+                        e.printStackTrace();
                     }
 
                     @Override
                     public void onNext(CmdMsg cmdMsg) {
-                        System.out.println(cmdMsg.msg);
+                        if (cmdMsg.status==0){
+                            UiUtils.showToast(cmdMsg.msg);
+                        }
+
                     }
                 });
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
     }
 
     class PagerAdapter extends FragmentPagerAdapter {
@@ -190,4 +197,6 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
       unbindService(connection);
 
     }
+
+
 }

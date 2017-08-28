@@ -20,7 +20,7 @@ import okio.ByteString;
 public final class WebSocketWrapper extends WebSocketListener {
     private final String TAG = this.getClass().getSimpleName();
 //    private final String url = "ws://q1.suntrans.net:8200";
-    private final String url = "ws://172.16.1.208:8900";
+    private final String url = "ws://183.236.25.192:8890";
 //    private final String url = "ws://192.168.0.100:6300";
 //    private final String url = "ws://61.235.65.161:6300";
     private okhttp3.WebSocket socket;

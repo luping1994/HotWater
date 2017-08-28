@@ -34,6 +34,8 @@ public class StatusFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private FragmentStatusBinding binding;
     private Fragment[] fragments;
+    private CanshuFragment fragment;
+    private WorkstateFragment fragment1;
 
     public StatusFragment() {
     }
@@ -74,11 +76,12 @@ public class StatusFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        CanshuFragment fragment = new CanshuFragment();
-        WorkstateFragment fragment1 = new WorkstateFragment();
-        fragments = new Fragment[]{fragment,fragment1};
+        fragment = new CanshuFragment();
+        fragment1 = new WorkstateFragment();
+        fragments = new Fragment[]{fragment, fragment1};
         PagerAdapter adapter = new PagerAdapter(getChildFragmentManager());
         binding.viewpager.setAdapter(adapter);
+        binding.viewpager.setOffscreenPageLimit(2);
         binding.tablayout.setupWithViewPager( binding.viewpager);
     }
 
@@ -145,5 +148,9 @@ public class StatusFragment extends Fragment {
         public CharSequence getPageTitle(int position) {
             return title[position];
         }
+    }
+
+    public void getData(){
+        fragment.getData();
     }
 }
