@@ -15,14 +15,17 @@ import net.suntrans.hotwater.R;
 import net.suntrans.hotwater.databinding.FragmentSettingBinding;
 
 import static android.R.attr.fragment;
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SettingFragment extends Fragment {
+public class SettingFragment extends LazyLoadFragment {
 
 
     private FragmentSettingBinding binding;
+    private WendusettingFragment fragment;
+    private TimesettingFragment fragment1;
 
     public SettingFragment() {
         // Required empty public constructor
@@ -40,12 +43,19 @@ public class SettingFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        WendusettingFragment fragment = new WendusettingFragment();
-        TimesettingFragment fragment1 = new TimesettingFragment();
-        fragments = new Fragment[]{fragment,fragment1};
+        super.onViewCreated(view,savedInstanceState);
+        fragment = new WendusettingFragment();
+        fragment1 = new TimesettingFragment();
+        fragments = new Fragment[]{fragment, fragment1};
         PagerAdapter adapter = new PagerAdapter(getChildFragmentManager());
         binding.viewpager.setAdapter(adapter);
+        binding.viewpager.setOffscreenPageLimit(1);
         binding.tablayout.setupWithViewPager( binding.viewpager);
+    }
+
+    @Override
+    protected void onFragmentFirstVisible() {
+        fragment.getData();
     }
 
     class PagerAdapter extends FragmentPagerAdapter {

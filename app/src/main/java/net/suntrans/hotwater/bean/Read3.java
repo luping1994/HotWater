@@ -49,4 +49,30 @@ public class Read3 {
     public String SetHengwen_level_max_ID;
     public String SetHengwen_level_bath_ID;
     public String SetHengwen_level_peak_ID;
+
+    @Override
+    public String toString() {
+        return "Read3{" +
+                "action='" + action + '\'' +
+                ", id=" + id +
+                ", SetJire_temp_H_ID='" + SetJire_temp_H_ID + '\'' +
+                ", SetJire_temp_L_ID='" + SetJire_temp_L_ID + '\'' +
+                ", SetIce_temp_ID='" + SetIce_temp_ID + '\'' +
+                ", SetCha_temp_H_ID='" + SetCha_temp_H_ID + '\'' +
+                ", SetCha_temp_L_ID='" + SetCha_temp_L_ID + '\'' +
+                ", SetJire_temp_trans_ID='" + SetJire_temp_trans_ID + '\'' +
+                ", SetHengwen_temp_trans_ID='" + SetHengwen_temp_trans_ID + '\'' +
+                ", SetBath_temp_back_ID='" + SetBath_temp_back_ID + '\'' +
+                ", SetDining_temp_back_ID='" + SetDining_temp_back_ID + '\'' +
+                ", created_at='" + created_at + '\'' +
+                ", SetJire_level_ID='" + SetJire_level_ID + '\'' +
+                ", SetJire_level_max_ID='" + SetJire_level_max_ID + '\'' +
+                ", SetJire_supply_H_ID='" + SetJire_supply_H_ID + '\'' +
+                ", SetJire_supply_L_ID='" + SetJire_supply_L_ID + '\'' +
+                ", SetHengwen_level_ID='" + SetHengwen_level_ID + '\'' +
+                ", SetHengwen_level_max_ID='" + SetHengwen_level_max_ID + '\'' +
+                ", SetHengwen_level_bath_ID='" + SetHengwen_level_bath_ID + '\'' +
+                ", SetHengwen_level_peak_ID='" + SetHengwen_level_peak_ID + '\'' +
+                '}';
+    }
 }

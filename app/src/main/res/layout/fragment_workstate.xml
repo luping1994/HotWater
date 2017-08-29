@@ -1,4 +1,4 @@
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <net.suntrans.hotwater.widgets.ScrollChildSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/refreshLayout"
@@ -21,7 +21,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="#f1f1f1" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
 
+                    <TextView
+                        android:layout_weight="1"
+                        android:paddingLeft="16dp"
+                        android:textColor="@color/colorPrimary"
+                        android:gravity="center_vertical"
+                        android:text="更新时间"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:paddingRight="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center|right"
+                        android:text="--:--:--"
+                        android:textColor="@color/colorPrimary" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+
+                    android:background="#f1f1f1" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
@@ -93,7 +121,9 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -122,6 +152,8 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/tynB2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -157,6 +189,8 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/feirexunhuanB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -191,6 +225,8 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/reshuizhuanyiB1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -225,6 +261,8 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/reshuizhuanyiB2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -260,6 +298,8 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/ranqijizu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -294,6 +334,8 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/reshuigongyingB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -319,7 +361,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="泄水阀"
+                        android:text="泄水阀控制器"
                         android:textColor="@color/mainTextColor" />
 
                     <RelativeLayout
@@ -328,6 +370,8 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/xieshuifa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -353,7 +397,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="热水转移阀"
+                        android:text="热水转移阀控制器"
                         android:textColor="@color/mainTextColor" />
 
                     <RelativeLayout
@@ -362,6 +406,8 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/reshuizhuanyifa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -387,7 +433,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="集热补水阀"
+                        android:text="集热补水阀控制器"
                         android:textColor="@color/mainTextColor" />
 
                     <RelativeLayout
@@ -396,6 +442,8 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/jirebushuifa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -421,7 +469,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="恒温补水阀"
+                        android:text="恒温补水阀控制器"
                         android:textColor="@color/mainTextColor" />
 
                     <RelativeLayout
@@ -430,6 +478,8 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/hengwenbushuifa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -455,7 +505,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="洗浴末端回水阀"
+                        android:text="洗浴末端回水阀控制器"
                         android:textColor="@color/mainTextColor" />
 
                     <RelativeLayout
@@ -464,6 +514,8 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/xiyumoduanhuishuifa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -489,7 +541,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="食堂末端回水阀"
+                        android:text="食堂末端回水阀控制器"
                         android:textColor="@color/mainTextColor" />
 
                     <RelativeLayout
@@ -498,6 +550,8 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/shitangmoduanfa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -510,6 +564,210 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:background="#f1f1f1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="泄水阀实际状态"
+                        android:textColor="@color/mainTextColor" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/xieshuifaTrue"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|right"
+                            android:text="--"
+                            android:textColor="@color/colorPrimary" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f1f1f1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="热水转移阀实际状态"
+                        android:textColor="@color/mainTextColor" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/reshuizhuanyifaTrue"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|right"
+                            android:text="--"
+                            android:textColor="@color/colorPrimary" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f1f1f1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="集热补水阀实际状态"
+                        android:textColor="@color/mainTextColor" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/jirebushuifaTrue"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|right"
+                            android:text="--"
+                            android:textColor="@color/colorPrimary" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f1f1f1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="过温补水阀实际状态"
+                        android:textColor="@color/mainTextColor" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/guowenbushuifaTrue"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|right"
+                            android:text="--"
+                            android:textColor="@color/colorPrimary" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f1f1f1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="洗浴回水阀实际状态"
+                        android:textColor="@color/mainTextColor" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/xiyuhuishuifaTrue"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|right"
+                            android:text="--"
+                            android:textColor="@color/colorPrimary" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f1f1f1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="食堂回水阀实际状态"
+                        android:textColor="@color/mainTextColor" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/shitanghuishuifaTrue"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center|right"
+                            android:text="--"
+                            android:textColor="@color/colorPrimary" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
                     android:background="#f1f1f1" />
 
             </LinearLayout>

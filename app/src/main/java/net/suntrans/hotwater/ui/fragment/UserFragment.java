@@ -1,10 +1,13 @@
 package net.suntrans.hotwater.ui.fragment;
 
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,9 @@ import android.view.ViewGroup;
 import net.suntrans.hotwater.BuildConfig;
 import net.suntrans.hotwater.R;
 import net.suntrans.hotwater.databinding.FragmentUserBinding;
+import net.suntrans.hotwater.ui.activity.AboutActivity;
+import net.suntrans.hotwater.ui.activity.LoginActivity;
+import net.suntrans.hotwater.utils.UiUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,15 +45,32 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         binding.currentVersion.setText("当前版本" + BuildConfig.VERSION_NAME);
         binding.exit.setOnClickListener(this);
         binding.signOut.setOnClickListener(this);
+        binding.about.setOnClickListener(this);
+        binding.update.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.exit:
-
+                android.os.Process.killProcess(android.os.Process.myPid());
+                break;
+            case R.id.update:
+                UiUtils.showToast("当前已是最新版本!");
+                break;
+            case R.id.about:
+                startActivity(new Intent(getActivity(), AboutActivity.class));
                 break;
             case R.id.signOut:
+                new AlertDialog.Builder(getContext())
+                        .setMessage("注销登录?")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(getContext(), LoginActivity.class));
+                                getActivity().finish();
+                            }
+                        }).setNegativeButton("取消",null).create().show();
                 break;
         }
     }

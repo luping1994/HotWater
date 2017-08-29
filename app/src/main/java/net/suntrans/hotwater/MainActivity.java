@@ -19,6 +19,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.pgyersdk.update.PgyUpdateManager;
+
 import net.suntrans.hotwater.bean.CmdMsg;
 import net.suntrans.hotwater.databinding.ActivityMainBinding;
 import net.suntrans.hotwater.ui.fragment.SettingFragment;
@@ -38,7 +40,7 @@ import rx.schedulers.Schedulers;
 
 
 public class MainActivity extends AppCompatActivity implements StatusFragment.OnFragmentInteractionListener {
-     int i=0;
+    int i = 0;
     private ActivityMainBinding binding;
     private Fragment[] fragments;
     public WebSocketService.ibinder binder;
@@ -83,16 +85,16 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
         binding.bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.jiankong:
-                        binding.viewpager.setCurrentItem(0,false);
+                        binding.viewpager.setCurrentItem(0, false);
                         break;
                     case R.id.setting:
-                        binding.viewpager.setCurrentItem(1,false);
+                        binding.viewpager.setCurrentItem(1, false);
 
                         break;
                     case R.id.user:
-                        binding.viewpager.setCurrentItem(2,false);
+                        binding.viewpager.setCurrentItem(2, false);
 
                         break;
                 }
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
 
             @Override
             public void onPageSelected(int position) {
-                switch (position){
+                switch (position) {
                     case 0:
                         binding.bottomNav.setSelectedItemId(R.id.jiankong);
                         break;
@@ -125,21 +127,21 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
 
             }
         });
-       final String[] s = {"read1","read2","read3","read4"};
+        final String[] s = {"read1", "read2", "read3", "read4"};
 
         binding.logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put("action",s[i]);
+                    jsonObject.put("action", s[i]);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 binder.sendOrder(jsonObject.toString());
                 i++;
-                if (i>3)
-                    i=0;
+                if (i > 3)
+                    i = 0;
             }
         });
         RxBus.getInstance().toObserverable(CmdMsg.class)
@@ -158,12 +160,13 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
 
                     @Override
                     public void onNext(CmdMsg cmdMsg) {
-                        if (cmdMsg.status==0){
+                        if (cmdMsg.status == 0) {
                             UiUtils.showToast(cmdMsg.msg);
                         }
 
                     }
                 });
+        PgyUpdateManager.register(this, "net.suntrans.hotwater.fileProvider");
     }
 
     @Override
@@ -194,7 +197,8 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
     @Override
     protected void onDestroy() {
         super.onDestroy();
-      unbindService(connection);
+        unbindService(connection);
+        PgyUpdateManager.unregister();
 
     }
 

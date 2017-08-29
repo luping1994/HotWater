@@ -151,7 +151,7 @@ public class CanshuFragment extends RxFragment {
         handler.removeCallbacksAndMessages(null);
         binding.refreshLayout.setRefreshing(false);
 
-        LogUtil.i(read1.toString());
+        LogUtil.i("CanshuFragment",read1.toString());
         binding.T1.setText(read1.Jire_temp_down_ID + "℃");
         binding.T2.setText(read1.Jire_temp_up_ID + "℃");
         binding.T3.setText(read1.Jire_temp_tank_ID + "℃");
@@ -161,6 +161,7 @@ public class CanshuFragment extends RxFragment {
         binding.T7.setText(read1.Huanjing_temp_ID + "℃");
         binding.H1.setText(read1.Jire_level_ID + "%");
         binding.H2.setText(read1.Hengwen_level_ID + "%");
+        binding.time.setText(read1.created_at);
     }
 
     public void getData() {

@@ -66,6 +66,7 @@ public class Read4 {
     public String SetPeak_hour_stop_ID;
     public String SetPeak_min_stop_ID;
     public String created_at;
+
     public String SetJizu_hour_start1_ID;
     public String SetJizu_min_start1_ID;
     public String SetJizu_hour_stop1_ID;
@@ -78,6 +79,7 @@ public class Read4 {
     public String SetJizu_min_start3_ID;
     public String SetJizu_hour_stop3_ID;
     public String SetJizu_min_stop3_ID;
+
     public String SetBath_hour_start1_ID;
     public String SetBath_min_start1_ID;
     public String SetBath_hour_stop1_ID;
@@ -90,6 +92,7 @@ public class Read4 {
     public String SetBath_min_start3_ID;
     public String SetBath_hour_stop3_ID;
     public String SetBath_min_stop3_ID;
+
     public String SetDining_hour_start1_ID;
     public String SetDining_min_start1_ID;
     public String SetDining_hour_stop1_ID;
