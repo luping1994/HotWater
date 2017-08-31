@@ -199,8 +199,10 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
         super.onDestroy();
         unbindService(connection);
         PgyUpdateManager.unregister();
-
     }
 
+    /**
+     *
+     */
 
 }

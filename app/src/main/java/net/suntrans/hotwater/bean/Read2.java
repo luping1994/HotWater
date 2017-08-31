@@ -38,12 +38,13 @@ public class Read2 {
     public int solar_pump1_flag_ID;
     public int solar_pump2_flag_ID;
     public int xieshui_fa_ID;
-    public int feire_pump_ID;
+    public int feire_pump1_ID;
+    public int feire_pump2_ID;
     public int hottrans_pump1_ID;
     public int hottrans_pump2_ID;
     public int hottrans_fa_ID;
     public int ranqi_jizu_ID;
-    public int hotsupply_pump_ID;
+//    public int hotsupply_pump_ID;
     public int jiresupply_fa_ID;
     public int hengwensupply_fa_ID;
     public int bathback_fa_ID;
@@ -55,6 +56,8 @@ public class Read2 {
     public int Hengwenfa_ID;
     public int Bathfa_ID;
     public int Diningfa_ID;
+    public int hotsupply_pump1_ID;
+    public int hotsupply_pump2_ID;
 
     @Override
     public String toString() {
@@ -65,12 +68,12 @@ public class Read2 {
                 ", solar_pump1_flag_ID=" + solar_pump1_flag_ID +
                 ", solar_pump2_flag_ID=" + solar_pump2_flag_ID +
                 ", xieshui_fa_ID=" + xieshui_fa_ID +
-                ", feire_pump_ID=" + feire_pump_ID +
+                ", feire_pump_ID=" + feire_pump1_ID +
                 ", hottrans_pump1_ID=" + hottrans_pump1_ID +
                 ", hottrans_pump2_ID=" + hottrans_pump2_ID +
                 ", hottrans_fa_ID=" + hottrans_fa_ID +
                 ", ranqi_jizu_ID=" + ranqi_jizu_ID +
-                ", hotsupply_pump_ID=" + hotsupply_pump_ID +
+                ", hotsupply_pump1_ID=" + hotsupply_pump1_ID +
                 ", jiresupply_fa_ID=" + jiresupply_fa_ID +
                 ", hengwensupply_fa_ID=" + hengwensupply_fa_ID +
                 ", bathback_fa_ID=" + bathback_fa_ID +

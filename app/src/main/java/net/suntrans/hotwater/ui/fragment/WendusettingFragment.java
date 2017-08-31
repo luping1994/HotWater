@@ -107,6 +107,11 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         datas.put(R.id.henwenyewei, "SetHengwen_level_ID");
         datas.put(R.id.gaofengyewei, "SetHengwen_level_peak_ID");
         datas.put(R.id.daigongyewei, "SetHengwen_level_bath_ID");
+
+        datas.put(R.id.jireman, "Jire_level_full_ID");
+        datas.put(R.id.henwenman, "Hengwen_level_full_ID");
+        datas.put(R.id.shuiyasheding, "SetSupply_press_ID");
+        datas.put(R.id.tiaopinzhouqi, "Set_period_ID");
     }
 
     private void setRxBus() {
@@ -179,6 +184,11 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         binding.gaofengyewei.setText(read3.SetHengwen_level_peak_ID);
         binding.daigongyewei.setText(read3.SetHengwen_level_bath_ID);
 
+        binding.jireman.setText(read3.Jire_level_full_ID);
+        binding.henwenman.setText(read3.Hengwen_level_full_ID);
+        binding.tiaopinzhouqi.setText(read3.Set_period_ID);
+        binding.shuiyasheding.setText(read3.SetSupply_press_ID);
+
         handler.removeCallbacksAndMessages(null);
         if (dialog != null) {
             dialog.dismiss();
@@ -206,6 +216,12 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         binding.henwenyewei.setOnClickListener(this);
         binding.daigongyewei.setOnClickListener(this);
         binding.gaofengyewei.setOnClickListener(this);
+
+
+        binding.jireman.setOnClickListener(this);
+        binding.henwenman.setOnClickListener(this);
+        binding.tiaopinzhouqi.setOnClickListener(this);
+        binding.shuiyasheding.setOnClickListener(this);
 
         binding.refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

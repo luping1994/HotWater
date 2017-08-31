@@ -21,35 +21,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="#f1f1f1" />
+
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp">
+                    android:layout_height="45dp"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:layout_weight="1"
-                        android:paddingLeft="16dp"
-                        android:textColor="@color/colorPrimary"
-                        android:gravity="center_vertical"
-                        android:text="更新时间"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="16dp"
+                        android:text="更新时间"
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/time"
-                        android:paddingRight="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center|right"
+                        android:paddingRight="16dp"
                         android:text="--:--:--"
                         android:textColor="@color/colorPrimary" />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
 
                     android:background="#f1f1f1" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
@@ -813,6 +816,207 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="#f1f1f1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/shuiwei" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:text="其他设置"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="#f1f1f1" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:gravity="center_vertical"
+                        android:text="集热满水位:"
+                        android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/jireman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toLeftOf="@+id/unit"
+                        android:background="@drawable/tx_bg"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="--"
+                        android:textColor="@color/mainTextColor" />
+
+                    <TextView
+                        android:id="@id/unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="%" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f1f1f1" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:gravity="center_vertical"
+                        android:text="恒温满水位:"
+                        android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/henwenman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toLeftOf="@+id/unit"
+                        android:background="@drawable/tx_bg"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="--"
+                        android:textColor="@color/mainTextColor" />
+
+                    <TextView
+                        android:id="@id/unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="%" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f1f1f1" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:gravity="center_vertical"
+                        android:text="水压设定:"
+                        android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/shuiyasheding"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toLeftOf="@+id/unit"
+                        android:background="@drawable/tx_bg"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="--"
+                        android:textColor="@color/mainTextColor" />
+
+                    <TextView
+                        android:id="@id/unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="kg" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f1f1f1" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:gravity="center_vertical"
+                        android:text="调频周期:"
+                        android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/tiaopinzhouqi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toLeftOf="@+id/unit"
+                        android:background="@drawable/tx_bg"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="--"
+                        android:textColor="@color/mainTextColor" />
+
+                    <TextView
+                        android:id="@id/unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text=" " />
+
+                </RelativeLayout>
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>

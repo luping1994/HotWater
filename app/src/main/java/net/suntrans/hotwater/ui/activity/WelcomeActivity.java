@@ -99,7 +99,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
     public void checkPermission() {
-        final List<PermissonItem> permissionItems = new ArrayList<PermissonItem>();
         HiPermission.create(this)
                 .checkSinglePermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, new PermissionCallback() {
                     @Override
@@ -123,6 +122,5 @@ public class WelcomeActivity extends AppCompatActivity {
                         check();
                     }
                 });
-
     }
 }

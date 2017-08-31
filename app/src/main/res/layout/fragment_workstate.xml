@@ -21,35 +21,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="#f1f1f1" />
+
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp">
+                    android:layout_height="45dp"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:layout_weight="1"
-                        android:paddingLeft="16dp"
-                        android:textColor="@color/colorPrimary"
-                        android:gravity="center_vertical"
-                        android:text="更新时间"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="16dp"
+                        android:text="更新时间"
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/time"
-                        android:paddingRight="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center|right"
+                        android:paddingRight="16dp"
                         android:text="--:--:--"
                         android:textColor="@color/colorPrimary" />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
 
                     android:background="#f1f1f1" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
@@ -152,14 +155,14 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
-                            app:kswBackDrawable="@drawable/switch_bottom_white"
-                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/tynB2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -180,7 +183,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="废热循环泵"
+                        android:text="废热循环泵1"
                         android:textColor="@color/mainTextColor" />
 
                     <RelativeLayout
@@ -189,16 +192,54 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
-                            app:kswBackDrawable="@drawable/switch_bottom_white"
-                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/feirexunhuanB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
                     </RelativeLayout>
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#f1f1f1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="废热循环泵2"
+                        android:textColor="@color/mainTextColor" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <net.suntrans.looney.widgets.SwitchButton
+                            android:id="@+id/feirexunhuanB2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+
 
                 <View
                     android:layout_width="match_parent"
@@ -225,14 +266,14 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
-                            app:kswBackDrawable="@drawable/switch_bottom_white"
-                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/reshuizhuanyiB1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -261,14 +302,14 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
-                            app:kswBackDrawable="@drawable/switch_bottom_white"
-                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/reshuizhuanyiB2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -298,14 +339,14 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
-                            app:kswBackDrawable="@drawable/switch_bottom_white"
-                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/ranqijizu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -325,7 +366,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="热水供应泵"
+                        android:text="热水供应泵1"
                         android:textColor="@color/mainTextColor" />
 
                     <RelativeLayout
@@ -334,17 +375,51 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
-                            app:kswBackDrawable="@drawable/switch_bottom_white"
-                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/reshuigongyingB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
                     </RelativeLayout>
                 </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#f1f1f1" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="热水供应泵2"
+                        android:textColor="@color/mainTextColor" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <net.suntrans.looney.widgets.SwitchButton
+                            android:id="@+id/reshuigongyingB2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
+                    </RelativeLayout>
+                </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -370,14 +445,14 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
-                            app:kswBackDrawable="@drawable/switch_bottom_white"
-                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/xieshuifa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -406,14 +481,14 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
-                            app:kswBackDrawable="@drawable/switch_bottom_white"
-                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/reshuizhuanyifa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -442,14 +517,14 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
-                            app:kswBackDrawable="@drawable/switch_bottom_white"
-                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/jirebushuifa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -478,14 +553,14 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
-                            app:kswBackDrawable="@drawable/switch_bottom_white"
-                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/hengwenbushuifa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -514,14 +589,14 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
-                            app:kswBackDrawable="@drawable/switch_bottom_white"
-                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/xiyumoduanhuishuifa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -550,14 +625,14 @@
                         android:layout_weight="1">
 
                         <net.suntrans.looney.widgets.SwitchButton
-                            app:kswBackDrawable="@drawable/switch_bottom_white"
-                            app:kswThumbDrawable="@drawable/switch_top_circle"
                             android:id="@+id/shitangmoduanfa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
                     </RelativeLayout>
                 </LinearLayout>
 

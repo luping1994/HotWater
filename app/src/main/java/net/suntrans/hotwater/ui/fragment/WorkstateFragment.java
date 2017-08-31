@@ -94,15 +94,15 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
 
 
                     if (checkedId == R.id.zidong) {
-                        jsonObject.put("name","Operation_mode_ID");
+                        jsonObject.put("name", "Operation_mode_ID");
                         jsonObject.put("parameter", "1");
                         updateState(false);
                     } else {
-                        jsonObject.put("name","Operation_mode_ID");
+                        jsonObject.put("name", "Operation_mode_ID");
                         jsonObject.put("parameter", "0");
                         updateState(true);
                     }
-                    if (activity.binder!=null)
+                    if (activity.binder != null)
                         activity.binder.sendOrder(jsonObject.toString());
                     if (dialog == null) {
                         dialog = new LoadingDialog(getContext());
@@ -116,7 +116,7 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
                             dialog.dismiss();
                             initView(read2);
                         }
-                    },2000);
+                    }, 2000);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -127,10 +127,12 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
         binding.tynB1.setOnCheckedChangeListener(this);
         binding.tynB2.setOnCheckedChangeListener(this);
         binding.feirexunhuanB.setOnCheckedChangeListener(this);
+        binding.feirexunhuanB2.setOnCheckedChangeListener(this);
         binding.reshuizhuanyiB1.setOnCheckedChangeListener(this);
         binding.reshuizhuanyiB2.setOnCheckedChangeListener(this);
         binding.ranqijizu.setOnCheckedChangeListener(this);
         binding.reshuigongyingB.setOnCheckedChangeListener(this);
+        binding.reshuigongyingB2.setOnCheckedChangeListener(this);
         binding.xieshuifa.setOnCheckedChangeListener(this);
         binding.reshuizhuanyifa.setOnCheckedChangeListener(this);
         binding.jirebushuifa.setOnCheckedChangeListener(this);
@@ -179,13 +181,13 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
                                         LogUtil.i(read2.toString());
                                         initView(read2);
                                     }
-                                    if (jsonObject.getString("action").equals("feedback")){
-                                        LogUtil.i("workStateFragment:"+jsonObject.toString());
+                                    if (jsonObject.getString("action").equals("feedback")) {
+                                        LogUtil.i("workStateFragment:" + jsonObject.toString());
                                         Utils.setValue(read2, jsonObject.getString("name"), jsonObject.getInt("message"));
                                         initView(read2);
                                     }
                                 }
-                                if (jsonObject.has("Error_code")){
+                                if (jsonObject.has("Error_code")) {
                                     UiUtils.showToast(jsonObject.getString("message"));
                                     LogUtil.i(jsonObject.toString());
                                     initView(read2);
@@ -202,7 +204,7 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
     private void initView(Read2 read2) {
         if (read2 == null)
             return;
-        LogUtil.i("WorkStateFragment"+read2.toString());
+        LogUtil.i("WorkStateFragment" + read2.toString());
         if (read2.Operation_mode_ID == 1) {
             binding.zidong.setChecked(true);
         } else {
@@ -211,11 +213,13 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
         binding.time.setText(read2.created_at);
         binding.tynB1.setChecked(read2.solar_pump1_flag_ID == 1 ? true : false);
         binding.tynB2.setChecked(read2.solar_pump2_flag_ID == 1 ? true : false);
-        binding.feirexunhuanB.setChecked(read2.feire_pump_ID == 1 ? true : false);
+        binding.feirexunhuanB.setChecked(read2.feire_pump1_ID == 1 ? true : false);
+        binding.feirexunhuanB2.setChecked(read2.feire_pump2_ID == 1 ? true : false);
         binding.reshuizhuanyiB1.setChecked(read2.hottrans_pump1_ID == 1 ? true : false);
         binding.reshuizhuanyiB2.setChecked(read2.hottrans_pump2_ID == 1 ? true : false);
         binding.ranqijizu.setChecked(read2.ranqi_jizu_ID == 1 ? true : false);
-        binding.reshuigongyingB.setChecked(read2.hotsupply_pump_ID == 1 ? true : false);
+        binding.reshuigongyingB.setChecked(read2.hotsupply_pump1_ID == 1 ? true : false);
+        binding.reshuigongyingB2.setChecked(read2.hotsupply_pump2_ID == 1 ? true : false);
 
 
         binding.xieshuifa.setChecked(read2.xieshui_fa_ID == 1 ? true : false);
@@ -239,7 +243,7 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
                 : read2.Diningfa_ID == 2 ? "关闭中" : read2.Diningfa_ID == 3 ? "开启中" : "开启");
 
 
-        updateState(binding.zidong.isChecked()?false:true);
+        updateState(binding.zidong.isChecked() ? false : true);
         handler.removeCallbacksAndMessages(null);
         if (dialog != null)
             dialog.dismiss();
@@ -253,11 +257,13 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
             binding.tynB2.setEnabled(true);
             binding.xieshuifa.setEnabled(true);
             binding.feirexunhuanB.setEnabled(true);
+            binding.feirexunhuanB2.setEnabled(true);
             binding.reshuizhuanyiB1.setEnabled(true);
             binding.reshuizhuanyiB2.setEnabled(true);
             binding.reshuizhuanyifa.setEnabled(true);
             binding.ranqijizu.setEnabled(true);
             binding.reshuigongyingB.setEnabled(true);
+            binding.reshuigongyingB2.setEnabled(true);
             binding.jirebushuifa.setEnabled(true);
             binding.hengwenbushuifa.setEnabled(true);
             binding.xiyumoduanhuishuifa.setEnabled(true);
@@ -267,11 +273,13 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
             binding.tynB2.setEnabled(false);
             binding.xieshuifa.setEnabled(false);
             binding.feirexunhuanB.setEnabled(false);
+            binding.feirexunhuanB2.setEnabled(false);
             binding.reshuizhuanyiB1.setEnabled(false);
             binding.reshuizhuanyiB2.setEnabled(false);
             binding.reshuizhuanyifa.setEnabled(false);
             binding.ranqijizu.setEnabled(false);
             binding.reshuigongyingB.setEnabled(false);
+            binding.reshuigongyingB2.setEnabled(false);
             binding.jirebushuifa.setEnabled(false);
             binding.hengwenbushuifa.setEnabled(false);
             binding.xiyumoduanhuishuifa.setEnabled(false);
@@ -341,52 +349,60 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
 
             switch (buttonView.getId()) {
                 case R.id.tynB1:
-                    jsonObject.put("name","solar_pump1_flag_ID");
+                    jsonObject.put("name", "solar_pump1_flag_ID");
                     break;
                 case R.id.tynB2:
-                    jsonObject.put("name","solar_pump2_flag_ID");
+                    jsonObject.put("name", "solar_pump2_flag_ID");
 
                     break;
                 case R.id.feirexunhuanB:
-                    jsonObject.put("name","feire_pump_ID");
+                    jsonObject.put("name", "feire_pump1_ID");
+
+                    break;
+                case R.id.feirexunhuanB2:
+                    jsonObject.put("name", "feire_pump2_ID");
 
                     break;
                 case R.id.reshuizhuanyiB1:
-                    jsonObject.put("name","hottrans_pump1_ID");
+                    jsonObject.put("name", "hottrans_pump1_ID");
 
                     break;
                 case R.id.reshuizhuanyiB2:
-                    jsonObject.put("name","hottrans_pump2_ID");
+                    jsonObject.put("name", "hottrans_pump2_ID");
 
                     break;
                 case R.id.ranqijizu:
-                    jsonObject.put("name","ranqi_jizu_ID");
+                    jsonObject.put("name", "ranqi_jizu_ID");
 
                     break;
                 case R.id.reshuigongyingB:
-                    jsonObject.put("name","hotsupply_pump_ID");
+                    jsonObject.put("name", "hotsupply_pump1_ID");
+
+                    break;
+                case R.id.reshuigongyingB2:
+                    jsonObject.put("name", "hotsupply_pump2_ID");
 
                     break;
                 case R.id.xieshuifa:
-                    jsonObject.put("name","xieshui_fa_ID");
+                    jsonObject.put("name", "xieshui_fa_ID");
                     break;
                 case R.id.reshuizhuanyifa:
-                    jsonObject.put("name","hottrans_fa_ID");
+                    jsonObject.put("name", "hottrans_fa_ID");
                     break;
                 case R.id.jirebushuifa:
-                    jsonObject.put("name","jiresupply_fa_ID");
+                    jsonObject.put("name", "jiresupply_fa_ID");
                     break;
                 case R.id.hengwenbushuifa:
-                    jsonObject.put("name","hengwensupply_fa_ID");
+                    jsonObject.put("name", "hengwensupply_fa_ID");
                     break;
                 case R.id.xiyumoduanhuishuifa:
-                    jsonObject.put("name","bathback_fa_ID");
+                    jsonObject.put("name", "bathback_fa_ID");
                     break;
                 case R.id.shitangmoduanfa:
-                    jsonObject.put("name","diningback_fa_ID");
+                    jsonObject.put("name", "diningback_fa_ID");
                     break;
             }
-            jsonObject.put("parameter",isChecked?"1":"0");
+            jsonObject.put("parameter", isChecked ? "1" : "0");
             if (activity.binder != null) {
                 activity.binder.sendOrder(jsonObject.toString());
             }
@@ -403,11 +419,11 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
         }
     }
 
-    private void getDataDelayed(){
+    private void getDataDelayed() {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-               getData();
+                getData();
             }
         }, 2500);
     }

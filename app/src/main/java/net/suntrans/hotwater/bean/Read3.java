@@ -49,6 +49,12 @@ public class Read3 {
     public String SetHengwen_level_max_ID;
     public String SetHengwen_level_bath_ID;
     public String SetHengwen_level_peak_ID;
+    public String Jire_level_full_ID;
+    public String Hengwen_level_full_ID;
+    public String SetSupply_press_ID;
+    public String Set_period_ID;
+
+
 
     @Override
     public String toString() {
