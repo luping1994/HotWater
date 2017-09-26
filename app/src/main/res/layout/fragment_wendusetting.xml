@@ -520,7 +520,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="集热水箱最大水位:"
+                        android:text="集热水箱水位:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -564,7 +564,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="集热水箱水位:"
+                        android:text="集热水箱最大水位:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
