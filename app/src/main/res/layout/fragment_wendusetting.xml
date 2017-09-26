@@ -520,7 +520,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="集热液位:"
+                        android:text="集热水箱最大水位:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -564,7 +564,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="集热高液位:"
+                        android:text="集热水箱水位:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -740,7 +740,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="待供液位:"
+                        android:text="温水箱洗浴待供液位:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -946,7 +946,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="水压设定:"
+                        android:text="供应泵压力恒定值:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -990,7 +990,139 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="调频周期:"
+                        android:text="废热循环泵压力恒定值:"
+                        android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/SetFeire_press_ID"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toLeftOf="@+id/unit"
+                        android:background="@drawable/tx_bg"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="--"
+                        android:textColor="@color/mainTextColor" />
+
+                    <TextView
+                        android:id="@id/unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="kg" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f1f1f1" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:gravity="center_vertical"
+                        android:text="热水供应水压:"
+                        android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/Supply_press_ID"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toLeftOf="@+id/unit"
+                        android:background="@drawable/tx_bg"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="--"
+                        android:textColor="@color/mainTextColor" />
+
+                    <TextView
+                        android:id="@id/unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="kg" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f1f1f1" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:gravity="center_vertical"
+                        android:text="废热循环水压:"
+                        android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/Feire_press_ID"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toLeftOf="@+id/unit"
+                        android:background="@drawable/tx_bg"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="--"
+                        android:textColor="@color/mainTextColor" />
+
+                    <TextView
+                        android:id="@id/unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="kg" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f1f1f1" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:gravity="center_vertical"
+                        android:text="运行周期:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -1014,7 +1146,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:text=" " />
+                        android:text=" S" />
 
                 </RelativeLayout>
             </LinearLayout>

@@ -1,5 +1,7 @@
 package net.suntrans.hotwater.bean;
 
+import static net.suntrans.hotwater.R.id.Feire_press_ID;
+
 /**
  * Created by Looney on 2017/8/28.
  */
@@ -31,6 +33,7 @@ public class Read1 {
     public String Huanjing_temp_ID;
     public String Jire_level_ID;
     public String Hengwen_level_ID;
+
     public String created_at;
 
     @Override
@@ -47,6 +50,8 @@ public class Read1 {
                 ", Huanjing_temp_ID='" + Huanjing_temp_ID + '\'' +
                 ", Jire_level_ID='" + Jire_level_ID + '\'' +
                 ", Hengwen_level_ID='" + Hengwen_level_ID + '\'' +
+//                ", Feire_press_ID='" + Feire_press_ID + '\'' +
+//                ", Supply_press_ID='" + Supply_press_ID + '\'' +
                 ", created_at='" + created_at + '\'' +
                 '}';
     }

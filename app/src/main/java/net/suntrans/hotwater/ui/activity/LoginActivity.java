@@ -10,7 +10,7 @@ import net.suntrans.looney.utils.UiUtils;
  * Created by Looney on 2017/8/28.
  */
 
-public class LoginActivity  extends net.suntrans.looney.login.LoginActivity {
+public class LoginActivity extends net.suntrans.looney.login.LoginActivity {
 
 
     @Override

@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import net.suntrans.hotwater.BuildConfig;
 import net.suntrans.hotwater.R;
@@ -46,7 +47,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         binding.exit.setOnClickListener(this);
         binding.signOut.setOnClickListener(this);
         binding.about.setOnClickListener(this);
-        binding.update.setOnClickListener(this);
+        binding.checkVersion.setOnClickListener(this);
     }
 
     @Override
@@ -55,7 +56,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             case R.id.exit:
                 android.os.Process.killProcess(android.os.Process.myPid());
                 break;
-            case R.id.update:
+            case R.id.checkVersion:
                 UiUtils.showToast("当前已是最新版本!");
                 break;
             case R.id.about:

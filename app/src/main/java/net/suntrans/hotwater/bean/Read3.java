@@ -53,8 +53,9 @@ public class Read3 {
     public String Hengwen_level_full_ID;
     public String SetSupply_press_ID;
     public String Set_period_ID;
-
-
+    public String SetFeire_press_ID;
+    public String Feire_press_ID;
+    public String Supply_press_ID;
 
     @Override
     public String toString() {
@@ -79,6 +80,13 @@ public class Read3 {
                 ", SetHengwen_level_max_ID='" + SetHengwen_level_max_ID + '\'' +
                 ", SetHengwen_level_bath_ID='" + SetHengwen_level_bath_ID + '\'' +
                 ", SetHengwen_level_peak_ID='" + SetHengwen_level_peak_ID + '\'' +
+                ", Jire_level_full_ID='" + Jire_level_full_ID + '\'' +
+                ", Hengwen_level_full_ID='" + Hengwen_level_full_ID + '\'' +
+                ", SetSupply_press_ID='" + SetSupply_press_ID + '\'' +
+                ", Set_period_ID='" + Set_period_ID + '\'' +
+                ", SetFeire_press_ID='" + SetFeire_press_ID + '\'' +
+                ", Feire_press_ID='" + Feire_press_ID + '\'' +
+                ", Supply_press_ID='" + Supply_press_ID + '\'' +
                 '}';
     }
 }

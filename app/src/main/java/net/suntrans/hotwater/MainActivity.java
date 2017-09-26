@@ -15,7 +15,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -23,6 +25,7 @@ import com.pgyersdk.update.PgyUpdateManager;
 
 import net.suntrans.hotwater.bean.CmdMsg;
 import net.suntrans.hotwater.databinding.ActivityMainBinding;
+import net.suntrans.hotwater.ui.activity.PicActivity;
 import net.suntrans.hotwater.ui.fragment.SettingFragment;
 import net.suntrans.hotwater.ui.fragment.StatusFragment;
 import net.suntrans.hotwater.ui.fragment.UserFragment;
@@ -34,6 +37,9 @@ import net.suntrans.hotwater.websocket.WebSocketService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -44,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
     private ActivityMainBinding binding;
     private Fragment[] fragments;
     public WebSocketService.ibinder binder;
+    private Map<String, String> warningDictionaries;
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -56,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
         }
     };
     private StatusFragment fragment;
+    private AlertDialog.Builder builder;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +76,11 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         }
 
+        initDictionaries();
         Intent intent = new Intent();
         intent.setClass(this, WebSocketService.class);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
+
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         setSupportActionBar(binding.toolbar);
@@ -129,21 +140,21 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
         });
         final String[] s = {"read1", "read2", "read3", "read4"};
 
-        binding.logo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("action", s[i]);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                binder.sendOrder(jsonObject.toString());
-                i++;
-                if (i > 3)
-                    i = 0;
-            }
-        });
+//        binding.logo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                JSONObject jsonObject = new JSONObject();
+//                try {
+//                    jsonObject.put("action", s[i]);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//                binder.sendOrder(jsonObject.toString());
+//                i++;
+//                if (i > 3)
+//                    i = 0;
+//            }
+//        });
         RxBus.getInstance().toObserverable(CmdMsg.class)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -162,11 +173,59 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
                     public void onNext(CmdMsg cmdMsg) {
                         if (cmdMsg.status == 0) {
                             UiUtils.showToast(cmdMsg.msg);
-                        }
+                        } else if (cmdMsg.status == 1) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(cmdMsg.msg);
+                                if (jsonObject.has("action")) {
+                                    if (jsonObject.getString("action").equals("Warning")) {
+                                        String name = jsonObject.getString("name");
+                                        String message = jsonObject.getString("message");
+                                        String s1 = warningDictionaries.get(name);
+                                        if (message.equals("1")) {
+                                            if (dialog == null){
+                                                dialog = new AlertDialog.Builder(MainActivity.this)
+                                                        .setNegativeButton("确定",null)
+                                                        .setTitle("警告").create();
+                                            }
+                                            if (s1!=null){
+                                                dialog.setMessage(s1);
+                                                if (!dialog.isShowing()){
+                                                    dialog.show();
+                                                }
+                                            }
+                                        }
 
+
+                                    }
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
                 });
         PgyUpdateManager.register(this, "net.suntrans.hotwater.fileProvider");
+    }
+
+    private void initDictionaries() {
+        warningDictionaries = new HashMap<>();
+        warningDictionaries.put("slc10_1_warning_ID", "十通道1异常");
+        warningDictionaries.put("slc10_2_warning_ID", "十通道2异常");
+        warningDictionaries.put("slc6_1_warning_ID", "六通道1异常");
+        warningDictionaries.put("slc6_2_warning_ID", "六通道2异常");
+        warningDictionaries.put("slc6_3_warning_ID", "六通道3异常");
+        warningDictionaries.put("slc6_4_warning_ID", "六通道4异常");
+        warningDictionaries.put("Jire_temp_down_warning_ID", "集热水箱下温度T1异常");
+        warningDictionaries.put("Jire_temp_up_warning_ID", "集热水箱上温度T2异常");
+        warningDictionaries.put("Jire_temp_tank_warning_ID", "集热水箱温度T3异常");
+        warningDictionaries.put("Hengwen_temp_tank_warning_ID", "恒温水箱温度T4异常");
+        warningDictionaries.put("Bath_temp_warning_ID", "洗浴末端回水温度T5异常");
+        warningDictionaries.put("Dining_temp_warning_ID", "食堂末端回水温度T6异常");
+        warningDictionaries.put("Huanjing_temp_warning_ID", "环境温度T7异常");
+        warningDictionaries.put("Jire_level_warning_ID", "集热水箱水位H1异常");
+        warningDictionaries.put("Hengwen_level_warning_ID", "恒温水箱水位H2异常");
+        warningDictionaries.put("Supply_press_warning_ID", "热水供应水压异常");
+        warningDictionaries.put("Feire_press_warning_ID", "废热循环水压异常");
     }
 
     @Override
@@ -201,8 +260,18 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
         PgyUpdateManager.unregister();
     }
 
-    /**
-     *
-     */
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.pic) {
+            startActivity(new Intent(this, PicActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

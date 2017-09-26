@@ -112,6 +112,9 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         datas.put(R.id.henwenman, "Hengwen_level_full_ID");
         datas.put(R.id.shuiyasheding, "SetSupply_press_ID");
         datas.put(R.id.tiaopinzhouqi, "Set_period_ID");
+        datas.put(R.id.SetFeire_press_ID, "SetFeire_press_ID");
+        datas.put(R.id.Supply_press_ID, "Supply_press_ID");
+        datas.put(R.id.Feire_press_ID, "Feire_press_ID");
     }
 
     private void setRxBus() {
@@ -139,6 +142,8 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
                                 JSONObject jsonObject = new JSONObject(cmdMsg.msg);
                                 if (jsonObject.has("action")) {
                                     if (jsonObject.getString("action").equals("read3")) {
+                                        System.out.println("我被执行了");
+                                        read3=null;
                                         read3 = JSON.parseObject(cmdMsg.msg, Read3.class);
                                         initView(read3);
                                     } else if (jsonObject.getString("action").equals("feedback")) {
@@ -188,6 +193,9 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         binding.henwenman.setText(read3.Hengwen_level_full_ID);
         binding.tiaopinzhouqi.setText(read3.Set_period_ID);
         binding.shuiyasheding.setText(read3.SetSupply_press_ID);
+        binding.SetFeirePressID.setText(read3.SetFeire_press_ID);
+        binding.SupplyPressID.setText(read3.Supply_press_ID);
+        binding.FeirePressID.setText(read3.Feire_press_ID);
 
         handler.removeCallbacksAndMessages(null);
         if (dialog != null) {
@@ -222,6 +230,9 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         binding.henwenman.setOnClickListener(this);
         binding.tiaopinzhouqi.setOnClickListener(this);
         binding.shuiyasheding.setOnClickListener(this);
+        binding.SetFeirePressID.setOnClickListener(this);
+        binding.SupplyPressID.setOnClickListener(this);
+        binding.FeirePressID.setOnClickListener(this);
 
         binding.refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

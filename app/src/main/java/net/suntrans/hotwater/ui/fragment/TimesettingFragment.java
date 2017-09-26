@@ -313,6 +313,7 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
                                 JSONObject jsonObject = new JSONObject(cmdMsg.msg);
                                 if (jsonObject.has("action")) {
                                     if (jsonObject.getString("action").equals("read4")) {
+                                        read4 = null;
                                         read4 = JSON.parseObject(cmdMsg.msg, Read4.class);
                                         initView(read4);
                                     } else if (jsonObject.getString("action").equals("feedback")) {
