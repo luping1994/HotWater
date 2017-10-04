@@ -115,6 +115,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         datas.put(R.id.SetFeire_press_ID, "SetFeire_press_ID");
         datas.put(R.id.Supply_press_ID, "Supply_press_ID");
         datas.put(R.id.Feire_press_ID, "Feire_press_ID");
+        datas.put(R.id.SetJire_temp_safe_ID, "SetJire_temp_safe_ID");
     }
 
     private void setRxBus() {
@@ -196,6 +197,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         binding.SetFeirePressID.setText(read3.SetFeire_press_ID);
         binding.SupplyPressID.setText(read3.Supply_press_ID);
         binding.FeirePressID.setText(read3.Feire_press_ID);
+        binding.SetJireTempSafeID.setText(read3.SetJire_temp_safe_ID);
 
         handler.removeCallbacksAndMessages(null);
         if (dialog != null) {

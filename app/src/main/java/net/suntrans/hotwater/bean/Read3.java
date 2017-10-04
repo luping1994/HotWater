@@ -56,6 +56,7 @@ public class Read3 {
     public String SetFeire_press_ID;
     public String Feire_press_ID;
     public String Supply_press_ID;
+    public String SetJire_temp_safe_ID;
 
     @Override
     public String toString() {

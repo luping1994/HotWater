@@ -226,7 +226,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="温差阈值-上限:"
+                        android:text="温差循环-上限:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -270,7 +270,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="温差阈值-下限:"
+                        android:text="温差循环-下限:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -314,7 +314,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="转水温度:"
+                        android:text="热水转移温度:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -358,7 +358,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="恒补水温度:"
+                        android:text="恒温水箱补水温度:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -402,7 +402,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="洗浴回温度:"
+                        android:text="洗浴回水温度:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -446,11 +446,55 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="食堂回温度:"
+                        android:text="食堂回水温度:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/shitanghuiwendu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toLeftOf="@+id/unit"
+                        android:background="@drawable/tx_bg"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="--"
+                        android:textColor="@color/mainTextColor" />
+
+                    <TextView
+                        android:id="@id/unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="℃" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f1f1f1" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:gravity="center_vertical"
+                        android:text="集热水箱保护温度:"
+                        android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/SetJire_temp_safe_ID"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:layout_centerVertical="true"
@@ -520,7 +564,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="集热水箱水位:"
+                        android:text="集热水箱保护水位:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -696,7 +740,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="恒温液位:"
+                        android:text="恒温水箱保护水位:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -740,7 +784,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="温水箱洗浴待供液位:"
+                        android:text="洗浴待供液位:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -784,7 +828,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="高峰液位:"
+                        android:text="洗浴高峰液位:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -882,7 +926,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:text="%" />
+                        android:text="m" />
 
                 </RelativeLayout>
 
@@ -926,7 +970,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:text="%" />
+                        android:text="m" />
 
                 </RelativeLayout>
 
@@ -946,7 +990,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="供应泵压力恒定值:"
+                        android:text="供水水压设定值:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -990,8 +1034,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="废热循环泵压力恒定值:"
-                        android:textColor="@color/colorPrimary" />
+                        android:text="废热水压设定值:"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
 
                     <TextView
                         android:id="@+id/SetFeire_press_ID"
@@ -1018,12 +1065,13 @@
 
                 </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#f1f1f1" />
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:background="#f1f1f1" />-->
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:orientation="horizontal"
@@ -1068,6 +1116,7 @@
                     android:background="#f1f1f1" />
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:orientation="horizontal"
@@ -1122,7 +1171,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
                         android:gravity="center_vertical"
-                        android:text="运行周期:"
+                        android:text="调压窗口:"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
@@ -1146,7 +1195,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:text=" S" />
+                        android:text=" kg" />
 
                 </RelativeLayout>
             </LinearLayout>

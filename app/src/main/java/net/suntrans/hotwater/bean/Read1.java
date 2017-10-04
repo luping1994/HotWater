@@ -33,6 +33,8 @@ public class Read1 {
     public String Huanjing_temp_ID;
     public String Jire_level_ID;
     public String Hengwen_level_ID;
+    public String Feire_press_ID;
+    public String Supply_press_ID;
 
     public String created_at;
 

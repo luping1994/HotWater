@@ -314,41 +314,7 @@
                 </LinearLayout>
 
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#f1f1f1" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="燃气机组"
-                        android:textColor="@color/mainTextColor" />
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-                        <net.suntrans.looney.widgets.SwitchButton
-                            android:id="@+id/ranqijizu"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:gravity="center"
-                            app:kswBackDrawable="@drawable/switch_bottom_white"
-                            app:kswThumbDrawable="@drawable/switch_top_circle" />
-                    </RelativeLayout>
-                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -436,7 +402,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="泄水阀控制器"
+                        android:text="泄水阀"
                         android:textColor="@color/mainTextColor" />
 
                     <RelativeLayout
@@ -472,7 +438,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="热水转移阀控制器"
+                        android:text="热水转移阀"
                         android:textColor="@color/mainTextColor" />
 
                     <RelativeLayout
@@ -508,7 +474,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="集热补水阀控制器"
+                        android:text="集热补水阀"
                         android:textColor="@color/mainTextColor" />
 
                     <RelativeLayout
@@ -544,7 +510,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="恒温补水阀控制器"
+                        android:text="恒温补水阀"
                         android:textColor="@color/mainTextColor" />
 
                     <RelativeLayout
@@ -580,7 +546,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="洗浴末端回水阀控制器"
+                        android:text="洗浴末端回水阀"
                         android:textColor="@color/mainTextColor" />
 
                     <RelativeLayout
@@ -616,7 +582,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="食堂末端回水阀控制器"
+                        android:text="食堂末端回水阀"
                         android:textColor="@color/mainTextColor" />
 
                     <RelativeLayout
@@ -635,13 +601,43 @@
                             app:kswThumbDrawable="@drawable/switch_top_circle" />
                     </RelativeLayout>
                 </LinearLayout>
-
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="2dp"
                     android:background="#f1f1f1" />
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="燃气机组"
+                        android:textColor="@color/mainTextColor" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <net.suntrans.looney.widgets.SwitchButton
+                            android:id="@+id/ranqijizu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:paddingLeft="16dp"
@@ -676,6 +672,8 @@
                     android:background="#f1f1f1" />
 
                 <LinearLayout
+                    android:visibility="gone"
+
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:paddingLeft="16dp"
@@ -710,6 +708,8 @@
                     android:background="#f1f1f1" />
 
                 <LinearLayout
+                    android:visibility="gone"
+
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:paddingLeft="16dp"
@@ -744,6 +744,8 @@
                     android:background="#f1f1f1" />
 
                 <LinearLayout
+                    android:visibility="gone"
+
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:paddingLeft="16dp"
@@ -778,6 +780,8 @@
                     android:background="#f1f1f1" />
 
                 <LinearLayout
+                    android:visibility="gone"
+
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:paddingLeft="16dp"
@@ -812,6 +816,7 @@
                     android:background="#f1f1f1" />
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:paddingLeft="16dp"
