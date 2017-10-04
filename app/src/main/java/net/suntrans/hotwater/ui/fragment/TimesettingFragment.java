@@ -318,6 +318,7 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
                                         initView(read4);
                                     } else if (jsonObject.getString("action").equals("feedback")) {
                                         Utils.setValue(read4, jsonObject.getString("name"), jsonObject.getString("message"));
+                                        UiUtils.showToast("设置成功");
                                         initView(read4);
                                     }
                                 }

@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             binder = (WebSocketService.ibinder) service;
-            fragment.getData();
         }
 
         @Override
@@ -173,6 +172,9 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
                     public void onNext(CmdMsg cmdMsg) {
                         if (cmdMsg.status == 0) {
                             UiUtils.showToast(cmdMsg.msg);
+                            if (cmdMsg.msg.equals("通讯成功")){
+                                fragment.getData();
+                            }
                         } else if (cmdMsg.status == 1) {
                             try {
                                 JSONObject jsonObject = new JSONObject(cmdMsg.msg);

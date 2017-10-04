@@ -148,9 +148,11 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
                                         read3 = JSON.parseObject(cmdMsg.msg, Read3.class);
                                         initView(read3);
                                     } else if (jsonObject.getString("action").equals("feedback")) {
+
                                         LogUtil.e(cmdMsg.msg);
                                         Utils.setValue(read3, jsonObject.getString("name"), jsonObject.getString("message"));
                                         initView(read3);
+                                        UiUtils.showToast("设置成功");
                                     }
                                     if (jsonObject.has("Error_code")) {
                                         UiUtils.showToast(jsonObject.getString("message"));

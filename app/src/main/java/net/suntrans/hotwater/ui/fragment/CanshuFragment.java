@@ -29,6 +29,9 @@ import net.suntrans.hotwater.utils.UiUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -67,8 +70,28 @@ public class CanshuFragment extends RxFragment {
     @Override
     public void onResume() {
         super.onResume();
-
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                getData();
+            }
+        }, 0, 3000);
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        timer.cancel();
+        handler.removeCallbacksAndMessages(null);
+    }
+
+
+    private Timer timer = new Timer();
 
     /**
      * Use this factory method to create a new instance of
@@ -130,18 +153,22 @@ public class CanshuFragment extends RxFragment {
 
                     @Override
                     public void onNext(CmdMsg cmdMsg) {
-                        if (cmdMsg.status == 1) {
-                            try {
-                                JSONObject jsonObject = new JSONObject(cmdMsg.msg);
-                                if (jsonObject.has("action")) {
-                                    if (jsonObject.getString("action").equals("read1")) {
-                                        Read1 read1 = JSON.parseObject(cmdMsg.msg, Read1.class);
-                                        initView(read1);
+                        try {
+                            if (cmdMsg.status == 1) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(cmdMsg.msg);
+                                    if (jsonObject.has("action")) {
+                                        if (jsonObject.getString("action").equals("read1")) {
+                                            Read1 read1 = JSON.parseObject(cmdMsg.msg, Read1.class);
+                                            initView(read1);
+                                        }
                                     }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
                 });
@@ -161,10 +188,11 @@ public class CanshuFragment extends RxFragment {
         binding.T7.setText(read1.Huanjing_temp_ID + "℃");
         binding.H1.setText(read1.Jire_level_ID + "%");
         binding.H2.setText(read1.Hengwen_level_ID + "%");
-        binding.SupplyPressID.setText(read1.Supply_press_ID == null ? "--" : read1.Supply_press_ID + "kg");
-        binding.FeirePressID.setText(read1.Feire_press_ID == null ? "--" : read1.Feire_press_ID + "kg");
+        binding.SupplyPressID.setText(read1.Supply_press_ID == null ? "--" : read1.Supply_press_ID + "Kg");
+        binding.FeirePressID.setText(read1.Feire_press_ID == null ? "--" : read1.Feire_press_ID + "Kg");
         binding.time.setText(read1.created_at);
     }
+
 
     public void getData() {
         JSONObject jsonObject = new JSONObject();
@@ -175,23 +203,18 @@ public class CanshuFragment extends RxFragment {
         }
         if (activity.binder != null)
             activity.binder.sendOrder(jsonObject.toString());
-        if (binding.refreshLayout != null) {
-            binding.refreshLayout.setRefreshing(true);
-        }
+//        if (binding.refreshLayout != null) {
+//            binding.refreshLayout.setRefreshing(true);
+//        }
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 binding.refreshLayout.setRefreshing(false);
-                UiUtils.showToast("从服务器获取数据超时,请稍后再试");
             }
         }, 2000);
     }
 
     Handler handler = new Handler();
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        handler.removeCallbacksAndMessages(null);
-    }
+
 }

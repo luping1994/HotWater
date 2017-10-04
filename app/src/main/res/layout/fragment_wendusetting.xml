@@ -1014,7 +1014,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:text="kg" />
+                        android:text="Kg" />
 
                 </RelativeLayout>
 
@@ -1058,10 +1058,12 @@
                         android:id="@id/unit"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:text="kg" />
+                        android:text="Kg"
+                        android:layout_alignBaseline="@+id/SetFeire_press_ID"
+                        android:layout_alignBottom="@+id/SetFeire_press_ID"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
 
                 </RelativeLayout>
 
@@ -1195,7 +1197,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:text=" kg" />
+                        android:text="Kg" />
 
                 </RelativeLayout>
             </LinearLayout>

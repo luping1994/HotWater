@@ -72,7 +72,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_weight="1"
                         android:gravity="center|left"
-                        android:text="集热水箱下温度"
+                        android:text="下集热温度"
                         android:textColor="@color/colorPrimaryDark" />
 
                     <TextView
@@ -112,7 +112,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_weight="1"
                         android:gravity="center|left"
-                        android:text="集热水箱上温度"
+                        android:text="上集热温度"
                         android:textColor="@color/colorPrimaryDark" />
 
                     <TextView
