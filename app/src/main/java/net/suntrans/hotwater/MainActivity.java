@@ -39,6 +39,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             binder = (WebSocketService.ibinder) service;
+
         }
 
         @Override
@@ -173,7 +176,17 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
                         if (cmdMsg.status == 0) {
                             UiUtils.showToast(cmdMsg.msg);
                             if (cmdMsg.msg.equals("通讯成功")){
-                                fragment.getData();
+                                if (timer!=null)
+                                {
+                                    timer.cancel();
+                                }
+                                timer = new Timer();
+                                timer.schedule(new TimerTask() {
+                                    @Override
+                                    public void run() {
+                                        getData();
+                                    }
+                                },200,3000);
                             }
                         } else if (cmdMsg.status == 1) {
                             try {
@@ -208,6 +221,9 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
                 });
         PgyUpdateManager.register(this, "net.suntrans.hotwater.fileProvider");
     }
+
+    private Timer timer = new Timer();
+
 
     private void initDictionaries() {
         warningDictionaries = new HashMap<>();
@@ -260,6 +276,7 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
         super.onDestroy();
         unbindService(connection);
         PgyUpdateManager.unregister();
+        timer.cancel();
     }
 
 
@@ -276,4 +293,34 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void getData() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("action", "read1");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if (binder != null)
+           binder.sendOrder(jsonObject.toString());
+
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        JSONObject jsonObject2 = new JSONObject();
+        try {
+            jsonObject2.put("action", "read2");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if (binder != null)
+            binder.sendOrder(jsonObject2.toString());
+
+    }
+
+
 }

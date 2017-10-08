@@ -138,13 +138,15 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
         fragment.show(getChildFragmentManager(), "timeDialog");
     }
 
+    boolean isSetting = false;
+
     @Override
     public void onTimeSelected(int hourOfDay, int minute) {
         if (dialog == null) {
             dialog = new LoadingDialog(getContext());
             dialog.setCancelable(false);
         }
-        System.out.println(hourOfDay + ":" + minute);
+//        System.out.println(hourOfDay + ":" + minute);
         String time = hourOfDay + ":" + minute;
         JSONObject jsonObject = new JSONObject();
         try {
@@ -178,93 +180,93 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
                     break;
 
                 case R.id.xiyugongshui1Start:
-                    dialog.setWaitText("正在设置洗浴供水开始时间1...");
+                    dialog.setWaitText("正在设置洗浴供水开始时间#1...");
                     jsonObject.put("name1", "SetBath_hour_start1_ID");
                     jsonObject.put("name2", "SetBath_min_start1_ID");
                     break;
                 case R.id.xiyugongshui1Stop:
-                    dialog.setWaitText("正在设置洗浴供水结束时间1...");
+                    dialog.setWaitText("正在设置洗浴供水结束时间#1...");
                     jsonObject.put("name1", "SetBath_hour_stop1_ID");
                     jsonObject.put("name2", "SetBath_min_stop1_ID");
                     break;
                 case R.id.xiyugongshui2Start:
-                    dialog.setWaitText("正在设置洗浴供水开始时间2...");
+                    dialog.setWaitText("正在设置洗浴供水开始时间#2...");
                     jsonObject.put("name1", "SetBath_hour_start2_ID");
                     jsonObject.put("name2", "SetBath_min_start2_ID");
                     break;
                 case R.id.xiyugongshui2Stop:
-                    dialog.setWaitText("正在设置洗浴供水结束时间2...");
+                    dialog.setWaitText("正在设置洗浴供水结束时间#2...");
                     jsonObject.put("name1", "SetBath_hour_stop2_ID");
                     jsonObject.put("name2", "SetBath_min_stop2_ID");
                     break;
                 case R.id.xiyugongshui3Start:
-                    dialog.setWaitText("正在设置洗浴供水开始时间3...");
+                    dialog.setWaitText("正在设置洗浴供水开始时间#3...");
                     jsonObject.put("name1", "SetBath_hour_start3_ID");
                     jsonObject.put("name2", "SetBath_min_start3_ID");
                     break;
                 case R.id.xiyugongshui3Stop:
-                    dialog.setWaitText("正在设置洗浴供水结束时间3...");
+                    dialog.setWaitText("正在设置洗浴供水结束时间#3...");
                     jsonObject.put("name1", "SetBath_hour_stop3_ID");
                     jsonObject.put("name2", "SetBath_min_stop3_ID");
                     break;
 
                 case R.id.jizuStart1:
-                    dialog.setWaitText("正在设置机组1工作开始时间...");
+                    dialog.setWaitText("正在设置机组工作开始时间#1...");
                     jsonObject.put("name1", "SetJizu_hour_start1_ID");
                     jsonObject.put("name2", "SetJizu_min_start1_ID");
                     break;
                 case R.id.jizuStop1:
-                    dialog.setWaitText("正在设置机组1工作结束时间...");
+                    dialog.setWaitText("正在设置机组工作结束时间#1...");
                     jsonObject.put("name1", "SetJizu_hour_stop1_ID");
                     jsonObject.put("name2", "SetJizu_min_stop1_ID");
                     break;
                 case R.id.jizuStart2:
-                    dialog.setWaitText("正在设置机组2工作开始时间...");
+                    dialog.setWaitText("正在设置机组工作开始时间#2...");
                     jsonObject.put("name1", "SetJizu_hour_start2_ID");
                     jsonObject.put("name2", "SetJizu_min_start2_ID");
                     break;
                 case R.id.jizuStop2:
-                    dialog.setWaitText("正在设置机组2工作结束时间...");
+                    dialog.setWaitText("正在设置机组工作结束时间#2...");
                     jsonObject.put("name1", "SetJizu_hour_stop2_ID");
                     jsonObject.put("name2", "SetJizu_min_stop2_ID");
                     break;
                 case R.id.jizuStart3:
-                    dialog.setWaitText("正在设置机组3工作开始时间...");
+                    dialog.setWaitText("正在设置机组工作开始时间#3...");
                     jsonObject.put("name1", "SetJizu_hour_start3_ID");
                     jsonObject.put("name2", "SetJizu_min_start3_ID");
                     break;
                 case R.id.jizuStop3:
-                    dialog.setWaitText("正在设置机组3工作结束时间...");
+                    dialog.setWaitText("正在设置机组工作结束时间#3...");
                     jsonObject.put("name1", "SetJizu_hour_stop3_ID");
                     jsonObject.put("name2", "SetJizu_min_stop3_ID");
                     break;
                 case R.id.shitangStart1:
-                    dialog.setWaitText("正在设置食堂1开始时间...");
+                    dialog.setWaitText("正在设置食堂开始时间#1...");
                     jsonObject.put("name1", "SetDining_hour_start1_ID");
                     jsonObject.put("name2", "SetDining_min_start1_ID");
                     break;
                 case R.id.shitangStop1:
-                    dialog.setWaitText("正在设置食堂1结束时间...");
+                    dialog.setWaitText("正在设置食堂结束时间#1...");
                     jsonObject.put("name1", "SetDining_hour_stop1_ID");
                     jsonObject.put("name2", "SetDining_min_stop1_ID");
                     break;
                 case R.id.shitangStart2:
-                    dialog.setWaitText("正在设置食堂2开始时间...");
+                    dialog.setWaitText("正在设置食堂开始时间#2...");
                     jsonObject.put("name1", "SetDining_hour_start2_ID");
                     jsonObject.put("name2", "SetDining_min_start2_ID");
                     break;
                 case R.id.shitangStop2:
-                    dialog.setWaitText("正在设置食堂2结束时间...");
+                    dialog.setWaitText("正在设置食堂结束时间#2...");
                     jsonObject.put("name1", "SetDining_hour_stop2_ID");
                     jsonObject.put("name2", "SetDining_min_stop2_ID");
                     break;
                 case R.id.shitangStart3:
-                    dialog.setWaitText("正在设置食堂3开始时间...");
+                    dialog.setWaitText("正在设置食堂开始时间#3...");
                     jsonObject.put("name1", "SetDining_hour_start3_ID");
                     jsonObject.put("name2", "SetDining_min_start3_ID");
                     break;
                 case R.id.shitangStop3:
-                    dialog.setWaitText("正在设置食堂3结束时间...");
+                    dialog.setWaitText("正在设置食堂结束时间#3...");
                     jsonObject.put("name1", "SetDining_hour_stop3_ID");
                     jsonObject.put("name2", "SetDining_min_stop3_ID");
                     break;
@@ -275,10 +277,12 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
             e.printStackTrace();
         }
         dialog.show();
+        isSetting = true;
         activity.binder.sendOrder(jsonObject.toString());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                isSetting = false;
                 dialog.dismiss();
             }
         }, 2000);
@@ -318,7 +322,10 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
                                         initView(read4);
                                     } else if (jsonObject.getString("action").equals("feedback")) {
                                         Utils.setValue(read4, jsonObject.getString("name"), jsonObject.getString("message"));
-                                        UiUtils.showToast("设置成功");
+                                        if (isSetting) {
+                                            UiUtils.showToast("设置成功");
+                                            isSetting = false;
+                                        }
                                         initView(read4);
                                     }
                                 }
@@ -327,7 +334,6 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
                                     LogUtil.i(jsonObject.toString());
                                     initView(read4);
                                 }
-
 
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -339,7 +345,14 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
 
     private void initView(Read4 read4) {
         handler.removeCallbacksAndMessages(null);
-        LogUtil.i("TimeSettingFragment",read4.toString());
+        if (dialog != null) {
+            dialog.dismiss();
+        }
+        if (binding.refreshLayout != null) {
+            binding.refreshLayout.setRefreshing(false);
+        }
+
+        LogUtil.i("TimeSettingFragment", read4.toString());
         binding.time.setText(read4.created_at);
 
         binding.taiyangnengStart.setText(read4.SetSolar_hour_start_ID + ":" + read4.SetSolar_min_start_ID);
@@ -373,13 +386,7 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
         binding.shitangStop3.setText(read4.SetDining_hour_stop3_ID + ":" + read4.SetDining_min_stop3_ID);
 
 
-        handler.removeCallbacksAndMessages(null);
-        if (dialog!=null){
-            dialog.dismiss();
-        }
-        if (binding.refreshLayout!=null){
-            binding.refreshLayout.setRefreshing(false);
-        }
+
     }
 
 

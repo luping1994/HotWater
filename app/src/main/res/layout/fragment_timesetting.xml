@@ -58,7 +58,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="太阳能工作起止时间设置"
+                    android:text="太阳能工作时间"
                     android:textColor="@color/colorPrimary" />
 
                 <include layout="@layout/diviler_padingleft" />
@@ -135,7 +135,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="洗浴高峰起止时间设置"
+                    android:text="洗浴高峰时间"
                     android:textColor="@color/colorPrimary" />
 
                 <include layout="@layout/diviler_padingleft" />
@@ -212,7 +212,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="洗浴供水时间1"
+                    android:text="洗浴供水时间#1"
                     android:textColor="@color/colorPrimary" />
 
                 <include layout="@layout/diviler_padingleft" />
@@ -288,7 +288,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="洗浴供水时间2"
+                    android:text="洗浴供水时间#2"
                     android:textColor="@color/colorPrimary" />
 
                 <include layout="@layout/diviler_padingleft" />
@@ -364,7 +364,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="洗浴供水时间3"
+                    android:text="洗浴供水时间#3"
                     android:textColor="@color/colorPrimary" />
 
                 <include layout="@layout/diviler_padingleft" />
@@ -440,7 +440,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="机组1工作起止时间设置"
+                    android:text="机组工作时间#1"
                     android:textColor="@color/colorPrimary" />
 
                 <include layout="@layout/diviler_padingleft" />
@@ -516,7 +516,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="机组2工作起止时间设置"
+                    android:text="机组工作时间#2"
                     android:textColor="@color/colorPrimary" />
 
                 <include layout="@layout/diviler_padingleft" />
@@ -592,7 +592,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="机组3工作起止时间设置"
+                    android:text="机组工作时间#3"
                     android:textColor="@color/colorPrimary" />
 
                 <include layout="@layout/diviler_padingleft" />
@@ -667,7 +667,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="食堂1起止时间设置"
+                    android:text="食堂工作时间#1"
                     android:textColor="@color/colorPrimary" />
                 <include layout="@layout/diviler_padingleft"/>
 
@@ -741,7 +741,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="食堂2起止时间设置"
+                    android:text="食堂工作时间#2"
                     android:textColor="@color/colorPrimary" />
 
                 <include layout="@layout/diviler_padingleft"/>
@@ -818,7 +818,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="食堂3起止时间设置"
+                    android:text="食堂工作时间#3"
                     android:textColor="@color/colorPrimary" />
                 <include layout="@layout/diviler_padingleft"/>
 

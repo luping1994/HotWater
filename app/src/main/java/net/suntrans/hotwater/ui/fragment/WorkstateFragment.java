@@ -35,6 +35,9 @@ import android.widget.Switch;
 
 import com.alibaba.fastjson.JSON;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -427,4 +430,20 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
             }
         }, 2500);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
+    public void onPause() {
+        System.out.println("onPause");
+//        timer.cancel();
+        super.onPause();
+    }
+
+    private Timer timer = new Timer();
+
 }

@@ -111,12 +111,14 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         datas.put(R.id.jireman, "Jire_level_full_ID");
         datas.put(R.id.henwenman, "Hengwen_level_full_ID");
         datas.put(R.id.shuiyasheding, "SetSupply_press_ID");
-        datas.put(R.id.tiaopinzhouqi, "Set_period_ID");
+        datas.put(R.id.tiaopinzhouqi, "SetWindow_press_ID");
         datas.put(R.id.SetFeire_press_ID, "SetFeire_press_ID");
         datas.put(R.id.Supply_press_ID, "Supply_press_ID");
         datas.put(R.id.Feire_press_ID, "Feire_press_ID");
         datas.put(R.id.SetJire_temp_safe_ID, "SetJire_temp_safe_ID");
     }
+
+    boolean isSetting = false;
 
     private void setRxBus() {
 
@@ -144,7 +146,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
                                 if (jsonObject.has("action")) {
                                     if (jsonObject.getString("action").equals("read3")) {
                                         System.out.println("我被执行了");
-                                        read3=null;
+                                        read3 = null;
                                         read3 = JSON.parseObject(cmdMsg.msg, Read3.class);
                                         initView(read3);
                                     } else if (jsonObject.getString("action").equals("feedback")) {
@@ -152,7 +154,10 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
                                         LogUtil.e(cmdMsg.msg);
                                         Utils.setValue(read3, jsonObject.getString("name"), jsonObject.getString("message"));
                                         initView(read3);
-                                        UiUtils.showToast("设置成功");
+                                        if (isSetting) {
+                                            UiUtils.showToast("设置成功");
+                                            isSetting = false;
+                                        }
                                     }
                                     if (jsonObject.has("Error_code")) {
                                         UiUtils.showToast(jsonObject.getString("message"));
@@ -237,6 +242,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         binding.SetFeirePressID.setOnClickListener(this);
         binding.SupplyPressID.setOnClickListener(this);
         binding.FeirePressID.setOnClickListener(this);
+        binding.SetJireTempSafeID.setOnClickListener(this);
 
         binding.refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -334,6 +340,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
             jsonObject.put("action", "settings");
             jsonObject.put("name", datas.get(currentSelectedId));
             jsonObject.put("parameter", value);
+            isSetting = true;
             if (activity.binder != null) {
                 activity.binder.sendOrder(jsonObject.toString());
             }
@@ -348,6 +355,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
                 @Override
                 public void run() {
                     dialog.dismiss();
+                    isSetting = false;
                     UiUtils.showToast("设置超时,请稍后再试");
                 }
             }, 2000);

@@ -70,28 +70,27 @@ public class CanshuFragment extends RxFragment {
     @Override
     public void onResume() {
         super.onResume();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                getData();
-            }
-        }, 0, 3000);
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                getData();
+//            }
+//        }, 0, 3000);
     }
 
     @Override
     public void onPause() {
         super.onPause();
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        timer.cancel();
         handler.removeCallbacksAndMessages(null);
     }
 
 
-    private Timer timer = new Timer();
 
     /**
      * Use this factory method to create a new instance of
@@ -126,6 +125,8 @@ public class CanshuFragment extends RxFragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_canshu, container, false);
         return binding.getRoot();
     }
+
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
