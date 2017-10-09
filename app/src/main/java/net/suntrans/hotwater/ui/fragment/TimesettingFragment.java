@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.fastjson.JSON;
+import com.trello.rxlifecycle.android.FragmentEvent;
 
 import net.suntrans.hotwater.MainActivity;
 import net.suntrans.hotwater.R;
@@ -31,6 +32,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -66,6 +69,7 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        binding.jiaoshi.setOnClickListener(this);
         //太阳能时间设置
         binding.taiyangnengStart.setOnClickListener(this);
         binding.taiyangnengStop.setOnClickListener(this);
@@ -128,13 +132,24 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
 
     @Override
     public void onClick(View v) {
-        currentId = v.getId();
-        System.out.println("我被点击了");
-        TimePickerDialogFragment fragment = (TimePickerDialogFragment) getChildFragmentManager().findFragmentByTag("timeDialog");
-        if (fragment == null) {
-            fragment = new TimePickerDialogFragment();
-            fragment.setOnTimeSelectedListener(this);
+        if (v.getId() == R.id.jiaoshi) {
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("action", "set_rtu_time");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (activity != null) {
+                if (activity.binder != null)
+                    activity.binder.sendOrder(jsonObject.toString());
+            }
+
+            return;
         }
+        currentId = v.getId();
+        TimePickerDialogFragment
+                fragment = new TimePickerDialogFragment();
+        fragment.setOnTimeSelectedListener(this);
         fragment.show(getChildFragmentManager(), "timeDialog");
     }
 
@@ -278,12 +293,14 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
         }
         dialog.show();
         isSetting = true;
-        activity.binder.sendOrder(jsonObject.toString());
+        if (activity.binder != null)
+            activity.binder.sendOrder(jsonObject.toString());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 isSetting = false;
-                dialog.dismiss();
+                if (dialog != null)
+                    dialog.dismiss();
             }
         }, 2000);
 
@@ -293,7 +310,7 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
     private void setRxBus() {
         RxBus.getInstance()
                 .toObserverable(CmdMsg.class)
-                .compose(this.<CmdMsg>bindToLifecycle())
+                .compose(this.<CmdMsg>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<CmdMsg>() {
@@ -321,12 +338,18 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
                                         read4 = JSON.parseObject(cmdMsg.msg, Read4.class);
                                         initView(read4);
                                     } else if (jsonObject.getString("action").equals("feedback")) {
-                                        Utils.setValue(read4, jsonObject.getString("name"), jsonObject.getString("message"));
-                                        if (isSetting) {
-                                            UiUtils.showToast("设置成功");
-                                            isSetting = false;
+                                        if (jsonObject.getString("name").equals("Sys_rtc_time_ID")){
+                                            UiUtils.showToast("校时成功!"+jsonObject.getString("message"));
+//                                            initView(read4);
+                                        }else {
+                                            Utils.setValue(read4, jsonObject.getString("name"), jsonObject.getString("message"));
+                                            if (isSetting) {
+                                                UiUtils.showToast("设置成功");
+                                                isSetting = false;
+                                            }
+                                            initView(read4);
                                         }
-                                        initView(read4);
+
                                     }
                                 }
                                 if (jsonObject.has("Error_code")) {
@@ -353,7 +376,9 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
         }
 
         LogUtil.i("TimeSettingFragment", read4.toString());
-        binding.time.setText(read4.created_at);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String format = dateFormat.format(new Date());
+        binding.time.setText(format);
 
         binding.taiyangnengStart.setText(read4.SetSolar_hour_start_ID + ":" + read4.SetSolar_min_start_ID);
         binding.taiyangnengStop.setText(read4.SetSolar_hour_stop_ID + ":" + read4.SetSolar_min_stop_ID);
@@ -386,7 +411,6 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
         binding.shitangStop3.setText(read4.SetDining_hour_stop3_ID + ":" + read4.SetDining_min_stop3_ID);
 
 
-
     }
 
 
@@ -394,8 +418,8 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
     protected void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
         binding.refreshLayout.setRefreshing(true);
-        new RefreshThread().start();
-//        getData();
+//        new RefreshThread().start();
+        getData();
     }
 
 
@@ -407,8 +431,11 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if (activity.binder != null)
-            activity.binder.sendOrder(jsonObject.toString());
+        if (activity != null) {
+            if (activity.binder != null)
+                activity.binder.sendOrder(jsonObject.toString());
+        }
+
 
 //        handler.postDelayed(new Runnable() {
 //            @Override

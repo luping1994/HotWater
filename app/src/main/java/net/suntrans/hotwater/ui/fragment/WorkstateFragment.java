@@ -34,6 +34,7 @@ import android.content.Context;
 import android.widget.Switch;
 
 import com.alibaba.fastjson.JSON;
+import com.trello.rxlifecycle.android.FragmentEvent;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -159,7 +160,7 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
         });
         RxBus.getInstance()
                 .toObserverable(CmdMsg.class)
-                .compose(this.<CmdMsg>bindToLifecycle())
+                .compose(this.<CmdMsg>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<CmdMsg>() {

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.fastjson.JSON;
+import com.trello.rxlifecycle.android.FragmentEvent;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
 import net.suntrans.hotwater.App;
@@ -138,7 +139,7 @@ public class CanshuFragment extends RxFragment {
         });
         RxBus.getInstance()
                 .toObserverable(CmdMsg.class)
-                .compose(this.<CmdMsg>bindToLifecycle())
+                .compose(this.<CmdMsg>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<CmdMsg>() {

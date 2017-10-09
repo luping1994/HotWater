@@ -8,15 +8,19 @@ import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -175,18 +179,9 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
                     public void onNext(CmdMsg cmdMsg) {
                         if (cmdMsg.status == 0) {
                             UiUtils.showToast(cmdMsg.msg);
-                            if (cmdMsg.msg.equals("通讯成功")){
-                                if (timer!=null)
-                                {
-                                    timer.cancel();
-                                }
-                                timer = new Timer();
-                                timer.schedule(new TimerTask() {
-                                    @Override
-                                    public void run() {
-                                        getData();
-                                    }
-                                },200,3000);
+                            if (cmdMsg.msg.equals("通讯成功")) {
+                                handler.postDelayed(runnable, 500);
+                                handler2.postDelayed(runnable2, 800);
                             }
                         } else if (cmdMsg.status == 1) {
                             try {
@@ -197,14 +192,14 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
                                         String message = jsonObject.getString("message");
                                         String s1 = warningDictionaries.get(name);
                                         if (message.equals("1")) {
-                                            if (dialog == null){
+                                            if (dialog == null) {
                                                 dialog = new AlertDialog.Builder(MainActivity.this)
-                                                        .setNegativeButton("确定",null)
+                                                        .setNegativeButton("确定", null)
                                                         .setTitle("警告").create();
                                             }
-                                            if (s1!=null){
+                                            if (s1 != null) {
                                                 dialog.setMessage(s1);
-                                                if (!dialog.isShowing()){
+                                                if (!dialog.isShowing()) {
                                                     dialog.show();
                                                 }
                                             }
@@ -221,8 +216,6 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
                 });
         PgyUpdateManager.register(this, "net.suntrans.hotwater.fileProvider");
     }
-
-    private Timer timer = new Timer();
 
 
     private void initDictionaries() {
@@ -275,27 +268,32 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
     protected void onDestroy() {
         super.onDestroy();
         unbindService(connection);
-        PgyUpdateManager.unregister();
-        timer.cancel();
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.pic) {
-            startActivity(new Intent(this, PicActivity.class));
+        try {
+            PgyUpdateManager.unregister();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return super.onOptionsItemSelected(item);
+        handler.removeCallbacksAndMessages(null);
+        handler2.removeCallbacksAndMessages(null);
     }
 
 
-    public void getData() {
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (item.getItemId() == R.id.pic) {
+//            startActivity(new Intent(this, PicActivity.class));
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
+
+
+    public void getData1() {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("action", "read1");
@@ -303,14 +301,18 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
             e.printStackTrace();
         }
         if (binder != null)
-           binder.sendOrder(jsonObject.toString());
+            binder.sendOrder(jsonObject.toString());
 
-        try {
-            Thread.sleep(400);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(400);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
+
+    }
+
+    private void getData2() {
         JSONObject jsonObject2 = new JSONObject();
         try {
             jsonObject2.put("action", "read2");
@@ -319,8 +321,42 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
         }
         if (binder != null)
             binder.sendOrder(jsonObject2.toString());
-
     }
 
+    private long[] mHits = new long[2];
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
+            mHits[mHits.length - 1] = SystemClock.uptimeMillis();
+            if (mHits[0] >= (SystemClock.uptimeMillis() - 2000)) {
+//                finish();
+                android.os.Process.killProcess(android.os.Process.myPid());
+            } else {
+                UiUtils.showToast("再按一次退出");
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private Handler handler = new Handler();
+    private Handler handler2 = new Handler();
+
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            getData1();
+            handler.postDelayed(this, 2000);
+        }
+    };
+    Runnable runnable2 = new Runnable() {
+        @Override
+        public void run() {
+            getData2();
+            handler.postDelayed(this, 2000);
+        }
+    };
 }

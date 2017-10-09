@@ -7,8 +7,8 @@ android {
         applicationId "net.suntrans.hotwater"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 18
-        versionName "v0.2.0.6"
+        versionCode 20
+        versionName "v0.2.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -76,6 +76,7 @@ dependencies {
     compile 'com.alibaba:fastjson:1.1.56.android'
     compile 'com.pgyersdk:sdk:2.6.9'
     compile 'me.weyye.hipermission:library:1.0.3'
+    compile 'com.tencent.bugly:crashreport:latest.release'
 
     testCompile 'junit:junit:4.12'
 }

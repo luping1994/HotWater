@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.fastjson.JSON;
+import com.trello.rxlifecycle.android.FragmentEvent;
 
 import net.suntrans.hotwater.MainActivity;
 import net.suntrans.hotwater.R;
@@ -124,7 +125,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
 
         RxBus.getInstance()
                 .toObserverable(CmdMsg.class)
-                .compose(this.<CmdMsg>bindToLifecycle())
+                .compose(this.<CmdMsg>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<CmdMsg>() {
