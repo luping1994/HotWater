@@ -3,13 +3,16 @@ package net.suntrans.hotwater.ui.fragment;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
 
 import net.suntrans.hotwater.R;
 import net.suntrans.hotwater.databinding.FragmentSettingBinding;
@@ -50,7 +53,37 @@ public class SettingFragment extends LazyLoadFragment {
         PagerAdapter adapter = new PagerAdapter(getChildFragmentManager());
         binding.viewpager.setAdapter(adapter);
         binding.viewpager.setOffscreenPageLimit(2);
-        binding.tablayout.setupWithViewPager( binding.viewpager);
+//        binding.tablayout.setupWithViewPager( binding.viewpager);
+        binding.segmentedGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                if (checkedId == R.id.radio0){
+                    binding.viewpager.setCurrentItem(0,false);
+                }else {
+                    binding.viewpager.setCurrentItem(1,false);
+
+                }
+            }
+        });
+        binding.viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position==0)
+                    binding.radio0.setChecked(true);
+                else
+                    binding.radio1.setChecked(true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override

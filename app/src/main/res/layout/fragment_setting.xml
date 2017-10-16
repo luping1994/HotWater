@@ -7,18 +7,50 @@
         android:orientation="vertical"
         tools:context="net.suntrans.hotwater.ui.fragment.StatusFragment">
 
-        <android.support.design.widget.TabLayout
-            app:tabMode="fixed"
-            app:tabGravity="fill"
-            app:tabMaxWidth="0dp"
-            android:background="#fafafa"
-            app:tabSelectedTextColor="@color/colorPrimary"
-            android:id="@+id/tablayout"
+        <RelativeLayout
+            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
-            android:layout_height="35dp">
+            android:layout_height="56dp">
+            <ImageView
+                android:layout_marginLeft="8dp"
+                android:id="@+id/logo"
+                android:layout_width="36.4dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/logo2" />
+            <net.suntrans.looney.widgets.SegmentedGroup
+                android:layout_centerHorizontal="true"
+                android:id="@+id/segmented_group"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                app:sc_border_width="1dp"
+                app:sc_checked_text_color="@color/colorPrimary"
+                app:sc_corner_radius="2dp"
+                app:sc_tint_color="@color/white">
 
-        </android.support.design.widget.TabLayout>
+                <RadioButton
+                    android:id="@+id/radio0"
+                    style="@style/RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:checked="true"
+                    android:text="温度水位" />
 
+                <RadioButton
+                    android:id="@+id/radio1"
+                    style="@style/RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:text="工作时间" />
+
+            </net.suntrans.looney.widgets.SegmentedGroup>
+        </RelativeLayout>
         <net.suntrans.hotwater.widgets.InnerViewpager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"

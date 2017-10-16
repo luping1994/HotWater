@@ -175,6 +175,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
     }
 
     private void initView(Read3 read3) {
+        handler.removeCallbacksAndMessages(null);
         LogUtil.i("WendusettingFragment", read3.toString());
 
         binding.time.setText(read3.created_at);
@@ -253,7 +254,6 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
                     @Override
                     public void run() {
                         binding.refreshLayout.setRefreshing(false);
-
                     }
                 }, 2000);
             }

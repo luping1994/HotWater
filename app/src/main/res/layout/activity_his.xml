@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout >
+
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbarWarper"
+            layout="@layout/toolbar" />
+
+       <FrameLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <TextView
+               android:visibility="invisible"
+               android:id="@+id/tips"
+               android:gravity="center"
+               android:text="暂无更多消息"
+               android:layout_width="match_parent"
+               android:layout_height="40dp" />
+           <android.support.v7.widget.RecyclerView
+               app:layoutManager="LinearLayoutManager"
+               android:id="@+id/recyclerview"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+           </android.support.v7.widget.RecyclerView>
+       </FrameLayout>
+    </LinearLayout>
+</layout>

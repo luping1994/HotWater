@@ -16,10 +16,17 @@ allprojects {
     repositories {
         jcenter()
         maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" }
-
+        maven { url 'https://maven.google.com' }
+        maven { url "http://clojars.org/repo" }
+        maven { url "https://jitpack.io" }
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+ext {
+    buildToolsVersion = "25.0.2"
+    supportLibVersion = "25.3.1"
+    roomVersion = "1.0.0-alpha3"
 }

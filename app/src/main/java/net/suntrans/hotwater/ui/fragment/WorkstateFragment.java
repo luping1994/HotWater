@@ -88,24 +88,17 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
         super.onViewCreated(view, savedInstanceState);
 
         updateState(false);
-        binding.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        binding.zidong.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-
+            public void onClick(View v) {
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("action", "settings");
 
+                    jsonObject.put("name", "Operation_mode_ID");
+                    jsonObject.put("parameter", "1");
+                    updateState(false);
 
-                    if (checkedId == R.id.zidong) {
-                        jsonObject.put("name", "Operation_mode_ID");
-                        jsonObject.put("parameter", "1");
-                        updateState(false);
-                    } else {
-                        jsonObject.put("name", "Operation_mode_ID");
-                        jsonObject.put("parameter", "0");
-                        updateState(true);
-                    }
                     if (activity.binder != null)
                         activity.binder.sendOrder(jsonObject.toString());
                     if (dialog == null) {
@@ -118,12 +111,51 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
                         @Override
                         public void run() {
                             dialog.dismiss();
+                            UiUtils.showToast("设置超时");
                             initView(read2);
                         }
                     }, 2000);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+        binding.shoudong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("action", "settings");
+
+                    jsonObject.put("name", "Operation_mode_ID");
+                    jsonObject.put("parameter", "0");
+                    updateState(true);
+
+                    if (activity.binder != null)
+                        activity.binder.sendOrder(jsonObject.toString());
+                    if (dialog == null) {
+                        dialog = new LoadingDialog(getContext());
+                        dialog.setCancelable(false);
+                        dialog.setWaitText("请稍后...");
+                    }
+                    dialog.show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            dialog.dismiss();
+                            UiUtils.showToast("设置超时");
+                            initView(read2);
+                        }
+                    }, 2000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        binding.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+
 
             }
         });
@@ -206,9 +238,10 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
     }
 
     private void initView(Read2 read2) {
+        handler.removeCallbacksAndMessages(null);
         if (read2 == null)
             return;
-        LogUtil.i("WorkStateFragment" + read2.toString());
+        LogUtil.i("WorkStateFragment11111111" + read2.toString());
         if (read2.Operation_mode_ID == 1) {
             binding.zidong.setChecked(true);
         } else {

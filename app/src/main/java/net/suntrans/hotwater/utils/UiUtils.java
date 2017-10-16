@@ -1,7 +1,12 @@
 package net.suntrans.hotwater.utils;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -12,6 +17,7 @@ import android.os.Build;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.CursorLoader;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -23,6 +29,10 @@ import android.widget.Toast;
 
 
 import net.suntrans.hotwater.App;
+import net.suntrans.hotwater.MainActivity;
+import net.suntrans.hotwater.R;
+import net.suntrans.hotwater.bean.Message;
+import net.suntrans.hotwater.ui.activity.MessageActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -312,5 +322,40 @@ public class UiUtils {
             cursor.close();
         }
         return filePath;
+    }
+
+    public static Notification getNotification(Context context, Message msg) {
+        int icon = 0;
+        try {
+            ApplicationInfo info = context.getPackageManager()
+                    .getApplicationInfo(context.getPackageName(), 0);
+            icon = info.icon;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        Notification notification = new NotificationCompat.Builder(context)
+                .setContentTitle(msg.title)
+                .setContentText(msg.message)
+                .setSmallIcon(icon)
+                .setAutoCancel(true)
+                .setContentIntent(
+                        getDefalutIntent(context, msg,
+                                PendingIntent.FLAG_UPDATE_CURRENT))
+                .setWhen(System.currentTimeMillis())// 通知产生的时间，会在通知信息里显示，一般是系统获取到的时间
+                // .setPriority(Notification.PRIORITY_DEFAULT) // 设置该通知优先级
+                .setAutoCancel(true)// 设置这个标志当用户单击面板就可以让通知将自动取消
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setOngoing(false)// ture，设置他为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐)或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)
+                .setDefaults(NotificationCompat.DEFAULT_VIBRATE)// 向通知添加声音、闪灯和振动效果的最简单、最一致的方式是使用当前的用户默认设置，使用defaults属性，可以组合
+                .build();// 设置通知小ICON .build();
+
+        return notification;
+    }
+
+    private static PendingIntent getDefalutIntent(Context context, Message msg, int flagUpdateCurrent) {
+        Intent intent = new Intent(context, MessageActivity.class);
+        intent.putExtra("message",msg.message);
+
+        return PendingIntent.getActivity(context, 0, intent, flagUpdateCurrent);
     }
 }

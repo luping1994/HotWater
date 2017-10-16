@@ -1,0 +1,146 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="user"
+            type="net.suntrans.looney.login.LoginModel"/>
+        <variable
+            name="actionHandler"
+            type="net.suntrans.looney.login.LoginPresenter"/>
+    </data>
+    <RelativeLayout
+        android:fitsSystemWindows="true"
+        android:background="#ecedf1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".login.LoginActivity">
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:id="@+id/root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            >
+
+            <LinearLayout
+                android:id="@+id/header"
+                android:layout_marginTop="45dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatImageView
+                    android:contentDescription="@string/app_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    app:srcCompat="@drawable/logo" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/header"
+                android:id="@+id/ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_ll_login"
+                android:orientation="vertical">
+
+                <net.suntrans.looney.widgets.EditView
+                    android:text="@={user.username}"
+                    android:id="@+id/edit_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@null"
+                    android:hint="@string/account"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+                <!--</android.support.design.widget.TextInputLayout>-->
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#c3c3c3" />
+
+
+                <net.suntrans.looney.widgets.EditView
+                    android:text="@={user.password}"
+                    android:id="@+id/edit_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@null"
+                    android:inputType="textPassword"
+                    android:hint="@string/password"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <Button
+                android:onClick="@{()->actionHandler.login(user.username,user.password)}"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:id="@+id/login"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_bt_login"
+                android:text="@string/login"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_below="@+id/ll"
+                />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/login_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/login"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:onClick="@{()->actionHandler.forgetPassword()}"
+                    android:layout_weight="1"
+                    android:textColor="#007dff"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center|left"
+                    android:text="@string/forgot_password"
+                    tools:ignore="RelativeOverlap,RtlHardcoded" />
+                <TextView
+                    android:onClick="@{()->actionHandler.signUp()}"
+                    android:gravity="center|right"
+                    android:textColor="#007dff"
+                    android:text="新用户注册"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginBottom="32dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="12sp"
+                android:id="@+id/bottom_text"
+                android:text="智慧生活 无线享受"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

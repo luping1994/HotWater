@@ -16,24 +16,22 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.pgyersdk.update.PgyUpdateManager;
+import com.trello.rxlifecycle.android.ActivityEvent;
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import net.suntrans.hotwater.bean.CmdMsg;
 import net.suntrans.hotwater.databinding.ActivityMainBinding;
-import net.suntrans.hotwater.ui.activity.PicActivity;
 import net.suntrans.hotwater.ui.fragment.SettingFragment;
 import net.suntrans.hotwater.ui.fragment.StatusFragment;
 import net.suntrans.hotwater.ui.fragment.UserFragment;
-import net.suntrans.hotwater.utils.LogUtil;
 import net.suntrans.hotwater.utils.RxBus;
 import net.suntrans.hotwater.utils.UiUtils;
 import net.suntrans.hotwater.websocket.WebSocketService;
@@ -41,27 +39,22 @@ import net.suntrans.hotwater.websocket.WebSocketService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 
-public class MainActivity extends AppCompatActivity implements StatusFragment.OnFragmentInteractionListener {
-    int i = 0;
+public class MainActivity extends RxAppCompatActivity implements StatusFragment.OnFragmentInteractionListener {
     private ActivityMainBinding binding;
     private Fragment[] fragments;
     public WebSocketService.ibinder binder;
-    private Map<String, String> warningDictionaries;
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             binder = (WebSocketService.ibinder) service;
-
+//            System.out.println("绑定成功");
+            handler.postDelayed(runnable, 500);
+            handler2.postDelayed(runnable2, 800);
         }
 
         @Override
@@ -82,15 +75,14 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         }
 
-        initDictionaries();
         Intent intent = new Intent();
         intent.setClass(this, WebSocketService.class);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
 
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        setSupportActionBar(binding.toolbar);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         fragment = new StatusFragment();
         SettingFragment fragment1 = new SettingFragment();
@@ -162,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
 //            }
 //        });
         RxBus.getInstance().toObserverable(CmdMsg.class)
+                .compose(this.<CmdMsg>bindUntilEvent(ActivityEvent.DESTROY))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<CmdMsg>() {
@@ -179,10 +172,7 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
                     public void onNext(CmdMsg cmdMsg) {
                         if (cmdMsg.status == 0) {
                             UiUtils.showToast(cmdMsg.msg);
-                            if (cmdMsg.msg.equals("通讯成功")) {
-                                handler.postDelayed(runnable, 500);
-                                handler2.postDelayed(runnable2, 800);
-                            }
+
                         } else if (cmdMsg.status == 1) {
                             try {
                                 JSONObject jsonObject = new JSONObject(cmdMsg.msg);
@@ -190,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
                                     if (jsonObject.getString("action").equals("Warning")) {
                                         String name = jsonObject.getString("name");
                                         String message = jsonObject.getString("message");
-                                        String s1 = warningDictionaries.get(name);
+                                        String s1 = WebSocketService.warningDictionaries.get(name);
                                         if (message.equals("1")) {
                                             if (dialog == null) {
                                                 dialog = new AlertDialog.Builder(MainActivity.this)
@@ -204,8 +194,6 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
                                                 }
                                             }
                                         }
-
-
                                     }
                                 }
                             } catch (Exception e) {
@@ -218,25 +206,11 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
     }
 
 
-    private void initDictionaries() {
-        warningDictionaries = new HashMap<>();
-        warningDictionaries.put("slc10_1_warning_ID", "十通道1异常");
-        warningDictionaries.put("slc10_2_warning_ID", "十通道2异常");
-        warningDictionaries.put("slc6_1_warning_ID", "六通道1异常");
-        warningDictionaries.put("slc6_2_warning_ID", "六通道2异常");
-        warningDictionaries.put("slc6_3_warning_ID", "六通道3异常");
-        warningDictionaries.put("slc6_4_warning_ID", "六通道4异常");
-        warningDictionaries.put("Jire_temp_down_warning_ID", "集热水箱下温度T1异常");
-        warningDictionaries.put("Jire_temp_up_warning_ID", "集热水箱上温度T2异常");
-        warningDictionaries.put("Jire_temp_tank_warning_ID", "集热水箱温度T3异常");
-        warningDictionaries.put("Hengwen_temp_tank_warning_ID", "恒温水箱温度T4异常");
-        warningDictionaries.put("Bath_temp_warning_ID", "洗浴末端回水温度T5异常");
-        warningDictionaries.put("Dining_temp_warning_ID", "食堂末端回水温度T6异常");
-        warningDictionaries.put("Huanjing_temp_warning_ID", "环境温度T7异常");
-        warningDictionaries.put("Jire_level_warning_ID", "集热水箱水位H1异常");
-        warningDictionaries.put("Hengwen_level_warning_ID", "恒温水箱水位H2异常");
-        warningDictionaries.put("Supply_press_warning_ID", "热水供应水压异常");
-        warningDictionaries.put("Feire_press_warning_ID", "废热循环水压异常");
+    private boolean isShowDialog = false;
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isShowDialog = false;
     }
 
     @Override
@@ -332,8 +306,8 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
             System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
             mHits[mHits.length - 1] = SystemClock.uptimeMillis();
             if (mHits[0] >= (SystemClock.uptimeMillis() - 2000)) {
-//                finish();
-                android.os.Process.killProcess(android.os.Process.myPid());
+                finish();
+//                android.os.Process.killProcess(android.os.Process.myPid());
             } else {
                 UiUtils.showToast("再按一次退出");
             }
@@ -349,14 +323,14 @@ public class MainActivity extends AppCompatActivity implements StatusFragment.On
         @Override
         public void run() {
             getData1();
-            handler.postDelayed(this, 2000);
+            handler.postDelayed(this, 3000);
         }
     };
     Runnable runnable2 = new Runnable() {
         @Override
         public void run() {
             getData2();
-            handler.postDelayed(this, 2000);
+            handler.postDelayed(this, 3000);
         }
     };
 }

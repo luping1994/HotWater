@@ -42,6 +42,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.PicActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".ui.activity.MessageActivity" android:screenOrientation="portrait"/>
     </application>
 
 
