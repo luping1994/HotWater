@@ -164,48 +164,6 @@ public class MessageActivity extends AppCompatActivity {
                     .setText(R.id.time, item.getTime());
         }
 
-//        private Context context;
-//        private List<WarningHis> datas;
-//
-//        MyAdapter(Context context, List<WarningHis> datas) {
-//            this.context = context;
-//            this.datas = datas;
-//        }
-//
-//        @Override
-//        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//            return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.activity_msg_cen, parent, false));
-//        }
-//
-//        @Override
-//        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-//            if (holder instanceof ViewHolder) {
-//                ((ViewHolder) holder).setData(position);
-//            }
-//        }
-//
-//        @Override
-//        public int getItemCount() {
-//            return datas.size();
-//        }
-//
-//        class ViewHolder extends RecyclerView.ViewHolder {
-//
-//
-//            TextView name;
-//            TextView time;
-//
-//            public ViewHolder(View itemView) {
-//                super(itemView);
-//                name = (TextView) itemView.findViewById(R.id.msg);
-//                time = (TextView) itemView.findViewById(R.id.time);
-//            }
-//
-//            public void setData(int position) {
-//                name.setText(datas.get(position).getMessage());
-//                time.setText(datas.get(position).getTime());
-//            }
-//        }
     }
 
 

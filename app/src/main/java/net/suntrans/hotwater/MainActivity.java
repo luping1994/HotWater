@@ -54,7 +54,7 @@ public class MainActivity extends RxAppCompatActivity implements StatusFragment.
             binder = (WebSocketService.ibinder) service;
 //            System.out.println("绑定成功");
             handler.postDelayed(runnable, 500);
-            handler2.postDelayed(runnable2, 800);
+            handler2.postDelayed(runnable2, 1500);
         }
 
         @Override
@@ -323,14 +323,14 @@ public class MainActivity extends RxAppCompatActivity implements StatusFragment.
         @Override
         public void run() {
             getData1();
-            handler.postDelayed(this, 3000);
+            handler.postDelayed(this, 4000);
         }
     };
     Runnable runnable2 = new Runnable() {
         @Override
         public void run() {
             getData2();
-            handler.postDelayed(this, 3000);
+            handler.postDelayed(this, 4000);
         }
     };
 }

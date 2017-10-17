@@ -12,37 +12,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.alibaba.fastjson.JSON;
 import com.trello.rxlifecycle.android.FragmentEvent;
-import com.trello.rxlifecycle.components.support.RxFragment;
 
-import net.suntrans.hotwater.App;
 import net.suntrans.hotwater.MainActivity;
 import net.suntrans.hotwater.R;
-import net.suntrans.hotwater.bean.CmdMsg;
+import net.suntrans.hotwater.api.RetrofitHelper;
 import net.suntrans.hotwater.bean.Read1;
+import net.suntrans.hotwater.bean.Read1Entity;
 import net.suntrans.hotwater.databinding.FragmentCanshuBinding;
-import net.suntrans.hotwater.databinding.FragmentStatusBinding;
 import net.suntrans.hotwater.utils.LogUtil;
-import net.suntrans.hotwater.utils.RxBus;
-import net.suntrans.hotwater.utils.UiUtils;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
+import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link CanshuFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CanshuFragment extends RxFragment {
+public class CanshuFragment extends LazyLoadFragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -51,6 +40,7 @@ public class CanshuFragment extends RxFragment {
     private FragmentCanshuBinding binding;
 
     private MainActivity activity;
+    private Observable<Read1Entity> observable;
 
     @Override
     public void onAttach(Context context) {
@@ -65,23 +55,19 @@ public class CanshuFragment extends RxFragment {
     }
 
     public CanshuFragment() {
-        // Required empty public constructor
     }
 
     @Override
     public void onResume() {
         super.onResume();
-//        timer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                getData();
-//            }
-//        }, 0, 3000);
+        handler2.post(runnable);
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        handler2.removeCallbacksAndMessages(null);
 
     }
 
@@ -89,26 +75,9 @@ public class CanshuFragment extends RxFragment {
     public void onDestroyView() {
         super.onDestroyView();
         handler.removeCallbacksAndMessages(null);
+        handler2.removeCallbacksAndMessages(null);
     }
 
-
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CanshuFragment.
-     */
-    public static CanshuFragment newInstance(String param1, String param2) {
-        CanshuFragment fragment = new CanshuFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -120,13 +89,18 @@ public class CanshuFragment extends RxFragment {
     }
 
     @Override
+    protected void onFragmentFirstVisible() {
+        super.onFragmentFirstVisible();
+        System.out.println("onFragmentFirstVisible");
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_canshu, container, false);
         return binding.getRoot();
     }
-
 
 
     @Override
@@ -137,44 +111,46 @@ public class CanshuFragment extends RxFragment {
                 getData();
             }
         });
-        RxBus.getInstance()
-                .toObserverable(CmdMsg.class)
-                .compose(this.<CmdMsg>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<CmdMsg>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onNext(CmdMsg cmdMsg) {
-                        try {
-                            if (cmdMsg.status == 1) {
-                                try {
-                                    JSONObject jsonObject = new JSONObject(cmdMsg.msg);
-                                    if (jsonObject.has("action")) {
-                                        if (jsonObject.getString("action").equals("read1")) {
-                                            Read1 read1 = JSON.parseObject(cmdMsg.msg, Read1.class);
-                                            initView(read1);
-                                        }
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+//        RxBus.getInstance()
+//                .toObserverable(CmdMsg.class)
+//                .compose(this.<CmdMsg>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.io())
+//                .subscribe(new Subscriber<CmdMsg>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    @Override
+//                    public void onNext(CmdMsg cmdMsg) {
+//                        try {
+//                            if (cmdMsg.status == 1) {
+//                                try {
+//                                    JSONObject jsonObject = new JSONObject(cmdMsg.msg);
+//                                    if (jsonObject.has("action")) {
+//                                        if (jsonObject.getString("action").equals("read1")) {
+//                                            Read1 read1 = JSON.parseObject(cmdMsg.msg, Read1.class);
+//                                            initView(read1);
+//                                        }
+//                                    }
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
     }
+
+
 
     private void initView(Read1 read1) {
         handler.removeCallbacksAndMessages(null);
@@ -197,26 +173,66 @@ public class CanshuFragment extends RxFragment {
 
 
     public void getData() {
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("action", "read1");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        if (activity.binder != null)
-            activity.binder.sendOrder(jsonObject.toString());
-//        if (binding.refreshLayout != null) {
-//            binding.refreshLayout.setRefreshing(true);
+//        JSONObject jsonObject = new JSONObject();
+//        try {
+//            jsonObject.put("action", "read1");
+//        } catch (JSONException e) {
+//            e.printStackTrace();
 //        }
-        handler.postDelayed(new Runnable() {
+//        if (activity.binder != null)
+//            activity.binder.sendOrder(jsonObject.toString());
+////        if (binding.refreshLayout != null) {
+////            binding.refreshLayout.setRefreshing(true);
+////        }
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                binding.refreshLayout.setRefreshing(false);
+//            }
+//        }, 2000);
+
+        if (observable == null) {
+            observable = RetrofitHelper.getApi().getRead1()
+                    .compose(this.<Read1Entity>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+        }
+
+        binding.refreshLayout.setRefreshing(true);
+        observable.subscribe(new Subscriber<Read1Entity>() {
             @Override
-            public void run() {
-                binding.refreshLayout.setRefreshing(false);
+            public void onCompleted() {
+
             }
-        }, 2000);
+
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+                if (binding.refreshLayout!=null){
+                    binding.refreshLayout.setRefreshing(false);
+                }
+            }
+
+            @Override
+            public void onNext(Read1Entity read1Entity) {
+                initView(read1Entity.info.lists);
+                if (binding.refreshLayout!=null){
+                    binding.refreshLayout.setRefreshing(false);
+                }
+            }
+        });
     }
 
     Handler handler = new Handler();
+    Handler handler2 = new Handler();
+
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            getData();
+            handler2.postDelayed(this, 2000);
+        }
+    };
 
 
 }

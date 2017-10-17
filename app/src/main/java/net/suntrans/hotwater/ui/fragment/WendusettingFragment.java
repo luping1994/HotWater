@@ -18,8 +18,12 @@ import com.trello.rxlifecycle.android.FragmentEvent;
 
 import net.suntrans.hotwater.MainActivity;
 import net.suntrans.hotwater.R;
+import net.suntrans.hotwater.api.RetrofitHelper;
 import net.suntrans.hotwater.bean.CmdMsg;
+import net.suntrans.hotwater.bean.Read1Entity;
 import net.suntrans.hotwater.bean.Read3;
+import net.suntrans.hotwater.bean.Read3Entity;
+import net.suntrans.hotwater.bean.Read4Entity;
 import net.suntrans.hotwater.databinding.FragmentWendusettingBinding;
 import net.suntrans.hotwater.utils.LogUtil;
 import net.suntrans.hotwater.utils.RxBus;
@@ -30,6 +34,7 @@ import net.suntrans.looney.widgets.LoadingDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -47,6 +52,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
     private Read3 read3;
     private SparseArray<String> datas;
     private LoadingDialog dialog;
+    private Observable<Read3Entity> observable;
 
     @Override
     public void onAttach(Context context) {
@@ -68,7 +74,10 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         initData();
         setListener();
         setRxBus();
+        handler2.post(runnable);
     }
+
+
 
     private void initData() {
         datas = new SparseArray<>();
@@ -146,7 +155,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
                                 JSONObject jsonObject = new JSONObject(cmdMsg.msg);
                                 if (jsonObject.has("action")) {
                                     if (jsonObject.getString("action").equals("read3")) {
-                                        System.out.println("我被执行了");
+//                                        System.out.println("我被执行了");
                                         read3 = null;
                                         read3 = JSON.parseObject(cmdMsg.msg, Read3.class);
                                         initView(read3);
@@ -272,55 +281,66 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
     @Override
     protected void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
-        LogUtil.e("dsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        new RefreshThread().start();
     }
 
     @Override
     protected void onFragmentVisibleChange(boolean isVisible) {
-        LogUtil.e("dsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         super.onFragmentVisibleChange(isVisible);
     }
 
     public void getData() {
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("action", "read3");
-        } catch (JSONException e) {
-            e.printStackTrace();
+//        JSONObject jsonObject = new JSONObject();
+//        try {
+//            jsonObject.put("action", "read3");
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        if (activity.binder != null)
+//            activity.binder.sendOrder(jsonObject.toString());
+
+        if (observable == null) {
+            observable = RetrofitHelper.getApi().getRead3()
+                    .compose(this.<Read3Entity>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
         }
-        if (activity.binder != null)
-            activity.binder.sendOrder(jsonObject.toString());
 
+        binding.refreshLayout.setRefreshing(true);
+        observable.subscribe(new Subscriber<Read3Entity>() {
+            @Override
+            public void onCompleted() {
 
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+                if (binding.refreshLayout!=null){
+                    binding.refreshLayout.setRefreshing(false);
+                }
+            }
+
+            @Override
+            public void onNext(Read3Entity read3Entity) {
+                initView(read3Entity.info.lists);
+                if (binding.refreshLayout!=null){
+                    binding.refreshLayout.setRefreshing(false);
+                }
+            }
+        });
     }
 
-    Handler handler = new Handler();
+
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        isStart = false;
         handler.removeCallbacksAndMessages(null);
+        handler2.removeCallbacksAndMessages(null);
     }
 
 
-    private boolean isStart = true;
 
-
-    private class RefreshThread extends Thread {
-        @Override
-        public void run() {
-            if (isStart) {
-                getData();
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 
     ChangeNameDialogFragment fragment2;
 
@@ -365,4 +385,15 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         }
     }
 
+
+    Handler handler = new Handler();
+    Handler handler2 = new Handler();
+
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            getData();
+            handler2.postDelayed(this, 2000);
+        }
+    };
 }

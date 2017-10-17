@@ -17,9 +17,12 @@ import android.widget.RadioGroup;
 
 import net.suntrans.hotwater.MainActivity;
 import net.suntrans.hotwater.R;
+import net.suntrans.hotwater.api.RetrofitHelper;
 import net.suntrans.hotwater.bean.CmdMsg;
 import net.suntrans.hotwater.bean.Read1;
+import net.suntrans.hotwater.bean.Read1Entity;
 import net.suntrans.hotwater.bean.Read2;
+import net.suntrans.hotwater.bean.Read2Entity;
 import net.suntrans.hotwater.databinding.FragmentWorkstateBinding;
 import net.suntrans.hotwater.utils.LogUtil;
 import net.suntrans.hotwater.utils.RxBus;
@@ -39,6 +42,7 @@ import com.trello.rxlifecycle.android.FragmentEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -57,6 +61,7 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
     private FragmentWorkstateBinding binding;
     private Read2 read2;
     private LoadingDialog dialog;
+    private Observable<Read2Entity> observable;
 
 
     public WorkstateFragment() {
@@ -266,18 +271,18 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
         binding.xiyumoduanhuishuifa.setChecked(read2.bathback_fa_ID == 1 ? true : false);
         binding.shitangmoduanfa.setChecked(read2.diningback_fa_ID == 1 ? true : false);
 
-        binding.xieshuifaTrue.setText(read2.Xieshuifa_true_ID == 1 ? "关闭"
-                : read2.Xieshuifa_true_ID == 2 ? "关闭中" : read2.Xieshuifa_true_ID == 3 ? "开启中" : "开启");
-        binding.reshuizhuanyifaTrue.setText(read2.Hottransfa_true_ID == 1 ? "关闭"
-                : read2.Hottransfa_true_ID == 2 ? "关闭中" : read2.Hottransfa_true_ID == 3 ? "开启中" : "开启");
-        binding.jirebushuifaTrue.setText(read2.Jirefa_ID == 1 ? "关闭"
-                : read2.Jirefa_ID == 2 ? "关闭中" : read2.Jirefa_ID == 3 ? "开启中" : "开启");
-        binding.guowenbushuifaTrue.setText(read2.Hengwenfa_ID == 1 ? "关闭"
-                : read2.Hengwenfa_ID == 2 ? "关闭中" : read2.Hengwenfa_ID == 3 ? "开启中" : "开启");
-        binding.xiyuhuishuifaTrue.setText(read2.Bathfa_ID == 1 ? "关闭"
-                : read2.Bathfa_ID == 2 ? "关闭中" : read2.Bathfa_ID == 3 ? "开启中" : "开启");
-        binding.shitanghuishuifaTrue.setText(read2.Diningfa_ID == 1 ? "关闭"
-                : read2.Diningfa_ID == 2 ? "关闭中" : read2.Diningfa_ID == 3 ? "开启中" : "开启");
+//        binding.xieshuifaTrue.setText(read2.Xieshuifa_true_ID == 1 ? "关闭"
+//                : read2.Xieshuifa_true_ID == 2 ? "关闭中" : read2.Xieshuifa_true_ID == 3 ? "开启中" : "开启");
+//        binding.reshuizhuanyifaTrue.setText(read2.Hottransfa_true_ID == 1 ? "关闭"
+//                : read2.Hottransfa_true_ID == 2 ? "关闭中" : read2.Hottransfa_true_ID == 3 ? "开启中" : "开启");
+//        binding.jirebushuifaTrue.setText(read2.Jirefa_ID == 1 ? "关闭"
+//                : read2.Jirefa_ID == 2 ? "关闭中" : read2.Jirefa_ID == 3 ? "开启中" : "开启");
+//        binding.guowenbushuifaTrue.setText(read2.Hengwenfa_ID == 1 ? "关闭"
+//                : read2.Hengwenfa_ID == 2 ? "关闭中" : read2.Hengwenfa_ID == 3 ? "开启中" : "开启");
+//        binding.xiyuhuishuifaTrue.setText(read2.Bathfa_ID == 1 ? "关闭"
+//                : read2.Bathfa_ID == 2 ? "关闭中" : read2.Bathfa_ID == 3 ? "开启中" : "开启");
+//        binding.shitanghuishuifaTrue.setText(read2.Diningfa_ID == 1 ? "关闭"
+//                : read2.Diningfa_ID == 2 ? "关闭中" : read2.Diningfa_ID == 3 ? "开启中" : "开启");
 
 
         updateState(binding.zidong.isChecked() ? false : true);
@@ -332,14 +337,44 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
 
 
     public void getData() {
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("action", "read2");
-        } catch (JSONException e) {
-            e.printStackTrace();
+//        JSONObject jsonObject = new JSONObject();
+//        try {
+//            jsonObject.put("action", "read2");
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        if (activity.binder != null)
+//            activity.binder.sendOrder(jsonObject.toString());
+
+        if (observable == null) {
+            observable = RetrofitHelper.getApi().getRead2()
+                    .compose(this.<Read2Entity>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
         }
-        if (activity.binder != null)
-            activity.binder.sendOrder(jsonObject.toString());
+
+        observable.subscribe(new Subscriber<Read2Entity>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+                if (binding.refreshLayout!=null){
+                    binding.refreshLayout.setRefreshing(false);
+                }
+            }
+
+            @Override
+            public void onNext(Read2Entity read2Entity) {
+                initView(read2Entity.info.lists);
+                if (binding.refreshLayout!=null){
+                    binding.refreshLayout.setRefreshing(false);
+                }
+            }
+        });
 
     }
 
@@ -443,7 +478,6 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
             if (activity.binder != null) {
                 activity.binder.sendOrder(jsonObject.toString());
             }
-
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -456,28 +490,25 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
         }
     }
 
-    private void getDataDelayed() {
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                getData();
-            }
-        }, 2500);
-    }
-
     @Override
     public void onResume() {
         super.onResume();
-
+        handler2.post(runnable);
     }
 
     @Override
     public void onPause() {
-        System.out.println("onPause");
-//        timer.cancel();
+        handler2.removeCallbacksAndMessages(null);
         super.onPause();
     }
+    Handler handler2 = new Handler();
 
-    private Timer timer = new Timer();
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            getData();
+            handler2.postDelayed(this, 2000);
+        }
+    };
 
 }

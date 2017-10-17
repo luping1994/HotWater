@@ -19,6 +19,7 @@ import net.suntrans.hotwater.databinding.FragmentUserBinding;
 import net.suntrans.hotwater.ui.activity.AboutActivity;
 import net.suntrans.hotwater.ui.activity.LoginActivity;
 import net.suntrans.hotwater.ui.activity.MessageActivity;
+import net.suntrans.hotwater.ui.activity.WarningActivity;
 import net.suntrans.hotwater.utils.UiUtils;
 
 /**
@@ -76,7 +77,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                         }).setNegativeButton("取消",null).create().show();
                 break;
             case R.id.message:
-                startActivity(new Intent(getActivity(), MessageActivity.class));
+                startActivity(new Intent(getActivity(), WarningActivity.class));
                 break;
         }
     }

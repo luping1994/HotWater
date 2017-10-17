@@ -38,7 +38,7 @@ public abstract class LazyLoadFragment extends RxFragment {
 
         //setUserVisibleHint()有可能在fragment的生命周期外被调用
         if (rootView == null) {
-            System.out.println("rootView为空");
+//            System.out.println("rootView为空");
             //如果view还未初始化，不进行处理
             return;
         }

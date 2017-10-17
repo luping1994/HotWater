@@ -23,7 +23,7 @@ public class Read1 {
      */
 
     public String action;
-    public int id;
+    public String id;
     public String Jire_temp_down_ID;
     public String Jire_temp_up_ID;
     public String Jire_temp_tank_ID;

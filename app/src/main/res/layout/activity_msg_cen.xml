@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/headerView"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="64dp"
         android:background="?attr/selectableItemBackground"
         android:fitsSystemWindows="false"
         android:orientation="vertical">
@@ -19,7 +19,7 @@
             <LinearLayout
                 android:id="@+id/root"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="64dp"
                 android:clickable="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -27,8 +27,8 @@
 
                 <ImageView
                     android:id="@+id/warn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:layout_marginLeft="16dp"
                     android:src="@drawable/ic_warning" />
 
@@ -46,9 +46,9 @@
                         android:ellipsize="end"
                         android:gravity="center_vertical"
                         android:maxLines="1"
-                        android:text=""
+                        android:text="---------------------"
                         android:textColor="@color/black"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/time"
@@ -63,7 +63,7 @@
                         android:ellipsize="end"
                         android:gravity="center_vertical"
                         android:maxLines="1"
-                        android:text=""
+                        android:text="-------------"
                         android:textSize="14sp" />
 
 

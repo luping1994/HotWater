@@ -18,9 +18,12 @@ import com.trello.rxlifecycle.android.FragmentEvent;
 
 import net.suntrans.hotwater.MainActivity;
 import net.suntrans.hotwater.R;
+import net.suntrans.hotwater.api.RetrofitHelper;
 import net.suntrans.hotwater.bean.CmdMsg;
 import net.suntrans.hotwater.bean.Read3;
+import net.suntrans.hotwater.bean.Read3Entity;
 import net.suntrans.hotwater.bean.Read4;
+import net.suntrans.hotwater.bean.Read4Entity;
 import net.suntrans.hotwater.databinding.FragmentTimesettingBinding;
 import net.suntrans.hotwater.utils.LogUtil;
 import net.suntrans.hotwater.utils.RxBus;
@@ -35,6 +38,7 @@ import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -52,6 +56,7 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
     private FragmentTimesettingBinding binding;
     private MainActivity activity;
     private Read4 read4;
+    private Observable<Read4Entity> observable;
 
     public TimesettingFragment() {
         // Required empty public constructor
@@ -424,17 +429,17 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
 
 
     public void getData() {
-
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("action", "read4");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        if (activity != null) {
-            if (activity.binder != null)
-                activity.binder.sendOrder(jsonObject.toString());
-        }
+//
+//        JSONObject jsonObject = new JSONObject();
+//        try {
+//            jsonObject.put("action", "read4");
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        if (activity != null) {
+//            if (activity.binder != null)
+//                activity.binder.sendOrder(jsonObject.toString());
+//        }
 
 
 //        handler.postDelayed(new Runnable() {
@@ -445,33 +450,56 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
 //            }
 //        },2000);
 
+        if (observable == null) {
+            observable = RetrofitHelper.getApi().getRead4()
+                    .compose(this.<Read4Entity>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+        }
+
+        binding.refreshLayout.setRefreshing(true);
+        observable.subscribe(new Subscriber<Read4Entity>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+                if (binding.refreshLayout!=null){
+                    binding.refreshLayout.setRefreshing(false);
+                }
+            }
+
+            @Override
+            public void onNext(Read4Entity read4Entity) {
+                initView(read4Entity.info.lists);
+                if (binding.refreshLayout!=null){
+                    binding.refreshLayout.setRefreshing(false);
+                }
+            }
+        });
+
     }
 
-    Handler handler = new Handler();
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        isStart = false;
         handler.removeCallbacksAndMessages(null);
     }
 
 
-    private boolean isStart = true;
+    Handler handler = new Handler();
+    Handler handler2 = new Handler();
 
-    private class RefreshThread extends Thread {
+    Runnable runnable = new Runnable() {
         @Override
         public void run() {
             getData();
-//            while (isStart) {
-//                try {
-//                    Thread.sleep(2000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            }
+            handler2.postDelayed(this, 2000);
         }
-    }
-
+    };
 
 }
