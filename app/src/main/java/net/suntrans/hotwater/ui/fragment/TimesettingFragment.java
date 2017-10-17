@@ -124,6 +124,8 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
         });
         setRxBus();
 
+        handler2.post(runnable);
+
     }
 
 
@@ -424,7 +426,7 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
         super.onFragmentFirstVisible();
         binding.refreshLayout.setRefreshing(true);
 //        new RefreshThread().start();
-        getData();
+//        getData();
     }
 
 
@@ -488,6 +490,7 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
     public void onDestroyView() {
         super.onDestroyView();
         handler.removeCallbacksAndMessages(null);
+        handler2.removeCallbacksAndMessages(null);
     }
 
 
