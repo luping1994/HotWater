@@ -83,7 +83,7 @@ public class StatusFragment extends Fragment {
         fragments = new Fragment[]{fragment, fragment1};
         PagerAdapter adapter = new PagerAdapter(getChildFragmentManager());
         binding.viewpager.setAdapter(adapter);
-        binding.viewpager.setOffscreenPageLimit(2);
+//        binding.viewpager.setOffscreenPageLimit(2);
         binding.segmentedGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {

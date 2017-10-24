@@ -53,8 +53,8 @@ public class MainActivity extends RxAppCompatActivity implements StatusFragment.
         public void onServiceConnected(ComponentName name, IBinder service) {
             binder = (WebSocketService.ibinder) service;
 //            System.out.println("绑定成功");
-            handler.postDelayed(runnable, 500);
-            handler2.postDelayed(runnable2, 1500);
+//            handler.postDelayed(runnable, 500);
+//            handler2.postDelayed(runnable2, 1500);
         }
 
         @Override
@@ -64,6 +64,7 @@ public class MainActivity extends RxAppCompatActivity implements StatusFragment.
     private StatusFragment fragment;
     private AlertDialog.Builder builder;
     private AlertDialog dialog;
+    public boolean allowControl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,7 @@ public class MainActivity extends RxAppCompatActivity implements StatusFragment.
         intent.setClass(this, WebSocketService.class);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
 
+        allowControl = App.getSharedPreferences().getBoolean("allowControl", false);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 //        setSupportActionBar(binding.toolbar);

@@ -91,7 +91,6 @@ public class CanshuFragment extends LazyLoadFragment {
     @Override
     protected void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
-        System.out.println("onFragmentFirstVisible");
     }
 
     @Override
@@ -111,6 +110,7 @@ public class CanshuFragment extends LazyLoadFragment {
                 getData();
             }
         });
+        binding.refreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
 //        RxBus.getInstance()
 //                .toObserverable(CmdMsg.class)
 //                .compose(this.<CmdMsg>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
@@ -198,7 +198,7 @@ public class CanshuFragment extends LazyLoadFragment {
                     .observeOn(AndroidSchedulers.mainThread());
         }
 
-        binding.refreshLayout.setRefreshing(true);
+//        binding.refreshLayout.setRefreshing(true);
         observable.subscribe(new Subscriber<Read1Entity>() {
             @Override
             public void onCompleted() {

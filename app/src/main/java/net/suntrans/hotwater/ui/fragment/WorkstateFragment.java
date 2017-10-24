@@ -96,6 +96,11 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
         binding.zidong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!activity.allowControl){
+                    UiUtils.showToast("您没有操作权限");
+                    initView(read2);
+                    return;
+                }
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("action", "settings");
@@ -128,6 +133,12 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
         binding.shoudong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!activity.allowControl){
+                    UiUtils.showToast("您没有操作权限");
+                    initView(read2);
+
+                    return;
+                }
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("action", "settings");
@@ -195,6 +206,8 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
                 }, 2000);
             }
         });
+        binding.refreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
+
         RxBus.getInstance()
                 .toObserverable(CmdMsg.class)
                 .compose(this.<CmdMsg>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
@@ -332,7 +345,6 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
     @Override
     protected void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
-        new RefreshThread().start();
     }
 
 
@@ -370,6 +382,8 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
             @Override
             public void onNext(Read2Entity read2Entity) {
                 initView(read2Entity.info.lists);
+                read2 = read2Entity.info.lists;
+
                 if (binding.refreshLayout!=null){
                     binding.refreshLayout.setRefreshing(false);
                 }
@@ -383,31 +397,21 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        isStart = false;
         handler.removeCallbacksAndMessages(null);
     }
 
 
-    private boolean isStart = true;
 
-    private class RefreshThread extends Thread {
-        @Override
-        public void run() {
-            getData();
-//            while (isStart) {
-//
-//                try {
-//                    Thread.sleep(2000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-        }
-    }
+
 
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (!activity.allowControl){
+            UiUtils.showToast("您没有操作权限");
+            initView(read2);
+            return;
+        }
         LogUtil.i(isChecked + "");
         if (dialog == null) {
             dialog = new LoadingDialog(getContext());

@@ -122,6 +122,8 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
                 }, 2000);
             }
         });
+        binding.refreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
+
         setRxBus();
 
         handler2.post(runnable);
@@ -140,6 +142,11 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.jiaoshi) {
+            if (!activity.allowControl){
+                UiUtils.showToast("您没有操作权限");
+//                initView(read4);
+                return;
+            }
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put("action", "set_rtu_time");
@@ -164,6 +171,11 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
 
     @Override
     public void onTimeSelected(int hourOfDay, int minute) {
+        if (!activity.allowControl){
+            UiUtils.showToast("您没有操作权限");
+            initView(read4);
+            return;
+        }
         if (dialog == null) {
             dialog = new LoadingDialog(getContext());
             dialog.setCancelable(false);
@@ -424,7 +436,7 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
     @Override
     protected void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
-        binding.refreshLayout.setRefreshing(true);
+//        binding.refreshLayout.setRefreshing(true);
 //        new RefreshThread().start();
 //        getData();
     }
@@ -459,7 +471,6 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
                     .observeOn(AndroidSchedulers.mainThread());
         }
 
-        binding.refreshLayout.setRefreshing(true);
         observable.subscribe(new Subscriber<Read4Entity>() {
             @Override
             public void onCompleted() {
@@ -476,6 +487,8 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
 
             @Override
             public void onNext(Read4Entity read4Entity) {
+                read4 = read4Entity.info.lists;
+
                 initView(read4Entity.info.lists);
                 if (binding.refreshLayout!=null){
                     binding.refreshLayout.setRefreshing(false);
@@ -501,7 +514,7 @@ public class TimesettingFragment extends LazyLoadFragment implements TimePickerD
         @Override
         public void run() {
             getData();
-            handler2.postDelayed(this, 2000);
+//            handler2.postDelayed(this, 2000);
         }
     };
 

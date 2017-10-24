@@ -81,6 +81,8 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
 
     private void initData() {
         datas = new SparseArray<>();
+        binding.refreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
+
 //        datas.put(R.id.fangbaoWendu,"防爆温度");
 //        datas.put(R.id.yunxuwendu,"允许温度");
 //        datas.put(R.id.fandongwendu,"防冻温度");
@@ -305,7 +307,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
                     .observeOn(AndroidSchedulers.mainThread());
         }
 
-        binding.refreshLayout.setRefreshing(true);
+//        binding.refreshLayout.setRefreshing(true);
         observable.subscribe(new Subscriber<Read3Entity>() {
             @Override
             public void onCompleted() {
@@ -322,6 +324,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
 
             @Override
             public void onNext(Read3Entity read3Entity) {
+                read3 = read3Entity.info.lists;
                 initView(read3Entity.info.lists);
                 if (binding.refreshLayout!=null){
                     binding.refreshLayout.setRefreshing(false);
@@ -356,6 +359,11 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
 
     @Override
     public void changeName(String value) {
+        if (!activity.allowControl){
+            UiUtils.showToast("您没有操作权限");
+            initView(read3);
+            return;
+        }
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("action", "settings");
@@ -393,7 +401,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         @Override
         public void run() {
             getData();
-            handler2.postDelayed(this, 2000);
+//            handler2.postDelayed(this, 2000);
         }
     };
 }

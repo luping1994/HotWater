@@ -1,5 +1,7 @@
 package net.suntrans.hotwater.api;
 
+import net.suntrans.hotwater.bean.AuthEntity;
+import net.suntrans.hotwater.bean.LoginEntity;
 import net.suntrans.hotwater.bean.Read1Entity;
 import net.suntrans.hotwater.bean.Read2Entity;
 import net.suntrans.hotwater.bean.Read3Entity;
@@ -24,7 +26,7 @@ public interface Api {
      * @param
      * @return
      */
-    @POST("hotwater/index.php/home/index/alarm_mobile")
+    @POST("hotwater_mobile/index.php/home/index/alarm_mobile")
     Observable<WarningEntity> getWarningList();
 
     /**
@@ -34,7 +36,7 @@ public interface Api {
      * @return
      */
     @FormUrlEncoded
-    @POST("hotwater/index.php/home/index/alarm_mobile_fk")
+    @POST("hotwater_mobile/index.php/home/index/alarm_mobile_fk")
     Observable<WarningEntity> handlerError(@Field("data_alarm") String data_alarm);
 
     /**
@@ -43,7 +45,7 @@ public interface Api {
      * @param
      * @return
      */
-    @POST("hotwater/index.php/home/index/read1")
+    @POST("hotwater_mobile/index.php/home/index/read1")
     Observable<Read1Entity> getRead1();
 
     /**
@@ -52,7 +54,7 @@ public interface Api {
      * @param
      * @return
      */
-    @POST("hotwater/index.php/home/index/read2")
+    @POST("hotwater_mobile/index.php/home/index/read2")
     Observable<Read2Entity> getRead2();
 
     /**
@@ -61,7 +63,7 @@ public interface Api {
      * @param
      * @return
      */
-    @POST("hotwater/index.php/home/index/read3")
+    @POST("hotwater_mobile/index.php/home/index/read3")
     Observable<Read3Entity> getRead3();
 
     /**
@@ -70,7 +72,25 @@ public interface Api {
      * @param
      * @return
      */
-    @POST("hotwater/index.php/home/index/read4")
-    Observable<Read4Entity> getRead4();
+    @POST("hotwater_mobile/index.php/home/index/read4")
+    Observable<Read4Entity> getRead4();  /**
+     * read4
+     *
+     * @param
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("hotwater_mobile/index.php/home/login/login_auth")
+    Observable<AuthEntity> auth(@Field("userId") String userId);
+
+    /**
+     * read4
+     *
+     * @param
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("hotwater_mobile/index.php/home/login/login")
+    Observable<LoginEntity> Login(@Field("userId") String userId,@Field("password") String password);
 
 }

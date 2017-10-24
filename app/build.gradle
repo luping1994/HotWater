@@ -9,14 +9,16 @@ android {
         applicationId "net.suntrans.hotwater"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 26
-        versionName "v0.2.3"
+        versionCode 29
+        versionName "v0.3.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources true
+            zipAlignEnabled true
         }
     }
     dataBinding {
