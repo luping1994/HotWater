@@ -79,7 +79,6 @@ public class PicActivity extends AppCompatActivity implements View.OnClickListen
     };
 
 
-    private FloatingActionMenu menuRed;
     private FloatingActionButton fab1;
     private FloatingActionButton fab2;
     private FloatingActionButton fab3;
@@ -98,7 +97,6 @@ public class PicActivity extends AppCompatActivity implements View.OnClickListen
 
         allowControl = App.getSharedPreferences().getBoolean("allowControl", false);
 
-        menuRed = (FloatingActionMenu) findViewById(R.id.menu_red);
         fab1 = (FloatingActionButton) findViewById(R.id.fab1);
         fab2 = (FloatingActionButton) findViewById(R.id.fab2);
         fab3 = (FloatingActionButton) findViewById(R.id.fab3);
@@ -244,13 +242,6 @@ public class PicActivity extends AppCompatActivity implements View.OnClickListen
         // 被JS调用的方法必须加入@JavascriptInterface注解
         @JavascriptInterface
         public void alert(String control) {
-            String[] split = control.split(",");
-            final String channel_id = split[0];
-            String title = split[1];
-            final String status = split[2].equals("true") ? "关闭" : "打开";
-            final String datapoint = split[3];
-            final String din = split[4];
-//            System.out.println(datapoint + "," + din);
             new AlertDialog.Builder(PicActivity.this)
                     .setMessage(control)
                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -408,6 +399,8 @@ public class PicActivity extends AppCompatActivity implements View.OnClickListen
 
     private void initView(Read2 read2) {
         handler.removeCallbacksAndMessages(null);
+        if (dialog1!=null)
+            dialog1.dismiss();
         if (read2 == null)
             return;
         LogUtil.i("WorkStateFragment11111111" + read2.toString());

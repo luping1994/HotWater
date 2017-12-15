@@ -15,7 +15,7 @@ public class App extends AppBase {
     @Override
     public void onCreate() {
         super.onCreate();
-//        CrashReport.initCrashReport(getApplicationContext(), "ee82d6b8f4", false);
+        CrashReport.initCrashReport(getApplicationContext(), "ee82d6b8f4", false);
         startService(new Intent(this, WebSocketService.class));
     }
 
