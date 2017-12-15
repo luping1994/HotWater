@@ -112,8 +112,8 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         datas.put(R.id.shitanghuiwendu, "SetDining_temp_back_ID");
 
 
-        datas.put(R.id.jiregaoyewei, "SetJire_level_ID");
-        datas.put(R.id.jireyewei, "SetJire_level_max_ID");
+        datas.put(R.id.jiregaoyewei, "SetJire_level_max_ID");
+        datas.put(R.id.jireyewei, "SetJire_level_ID");
         datas.put(R.id.bushuigaoyewei, "SetJire_supply_H_ID");
         datas.put(R.id.bushuidiyewei, "SetJire_supply_L_ID");
         datas.put(R.id.henwenyewei, "SetHengwen_level_ID");
@@ -122,6 +122,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
 
         datas.put(R.id.jireman, "Jire_level_full_ID");
         datas.put(R.id.henwenman, "Hengwen_level_full_ID");
+        datas.put(R.id.SetHengwen_level_max_ID, "SetHengwen_level_max_ID");
         datas.put(R.id.shuiyasheding, "SetSupply_press_ID");
         datas.put(R.id.tiaopinzhouqi, "SetWindow_press_ID");
         datas.put(R.id.SetFeire_press_ID, "SetFeire_press_ID");
@@ -209,6 +210,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         binding.henwenyewei.setText(read3.SetHengwen_level_ID);
         binding.gaofengyewei.setText(read3.SetHengwen_level_peak_ID);
         binding.daigongyewei.setText(read3.SetHengwen_level_bath_ID);
+        binding.SetHengwenLevelMaxID.setText(read3.SetHengwen_level_max_ID);
 
         binding.jireman.setText(read3.Jire_level_full_ID);
         binding.henwenman.setText(read3.Hengwen_level_full_ID);
@@ -256,6 +258,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         binding.SupplyPressID.setOnClickListener(this);
         binding.FeirePressID.setOnClickListener(this);
         binding.SetJireTempSafeID.setOnClickListener(this);
+        binding.SetHengwenLevelMaxID.setOnClickListener(this);
 
         binding.refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
