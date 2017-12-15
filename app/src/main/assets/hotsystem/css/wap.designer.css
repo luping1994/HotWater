@@ -1,0 +1,472 @@
+@IMPORT url("wap.head.css");
+html{font-size: 62.5%;}
+body {font-size: 1.4rem;}
+.main-frame{
+	width: 100%;
+	height:95%;
+	height:-moz-calc(100% - 50px);
+	height:-webkit-calc(100% - 50px);
+	height: calc(100% - 50px);
+	margin-top: 50px;
+	overflow: auto;
+}
+.full-screen-frame{
+	height:100%;
+	margin-top: 0;
+}
+.full-frame{
+	width: 100%;
+	height:100%;
+	overflow-x:hidden;
+	overflow-y: auto;
+}
+.full-wrapper{
+	width: 100%;
+	overflow: hidden;
+}
+.wrapper{
+	width: 100%;
+	overflow: hidden;
+}
+.zoom-group{
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	border-radius:5px;
+	color: #fff;
+}
+.zoom{
+	width: 8rem;
+	height: 3rem;
+	line-height:3rem;
+	font-size:2rem;
+	cursor:pointer;
+	display: inline-block;
+	text-align: center;
+}
+.zoom:first-child{
+	background: #09c;
+	opacity:0.7;
+  	-moz-border-radius-topleft:5px;
+	-moz-border-radius-bottomleft:5px;
+	-webkit-border-top-left-radius:5px;
+	-webkit-border-bottom-left-radius:5px;
+	border-top-left-radius:5px;
+	border-bottom-left-radius:5px;
+  	
+}
+.zoom:last-child{
+	background: #09c;
+	opacity:0.7;
+  	-moz-border-radius-topright:5px;
+	-moz-border-radius-bottomright:5px;
+	-webkit-border-top-right-radius:5px;
+	-webkit-border-bottom-right-radius:5px;
+	border-top-right-radius:5px;
+	border-bottom-right-radius:5px;
+}
+.full-screen{
+	width: 3rem;
+	height: 3rem;
+	line-height: 3.3rem;
+	font-size:2rem;
+	color: #fff;
+	bottom: 10px;
+	left: 10px;
+	text-align: center;
+	position: fixed;
+	border-radius:5px;
+	background: #09c;
+  	display: inline-block;
+  	opacity:0.7;
+}
+.exit{
+	display: none;
+}
+.modal-xs{
+	margin: 60px 20px;
+	max-width: 90%;
+}
+.command-load {
+	width: 49%;
+	height: 110px;
+	position: absolute;
+	top: 11px;
+	left: 16px;
+	z-index: 1200;
+	background-color:#000000;
+	-moz-opacity: 0.7; 
+	opacity:.70; 
+	filter: alpha(opacity=70);
+	padding: 40px 0;
+	border-radius: 4px;
+}
+.modal-designer-command{
+	width: 26rem;
+	margin:80px auto 0;
+	transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	-webkit-transform-origin: 0 0;
+	-moz-transform-origin: 0 0;
+	-o-transform-origin: 0 0;
+}
+.modal-designer-write{
+	width: 24rem;
+	margin:80px auto 0;
+	transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	-webkit-transform-origin: 0 0;
+	-moz-transform-origin: 0 0;
+	-o-transform-origin: 0 0;
+}
+.command-header{
+	padding: 10px;
+}
+.command-body{
+	padding: 10px;
+}
+.command-body .confirm-msg{
+	font-size: 1.6rem;
+	line-height: 3rem;
+}
+.command-footer{
+	padding: 0;
+	text-align: center;
+}
+.command-footer a{
+	width:49%;
+	height: 4rem;
+    font-size: 1.4rem;
+    line-height: 4rem;
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+}
+.command-footer a:FIRST-CHILD{
+	border-right: 1px solid #e5e5e5;
+}
+
+.command-from-group{
+	margin: 10px 0;
+}
+.command-radio-wapper{
+	width:80%;
+	margin-left:10%;
+	padding: 0;
+}
+.command-result-wapper{
+	width: 10%;
+	padding: 5px 2px 0 0;
+}
+.command-radio{
+	width:100%;
+	height: 34px;
+	white-space:nowrap;
+	font-size: 14px;
+}
+.command-radio .radio-inline{
+	min-width: 50%;
+    padding-left: 15px;
+    margin-left: 0;
+    line-height: 34px;
+    height: 34px;
+    float: left;
+    text-align: center;
+}
+.command-radio .radio-inline:FIRST-CHILD{
+    padding-left: 15px;
+}
+.command-radio .radio-inline>label{
+	margin-bottom: 0;
+	overflow:hidden;
+	white-space:nowrap;
+}
+.command-radio .radio-inline>label>input{
+	margin-top:10px;
+	margin-left: -15px;
+}
+svg.designer{
+	border: 0px;
+	padding: 0px;
+	margin: 0px;
+	background-size:100% 100%;
+	background-repeat: no-repeat;
+	transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	-webkit-transform-origin: 0 0;
+	-moz-transform-origin: 0 0;
+	-o-transform-origin: 0 0;
+}
+svg g.selected-rect rect{
+	fill:#fff;
+	stroke:#000;
+	stroke-width:1;
+	cursor:pointer;
+}
+svg g.selected-rect rect.top{
+	cursor: n-resize;
+}
+svg g.selected-rect rect.left-top{
+	cursor: nw-resize;
+}
+svg g.selected-rect rect.right-top{
+	cursor: ne-resize;
+}
+svg g.selected-rect rect.right{
+	cursor: e-resize;
+}
+svg g.selected-rect rect.right-bottom{
+	cursor: se-resize;
+}
+svg g.selected-rect rect.bottom{
+	cursor: s-resize;
+}
+svg g.selected-rect rect.left-bottom{
+	cursor: sw-resize;
+}
+svg g.selected-rect rect.left{
+	cursor: w-resize;
+}
+svg g line.shape-line{
+	stroke:#000;
+	stroke-width:1;
+	cursor:pointer;
+}
+svg g line.shape-line-border{
+	stroke:#fff;
+	stroke-width:10;
+	opacity:0;
+	cursor:pointer;
+}
+svg g rect.shape-rect{
+	fill:#fff;
+	stroke:#000;
+	stroke-width:1;
+	cursor:pointer;
+}
+svg g circle.shape-circle{
+	fill:#fff;
+	stroke:#000;
+	stroke-width:1;
+	cursor:pointer;
+}
+svg g ellipse.shape-ellipse{
+	fill:#fff;
+	stroke:#000;
+	stroke-width:1;
+	cursor:pointer;
+}
+svg g rect.shape-text{
+	fill:#fff;
+	stroke:#000;
+	stroke-width:1;
+	cursor:pointer;
+}
+svg g text.shape-text{
+	text-anchor:middle;
+	cursor:pointer;
+}
+svg g rect.shape-image{
+	opacity:0;
+	cursor:pointer;
+}
+svg g image.shape-image{
+	cursor:pointer;
+}
+svg g polygon.shape-triangle{
+	cursor:pointer;
+}
+svg g rect.data-text{
+	fill:#fff;
+	stroke:#000;
+	stroke-width:1;
+	cursor:pointer;
+}
+svg g text.data-text{
+	text-anchor:middle;
+	cursor:pointer;
+}
+svg g rect.light-rect{
+	fill:#fff;
+	stroke:#000;
+	stroke-width:1;
+	cursor:pointer;
+}
+svg g text.light-rect{
+	cursor:pointer;
+}
+svg g text.vertical{
+	text-anchor:middle;
+}
+svg g circle.light-circle{
+	fill:#fff;
+	stroke:#000;
+	stroke-width:1;
+	cursor:pointer;
+}
+svg g text.light-circle{
+	text-anchor:middle;
+	cursor:pointer;
+}
+svg g rect.light-image{
+	opacity:0;
+	cursor:pointer;
+}
+svg g image.light-image{
+	cursor:pointer;
+}
+svg g rect.fill-rect{
+	fill:#fff;
+	stroke:#000;
+	stroke-width:1;
+	cursor:pointer;
+}
+svg g polygont.fill-rect{
+	fill:#f00;
+	stroke:none;
+	cursor:pointer;
+}
+svg g text.fill-rect{
+	cursor:pointer;
+}
+svg g text.vertical{
+	text-anchor:middle;
+}
+
+svg g path.dashboard-laxis{
+	fill: none;  
+    stroke: #fff;  
+    stroke-width:2;
+    cursor:pointer;
+}
+svg g path.dashboard-saxis{
+	fill: none;  
+    stroke: #fff;  
+    stroke-width:1;
+    cursor:pointer;
+}
+svg g polygon.dashboard-point{
+	fill: #63869E;  
+    stroke: #000;  
+    stroke-width:1;
+    cursor:pointer;
+}
+svg g text.dashboard{
+	fill: #63869E;
+	text-anchor:middle;
+	dominant-baseline:middle;
+	cursor:pointer;
+}
+
+svg g circle.dashboard{
+	fill: #63869E;
+	text-anchor:middle;
+	dominant-baseline:middle;
+	opacity:0;
+	cursor:pointer;
+}
+
+svg g text.dashboard-title{
+	fill: #63869E;
+	text-anchor:middle;
+	cursor:pointer;
+}
+
+svg g text.dashboard-value{
+	fill: #63869E;
+	text-anchor:middle;
+	cursor:pointer;
+}
+svg g rect.control-text{
+	fill:#fff;
+	stroke:#000;
+	stroke-width:1;
+	cursor:pointer;
+}
+svg g text.control-text{
+	text-anchor:middle;
+	cursor:pointer;
+}
+svg g rect.control-image{
+	opacity:0;
+	cursor:pointer;
+}
+svg g image.control-image{
+	cursor:pointer;
+}
+svg g rect.timer-text{
+	fill:#fff;
+	stroke:#000;
+	stroke-width:1;
+	cursor:pointer;
+}
+svg g text.timer-text{
+	text-anchor:middle;
+	cursor:pointer;
+}
+svg g rect.line-chart{
+	fill:#fff;
+	stroke:#000;
+	stroke-width:1;
+	cursor:pointer;
+}
+
+svg g svg.line-chart g.axis path {
+	fill: none;
+	stroke: #bbb;
+	stroke-width: 1;
+	shape-rendering: crispEdges;
+}
+ 
+svg g svg.line-chart g.axis text {
+	fill: #555;
+}
+ 
+svg g svg.line-chart g.axis line {	
+	stroke: #e7e7e7;
+	stroke-width: 1;
+	shape-rendering: crispEdges;
+}
+ 
+svg g svg.line-chart g.axis .axis-label {
+	font-size: 14px;
+}
+
+svg g svg.line-chart path.line {
+	fill: none;
+	stroke-width: 1.5px;
+}
+svg g rect.link-text{
+	fill:#fff;
+	stroke:#000;
+	stroke-width:1;
+	cursor:pointer;
+}
+svg g text.link-text{
+	text-anchor:middle;
+	cursor:pointer;
+}
+svg g rect.link-image{
+	opacity:0;
+	cursor:pointer;
+}
+svg g image.link-image{
+	cursor:pointer;
+}
+svg g rect.openPage-text{
+	fill:#fff;
+	stroke:#000;
+	stroke-width:1;
+	cursor:pointer;
+}
+svg g text.openPage-text{
+	text-anchor:middle;
+	cursor:pointer;
+}
+svg g rect.openPage-image{
+	opacity:0;
+	cursor:pointer;
+}
+svg g image.openPage-image{
+	cursor:pointer;
+}

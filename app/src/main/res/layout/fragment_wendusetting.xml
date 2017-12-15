@@ -1,6 +1,6 @@
 <layout>
 
-    <net.suntrans.hotwater.widgets.ScrollChildSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <net.suntrans.hotwater_demon.widgets.ScrollChildSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -9,7 +9,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="net.suntrans.hotwater.ui.fragment.WendusettingFragment">
+            tools:context="net.suntrans.hotwater_demon.ui.fragment.WendusettingFragment">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1246,6 +1246,6 @@
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
-    </net.suntrans.hotwater.widgets.ScrollChildSwipeRefreshLayout>
+    </net.suntrans.hotwater_demon.widgets.ScrollChildSwipeRefreshLayout>
 
 </layout>

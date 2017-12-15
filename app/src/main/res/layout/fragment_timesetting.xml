@@ -1,6 +1,6 @@
 <layout>
 
-    <net.suntrans.hotwater.widgets.ScrollChildSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -8,7 +8,7 @@
         <android.support.v4.widget.NestedScrollView xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="net.suntrans.hotwater.ui.fragment.TimesettingFragment">
+            tools:context="net.suntrans.hotwater_demon.ui.fragment.TimesettingFragment">
 
             <LinearLayout
 
@@ -45,14 +45,15 @@
                         android:paddingRight="16dp"
                         android:text="--:--:--"
                         android:textColor="@color/colorPrimary" />
+
                     <Button
                         android:id="@+id/jiaoshi"
-                        android:textColor="@color/white"
+                        android:layout_width="50dp"
+                        android:layout_height="24dp"
                         android:layout_marginRight="16dp"
                         android:background="@drawable/bg_button"
                         android:text="校时"
-                        android:layout_width="50dp"
-                        android:layout_height="24dp" />
+                        android:textColor="@color/white" />
                 </LinearLayout>
 
                 <View
@@ -903,6 +904,6 @@
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
-    </net.suntrans.hotwater.widgets.ScrollChildSwipeRefreshLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </layout>

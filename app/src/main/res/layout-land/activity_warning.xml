@@ -1,0 +1,44 @@
+<layout>
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbarWarper"
+            layout="@layout/toolbar" />
+
+        <FrameLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <TextView
+                android:visibility="invisible"
+                android:id="@+id/tips"
+                android:gravity="center"
+                android:text="暂无异常提示信息"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+            <android.support.v7.widget.RecyclerView
+                app:layoutManager="LinearLayoutManager"
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+        </FrameLayout>
+        <Button
+            android:layout_marginTop="16dp"
+            android:id="@+id/handlerError"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/bg_bt_login"
+            android:textColor="@color/white"
+            android:text="一键处理异常"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>

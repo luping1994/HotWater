@@ -1,0 +1,201 @@
+.log-arrow-up {
+    background: url("../img/arrow-up.png") no-repeat;
+    width: 20px;
+    height: 11px;
+    position: absolute;
+    right: 20px;
+    top: -10px;
+}
+ul.dropdown-menu.logout{
+    width: 268px !important;
+    padding: 0px 0px !important;
+}
+.dropdown-menu.extended.logout > li {
+    float: left;
+    text-align: center;
+    width: 50%;
+}  
+.dropdown-menu.extended.logout > li.operation{
+    float: left;
+    text-align: center;
+    width: 33%;
+}
+.dropdown-menu.extended li a {
+	font-size: 12px;
+	color: #a4abbb;
+    border-bottom: none !important;
+    padding: 15px 10px !important;
+    width: 100%;
+    display: inline-block;
+    line-height: 20px;
+    list-style: none;
+}
+.dropdown-menu.extended li a span{
+    display: block;
+    font-size: 17px;
+}
+.dropdown-menu.extended.logout > li > a:hover {
+    background: none !important;
+    color: #50c8ea;
+    line-height: 20px;
+}
+.dropdown-menu.extended.logout > li:last-child {
+    float: left;
+    text-align: center;
+    width: 100%;
+    background: #a9d96c;
+    border-radius: 0 0 3px 3px;
+}
+.dropdown-menu.extended.logout > li:last-child > a, 
+.dropdown-menu.extended.logout > li:last-child > a:hover {
+    color: #fff;
+    border-bottom: none !important;
+    text-transform: uppercase;
+}
+ul.dropdown-menu.phone{
+	width: 240px;
+	padding: 10px;
+}
+ul.dropdown-menu.phone .media-body{
+	text-align: center;
+}
+ul.dropdown-menu.phone .media-body h5{
+	font-weight: bolder;
+}
+ul.dropdown-menu.phone .media-body a.logo-android{
+	width:50px;
+	height:50px;
+	background-image:url("../img/android.png?v=1.0");
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+	display:inline-block;
+}
+ul.dropdown-menu.phone .media-body a.logo-iphone{
+	width:50px;
+	height:50px;
+	background-image:url("../img/iphone.png");
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+	display:inline-block;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+    background-color: #0070ab;
+}
+.feedback{
+	position: fixed;
+	width: 350px;
+	top: 160px;
+	right: -350px;
+	z-index: 1000;
+}
+.feedback .btn-fiexd{
+	position: absolute;
+    text-indent: -2000px;
+    outline-style: none;
+    outline-color: invert;
+    outline-width: 0px;
+    width: 33px;
+    display: inline-block;
+    background: url(../img/feedback.gif);
+    height: 101px;
+    top: 0px;
+    left: -33px;
+}
+.feedback .btn-fiexd:hover{
+	background-position: -33px 0px;
+}
+.feedback .feedback-centent{
+	padding: 15px 0;
+	background: #fff;
+	border: 1px solid #cfcfcf;
+	box-shadow: 2px 2px 8px #aaa;
+}
+.btn-sub-feedback{
+	padding-left: 110px;
+}
+.bs-docs-footer {
+    height:40px;
+    width:100%;
+    color: #fff;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+    font-size: 12px;
+    background: #444;
+    position: fixed;
+    bottom: 0px;
+    z-index: 100;
+}
+.bs-docs-footer span,.bs-docs-footer a{
+	line-height: 40px;
+	color: #fff;
+}
+.icon-btn-chart {
+	width:14px;
+	height:14px;
+	background:url('../img/chart_48.png') no-repeat center center;
+	display: inline-block;
+	vertical-align: -2px;
+}
+label.error{
+	font-weight: normal;
+	color: #FF4040;
+}
+label.sms-result{
+	line-height:34px;
+    font-weight: normal;
+    color: #FF4040;
+    margin-bottom: 0;
+}
+textarea.sms-alarm{
+	height: 70px !important;
+}
+span.modbus-index{
+	line-height: 34px;
+	font-size: 16px;
+}
+.send-result{
+	padding-left: 0;
+}
+.send-result label.error{
+	margin-bottom: 0;
+}
+label.sendAT-success{
+	line-height:34px;
+    font-weight: normal;
+    color: #00cc00;
+    margin-bottom: 0;
+}
+label.sendAT-error{
+	line-height:34px;
+    font-weight: normal;
+    color: #FF4040;
+    margin-bottom: 0;
+}
+span.sendAT-success{
+    font-weight: normal;
+    color: #00cc00;
+    margin-bottom: 0;
+}
+span.sendAT-error{
+    font-weight: normal;
+    color: #FF4040;
+    margin-bottom: 0;
+}
+.map-marker{
+	color: #843534;
+	font-size: 24px;
+}
+.modbus-title{
+	font-size: 16px;
+}
+.modbus_list input.error{
+	border-color: #FF4040;
+}
+.modbus_list select.error{
+	border-color: #FF4040;
+}
+.fota-result{
+	width: 100%;
+	line-height:70px;
+	text-align: center;
+}
