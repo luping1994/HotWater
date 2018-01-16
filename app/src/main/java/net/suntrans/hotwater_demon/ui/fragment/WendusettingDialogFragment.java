@@ -239,6 +239,12 @@ public class WendusettingDialogFragment extends DialogFragment implements View.O
     }
 
     private void setListener() {
+        binding.fanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
         binding.fangbaoWendu.setOnClickListener(this);
         binding.yunxuwendu.setOnClickListener(this);
         binding.fandongwendu.setOnClickListener(this);

@@ -1,6 +1,9 @@
 package net.suntrans.hotwater_demon.ui.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
+
+import com.pgyersdk.update.PgyUpdateManager;
 
 import net.suntrans.hotwater_demon.App;
 import net.suntrans.hotwater_demon.MainActivity;
@@ -9,10 +12,13 @@ import net.suntrans.hotwater_demon.bean.AuthEntity;
 import net.suntrans.hotwater_demon.bean.LoginEntity;
 import net.suntrans.looney.utils.UiUtils;
 
+import retrofit2.Response;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
+import static net.suntrans.hotwater_demon.BuildConfig.DEBUG;
 
 /**
  * Created by Looney on 2017/8/28.
@@ -25,7 +31,16 @@ public class LoginActivity extends net.suntrans.looney.login.LoginActivity {
     private Subscription subscribe1;
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (!DEBUG)
+            PgyUpdateManager.register(this, "net.suntrans.hotwater_demon.fileProvider");
+    }
+
+    @Override
     protected void loginFromServer(final String username, final String password) {
+
+
         subscribe = RetrofitHelper.getApi().Login(username, password)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -59,12 +74,20 @@ public class LoginActivity extends net.suntrans.looney.login.LoginActivity {
 
     @Override
     protected void onDestroy() {
-        if (!subscribe.isUnsubscribed()) {
-            subscribe.unsubscribe();
+        if (subscribe != null) {
+            if (!subscribe.isUnsubscribed()) {
+                subscribe.unsubscribe();
+            }
         }
-        if (!subscribe1.isUnsubscribed()) {
-            subscribe1.unsubscribe();
+        if (subscribe1 != null) {
+            if (!subscribe1.isUnsubscribed()) {
+                subscribe1.unsubscribe();
+            }
         }
+
+        if (!DEBUG)
+            PgyUpdateManager.unregister();
+
         super.onDestroy();
     }
 

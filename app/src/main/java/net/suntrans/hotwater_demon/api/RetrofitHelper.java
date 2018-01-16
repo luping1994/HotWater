@@ -27,6 +27,8 @@ public class RetrofitHelper {
 //    public static final String BASE_URL = "http://gszy.suntrans-cloud.com:8080/gszyapp/";
 
     public static final String BASE_URL = "http://183.236.25.192:24206/";
+    public static final String URL_TEST = "http://gszynw.suntrans-cloud.com:80/";
+
 
     private static OkHttpClient mOkHttpClient;
 
@@ -38,6 +40,17 @@ public class RetrofitHelper {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(mOkHttpClient)
+//                    .addConverterFactory(MyGsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+        return retrofit.create(Api.class);
+    }
+
+    public static Api getTestApi() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL_TEST)
+//                .client(mOkHttpClient)
 //                    .addConverterFactory(MyGsonConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -76,7 +89,7 @@ public class RetrofitHelper {
 //                            newBody =    addParamsToFormBody();
 //                        }
                         Request newRequest = original.newBuilder()
-                                .header("Authorization","Bearer "+ header)
+                                .header("Authorization", "Bearer " + header)
                                 .method(original.method(), newBody)
                                 .build();
 

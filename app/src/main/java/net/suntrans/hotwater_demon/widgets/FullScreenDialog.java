@@ -1,10 +1,13 @@
 package net.suntrans.hotwater_demon.widgets;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialog;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -44,6 +47,14 @@ public class FullScreenDialog extends AppCompatDialog {
 
            //设置gravity
             window.setGravity(Gravity.CENTER);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                window.setNavigationBarColor(Color.TRANSPARENT);
+            }
+            WindowManager.LayoutParams params = getWindow().getAttributes();
+            params.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE;
+            getWindow().setAttributes(params);
         }
     }
 

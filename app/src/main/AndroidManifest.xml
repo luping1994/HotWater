@@ -3,9 +3,10 @@
     package="net.suntrans.hotwater_demon">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name="net.suntrans.hotwater_demon.App"
         android:allowBackup="true"
@@ -15,7 +16,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="PGYER_APPID"
-            android:value="52e838e7ff2c01d2c45e163bfb9fa58f" />
+            android:value="b83a39ad0ccbc78747437a3a0a200163" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -26,24 +27,39 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-        <activity android:name="net.suntrans.hotwater_demon.MainActivity" android:screenOrientation="portrait">
+        <activity
+            android:name="net.suntrans.hotwater_demon.MainActivity"
+            android:screenOrientation="portrait">
 
         </activity>
         <service android:name="net.suntrans.hotwater_demon.websocket.WebSocketService" />
-        <activity android:name="net.suntrans.hotwater_demon.ui.activity.LoginActivity" android:screenOrientation="landscape">
+
+        <activity
+            android:name="net.suntrans.hotwater_demon.ui.activity.LoginActivity"
+            android:screenOrientation="landscape">
 
         </activity>
-        <activity android:name="net.suntrans.hotwater_demon.ui.activity.AboutActivity" android:screenOrientation="portrait"/>
-        <activity android:name="net.suntrans.hotwater_demon.ui.activity.WelcomeActivity" android:screenOrientation="portrait">
+        <activity
+            android:name="net.suntrans.hotwater_demon.ui.activity.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.suntrans.hotwater_demon.ui.activity.WelcomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="net.suntrans.hotwater_demon.ui.activity.PicActivity" android:screenOrientation="landscape"/>
-        <activity android:name="net.suntrans.hotwater_demon.ui.activity.MessageActivity" android:screenOrientation="portrait"/>
-        <activity android:name="net.suntrans.hotwater_demon.ui.activity.WarningActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="net.suntrans.hotwater_demon.ui.activity.PicActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="net.suntrans.hotwater_demon.ui.activity.MessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.suntrans.hotwater_demon.ui.activity.WarningActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 

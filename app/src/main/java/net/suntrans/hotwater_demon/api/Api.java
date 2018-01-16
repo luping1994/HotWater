@@ -8,8 +8,10 @@ import net.suntrans.hotwater_demon.bean.Read3Entity;
 import net.suntrans.hotwater_demon.bean.Read4Entity;
 import net.suntrans.hotwater_demon.bean.WarningEntity;
 
+import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.HEAD;
 import retrofit2.http.POST;
 import rx.Observable;
 
@@ -92,5 +94,9 @@ public interface Api {
     @FormUrlEncoded
     @POST("hotwater_mobile/index.php/home/login/login")
     Observable<LoginEntity> Login(@Field("userId") String userId,@Field("password") String password);
+
+
+    @HEAD("/")
+    Observable<Void> test();
 
 }

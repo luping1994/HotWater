@@ -103,6 +103,12 @@ public class TimesettingDialogFragment extends DialogFragment implements TimePic
         binding.xiyugongshui3Start.setOnClickListener(this);
         binding.xiyugongshui3Stop.setOnClickListener(this);
 
+        binding.fanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
 
         //三组机组
         binding.jizuStart1.setOnClickListener(this);

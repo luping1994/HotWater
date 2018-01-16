@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/hotwater"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <WebView
@@ -14,23 +15,24 @@
     </WebView>
 
     <LinearLayout
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
 
-        <RadioGroup
 
+        <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_weight="4"
             android:gravity="center|left"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <android.support.v7.widget.AppCompatRadioButton
 
@@ -51,6 +53,26 @@
         </RadioGroup>
     </LinearLayout>
 
+    <FrameLayout
+        android:visibility="invisible"
+        android:id="@+id/toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="100dp">
+
+        <ToggleButton
+            android:background="@drawable/toggle"
+            android:id="@+id/toggleButton"
+            android:layout_width="55dp"
+            android:layout_height="50dp"
+            android:clickable="false"
+            android:textOff=""
+            android:textOn="" />
+    </FrameLayout>
+
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/menu_red"
         android:layout_width="match_parent"
@@ -60,34 +82,47 @@
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        app:menu_labels_colorNormal="@color/colorPrimary"
         app:menu_colorNormal="@color/colorPrimary"
-        app:menu_colorPressed="@color/colorAccent"
+        app:menu_colorPressed="@color/colorPrimary"
         app:menu_colorRipple="#62B2FF"
         app:menu_labels_ellipsize="end"
         app:menu_labels_singleLine="true">
 
         <com.github.clans.fab.FloatingActionButton
 
+            app:fab_colorNormal="@color/colorPrimary"
+            android:id="@+id/fab0"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_refresh"
+            app:fab_label="刷新"
+            app:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            app:fab_colorNormal="@color/colorPrimary"
+
             android:id="@+id/fab1"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_jiaozhun"
             app:fab_label="校时"
             app:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
+            app:fab_colorNormal="@color/colorPrimary"
 
             android:id="@+id/fab2"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_time_fab"
             app:fab_label="时间设置"
             app:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
-
+            app:fab_colorNormal="@color/colorPrimary"
             android:id="@+id/fab3"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:src="@drawable/wendu_fab"
             app:fab_label="温度/水位设置"

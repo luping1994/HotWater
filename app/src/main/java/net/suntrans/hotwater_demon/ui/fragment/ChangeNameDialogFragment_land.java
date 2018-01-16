@@ -1,6 +1,8 @@
 package net.suntrans.hotwater_demon.ui.fragment;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import net.suntrans.hotwater_demon.R;
 import net.suntrans.hotwater_demon.utils.LogUtil;
 import net.suntrans.hotwater_demon.utils.UiUtils;
+import net.suntrans.hotwater_demon.widgets.FullScreenDialog;
 
 /**
  * Created by Administrator on 2017/8/16.
@@ -21,6 +24,13 @@ public class ChangeNameDialogFragment_land extends android.support.v4.app.Dialog
     private String title;
     private TextView name;
     private TextView txTitle;
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        FullScreenDialog dialog = new FullScreenDialog(getContext());
+        return dialog;
+    }
 
     public static ChangeNameDialogFragment_land newInstance(String title){
         Bundle bundle = new Bundle();

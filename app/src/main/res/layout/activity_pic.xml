@@ -14,11 +14,11 @@
     </WebView>
 
     <LinearLayout
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
@@ -68,6 +68,15 @@
 
         <com.github.clans.fab.FloatingActionButton
 
+            android:id="@+id/fab0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_refresh"
+            app:fab_label="刷新"
+            app:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+
             android:id="@+id/fab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -95,4 +104,24 @@
 
 
     </com.github.clans.fab.FloatingActionMenu>
+
+    <FrameLayout
+        android:visibility="invisible"
+        android:id="@+id/toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="80dp">
+
+        <ToggleButton
+            android:background="@drawable/toggle"
+            android:id="@+id/toggleButton"
+            android:layout_width="55dp"
+            android:layout_height="50dp"
+            android:clickable="false"
+            android:textOff=""
+            android:textOn="" />
+    </FrameLayout>
 </RelativeLayout>

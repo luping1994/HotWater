@@ -16,10 +16,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
+import android.widget.ToggleButton;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -79,17 +82,21 @@ public class PicActivity extends AppCompatActivity implements View.OnClickListen
     };
 
 
+    private FloatingActionButton fab0;
     private FloatingActionButton fab1;
     private FloatingActionButton fab2;
     private FloatingActionButton fab3;
     private Subscription subscribe;
     private Subscription subscribe1;
     private Read2 read2;
+    private ToggleButton button;
 
+    private long lastTime =0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pic);
+
 
         Intent intent = new Intent();
         intent.setClass(this, WebSocketService.class);
@@ -100,21 +107,62 @@ public class PicActivity extends AppCompatActivity implements View.OnClickListen
         fab1 = (FloatingActionButton) findViewById(R.id.fab1);
         fab2 = (FloatingActionButton) findViewById(R.id.fab2);
         fab3 = (FloatingActionButton) findViewById(R.id.fab3);
+        fab0 = (FloatingActionButton) findViewById(R.id.fab0);
 
+        fab0.setOnClickListener(this);
         fab1.setOnClickListener(this);
         fab2.setOnClickListener(this);
         fab3.setOnClickListener(this);
 
+        fab0.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
         zidong = (RadioButton) findViewById(R.id.zidong);
         shoudong = (RadioButton) findViewById(R.id.shoudong);
+        button = (ToggleButton) findViewById(R.id.toggleButton);
+
+        View view = findViewById(R.id.toggle);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (System.currentTimeMillis()-lastTime<1000){
+
+                    return;
+                }
+                lastTime = System.currentTimeMillis();
+                boolean isChecked = button.isChecked();
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("action", "settings");
+
+                    jsonObject.put("name", "Operation_mode_ID");
+                    jsonObject.put("parameter", isChecked?"0":"1");
+
+                    if (binder != null)
+                        binder.sendOrder(jsonObject.toString());
+//                    if (dialog1 == null) {
+//                        dialog1 = new LoadingDialog(PicActivity.this);
+//                        dialog1.setCancelable(false);
+//                        dialog1.setWaitText("请稍后...");
+//                    }
+//                    dialog1.show();
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            dialog1.dismiss();
+//                            UiUtils.showToast("设置超时");
+//                            initView(read2);
+//                        }
+//                    }, 2000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
 
         setRxBus();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-        }
+        setUpFullScreen();
         webview = (WebView) findViewById(R.id.webview);
         setUpWebview(webview);
 
@@ -135,6 +183,22 @@ public class PicActivity extends AppCompatActivity implements View.OnClickListen
 
 //        webview.loadUrl("file:///android_asset/hotsystem/hotwater.html");
         webview.loadUrl("http://ht.suntrans-cloud.com/hotwater.html");
+    }
+
+    private void setUpFullScreen() {
+        //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(Color.TRANSPARENT);
+        }
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE;
+        getWindow().setAttributes(params);
+
+
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
     private void init() {
@@ -220,8 +284,8 @@ public class PicActivity extends AppCompatActivity implements View.OnClickListen
         settings.setAllowFileAccess(true);// 设置允许访问文件数据
         webview.setInitialScale(0);
         webview.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        webview.setWebViewClient(new WebViewClient());
         webview.setVerticalScrollBarEnabled(false);
+//        webview.setWebChromeClient(new WebChromeClient());
 
         WebSettings localWebSettings = webview.getSettings();
         localWebSettings.setJavaScriptEnabled(true);
@@ -349,6 +413,10 @@ public class PicActivity extends AppCompatActivity implements View.OnClickListen
                 if (binder != null)
                     binder.sendOrder(jsonObject.toString());
                 break;
+            case R.id.fab0:
+                if (webview != null)
+                    webview.reload();
+                break;
             case R.id.fab2:
                 TimesettingDialogFragment fragment = new TimesettingDialogFragment();
                 fragment.show(getSupportFragmentManager(), "timeSetting");
@@ -399,15 +467,17 @@ public class PicActivity extends AppCompatActivity implements View.OnClickListen
 
     private void initView(Read2 read2) {
         handler.removeCallbacksAndMessages(null);
-        if (dialog1!=null)
+        if (dialog1 != null)
             dialog1.dismiss();
         if (read2 == null)
             return;
         LogUtil.i("WorkStateFragment11111111" + read2.toString());
         if (read2.Operation_mode_ID == 1) {
             zidong.setChecked(true);
+            button.setChecked(true);
         } else {
             shoudong.setChecked(true);
+            button.setChecked(false);
         }
     }
 }

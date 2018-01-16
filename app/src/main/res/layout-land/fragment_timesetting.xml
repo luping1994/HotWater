@@ -62,10 +62,19 @@
                                 android:textColor="@color/white" />
                         </LinearLayout>
 
-                        <View
+
+                        <RelativeLayout
+                            android:id="@+id/fanhui"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
-                            android:background="#f1f1f1" />
+                            android:background="#f1f1f1">
+                            <ImageView
+                                android:layout_marginLeft="16dp"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_arrow_"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
 
 
                         <TextView
