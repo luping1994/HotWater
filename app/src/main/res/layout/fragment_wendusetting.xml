@@ -1,6 +1,6 @@
 <layout>
 
-    <net.suntrans.hotwater_demon.widgets.ScrollChildSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <net.suntrans.hotwater.widgets.ScrollChildSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -9,27 +9,13 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="net.suntrans.hotwater_demon.ui.fragment.WendusettingFragment">
+            tools:context="net.suntrans.hotwater.ui.fragment.WendusettingFragment">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
                 android:orientation="vertical">
-
-                <RelativeLayout
-                    android:visibility="gone"
-                    android:id="@+id/fanhui"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:background="#f1f1f1">
-                    <ImageView
-                        android:layout_marginLeft="16dp"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_arrow_"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </RelativeLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -1071,7 +1057,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:text="Kg" />
+                        android:text="MPa" />
 
                 </RelativeLayout>
 
@@ -1116,7 +1102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:gravity="center"
-                        android:text="Kg"
+                        android:text="MPa"
                         android:layout_alignBaseline="@+id/SetFeire_press_ID"
                         android:layout_alignBottom="@+id/SetFeire_press_ID"
                         android:layout_alignParentRight="true"
@@ -1165,7 +1151,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:text="kg" />
+                        android:text="MPa" />
 
                 </RelativeLayout>
 
@@ -1254,12 +1240,12 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:text="Kg" />
+                        android:text="MPa" />
 
                 </RelativeLayout>
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
-    </net.suntrans.hotwater_demon.widgets.ScrollChildSwipeRefreshLayout>
+    </net.suntrans.hotwater.widgets.ScrollChildSwipeRefreshLayout>
 
 </layout>

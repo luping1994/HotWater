@@ -14,13 +14,14 @@ import android.view.ViewGroup;
 
 import com.trello.rxlifecycle.android.FragmentEvent;
 
+
 import net.suntrans.hotwater_demon.MainActivity;
 import net.suntrans.hotwater_demon.R;
 import net.suntrans.hotwater_demon.api.RetrofitHelper;
 import net.suntrans.hotwater_demon.bean.Read1;
 import net.suntrans.hotwater_demon.bean.Read1Entity;
-import net.suntrans.hotwater_demon.databinding.FragmentCanshuBinding;
-import net.suntrans.hotwater_demon.utils.LogUtil;
+
+import java.text.DecimalFormat;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -156,7 +157,6 @@ public class CanshuFragment extends LazyLoadFragment {
         handler.removeCallbacksAndMessages(null);
         binding.refreshLayout.setRefreshing(false);
 
-        LogUtil.i("CanshuFragment", read1.toString());
         binding.T1.setText(read1.Jire_temp_down_ID + "℃");
         binding.T2.setText(read1.Jire_temp_up_ID + "℃");
         binding.T3.setText(read1.Jire_temp_tank_ID + "℃");
@@ -166,8 +166,11 @@ public class CanshuFragment extends LazyLoadFragment {
         binding.T7.setText(read1.Huanjing_temp_ID + "℃");
         binding.H1.setText(read1.Jire_level_ID + "%");
         binding.H2.setText(read1.Hengwen_level_ID + "%");
-        binding.SupplyPressID.setText(read1.Supply_press_ID == null ? "--" : read1.Supply_press_ID + "Kg");
-        binding.FeirePressID.setText(read1.Feire_press_ID == null ? "--" : read1.Feire_press_ID + "Kg");
+       float a = Float.valueOf(read1.Supply_press_ID)/10;
+       float b = Float.valueOf(read1.Feire_press_ID)/10;
+        DecimalFormat fnum  =   new  DecimalFormat("##0.00");
+        binding.SupplyPressID.setText(read1.Supply_press_ID == null ? "--" : fnum.format(a) + "MPa");
+        binding.FeirePressID.setText(read1.Feire_press_ID == null ? "--" : fnum.format(b) + "MPa");
         binding.time.setText(read1.created_at);
     }
 

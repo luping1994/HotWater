@@ -16,20 +16,25 @@ import android.view.ViewGroup;
 import com.alibaba.fastjson.JSON;
 import com.trello.rxlifecycle.android.FragmentEvent;
 
-import net.suntrans.hotwater_demon.MainActivity;
-import net.suntrans.hotwater_demon.R;
-import net.suntrans.hotwater_demon.api.RetrofitHelper;
-import net.suntrans.hotwater_demon.bean.CmdMsg;
-import net.suntrans.hotwater_demon.bean.Read3;
-import net.suntrans.hotwater_demon.bean.Read3Entity;
-import net.suntrans.hotwater_demon.databinding.FragmentWendusettingBinding;
-import net.suntrans.hotwater_demon.utils.LogUtil;
-import net.suntrans.hotwater_demon.utils.RxBus;
-import net.suntrans.hotwater_demon.utils.UiUtils;
-import net.suntrans.hotwater_demon.utils.Utils;
+import net.suntrans.hotwater.MainActivity;
+import net.suntrans.hotwater.R;
+import net.suntrans.hotwater.api.RetrofitHelper;
+import net.suntrans.hotwater.bean.CmdMsg;
+import net.suntrans.hotwater.bean.Read1Entity;
+import net.suntrans.hotwater.bean.Read3;
+import net.suntrans.hotwater.bean.Read3Entity;
+import net.suntrans.hotwater.bean.Read4Entity;
+import net.suntrans.hotwater.databinding.FragmentWendusettingBinding;
+import net.suntrans.hotwater.utils.LogUtil;
+import net.suntrans.hotwater.utils.RxBus;
+import net.suntrans.hotwater.utils.UiUtils;
+import net.suntrans.hotwater.utils.Utils;
 import net.suntrans.looney.widgets.LoadingDialog;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.DecimalFormat;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -182,7 +187,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
                     }
                 });
     }
-
+    DecimalFormat fnum  =   new  DecimalFormat("##0.00");
     private void initView(Read3 read3) {
         handler.removeCallbacksAndMessages(null);
         LogUtil.i("WendusettingFragment", read3.toString());
@@ -211,12 +216,21 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
 
         binding.jireman.setText(read3.Jire_level_full_ID);
         binding.henwenman.setText(read3.Hengwen_level_full_ID);
-        binding.tiaopinzhouqi.setText(read3.Set_period_ID);
-        binding.shuiyasheding.setText(read3.SetSupply_press_ID);
-        binding.SetFeirePressID.setText(read3.SetFeire_press_ID);
-        binding.SupplyPressID.setText(read3.Supply_press_ID);
+
+
+
+//        binding.SupplyPressID.setText(read3.Supply_press_ID);
         binding.FeirePressID.setText(read3.Feire_press_ID);
         binding.SetJireTempSafeID.setText(read3.SetJire_temp_safe_ID);
+        float shuiyasheding = Float.valueOf(read3.SetSupply_press_ID)/10;
+        float SetFeirePressID = Float.valueOf(read3.SetFeire_press_ID)/10;
+        float Set_period_ID = Float.valueOf(read3.Set_period_ID)/10;
+
+        binding.shuiyasheding.setText(fnum.format(shuiyasheding));
+        binding.SetFeirePressID.setText(fnum.format(SetFeirePressID));
+        binding.tiaopinzhouqi.setText(fnum.format(Set_period_ID));
+
+
 
         handler.removeCallbacksAndMessages(null);
         if (dialog != null) {
@@ -365,9 +379,14 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
             return;
         }
         JSONObject jsonObject = new JSONObject();
+        String name = datas.get(currentSelectedId);
+        if (name.equals("SetSupply_press_ID")||name.equals("SetFeire_press_ID")||name.equals("SetWindow_press_ID")){
+            value = Float.valueOf(value)*10 +"";
+        }
+        System.out.println(name+":"+value);
         try {
             jsonObject.put("action", "settings");
-            jsonObject.put("name", datas.get(currentSelectedId));
+            jsonObject.put("name", name);
             jsonObject.put("parameter", value);
             isSetting = true;
             if (activity.binder != null) {
