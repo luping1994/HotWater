@@ -1,5 +1,6 @@
 package net.suntrans.hotwater;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -59,6 +60,7 @@ public class MainActivity extends RxAppCompatActivity implements StatusFragment.
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
+
         }
     };
     private StatusFragment fragment;
@@ -80,7 +82,8 @@ public class MainActivity extends RxAppCompatActivity implements StatusFragment.
         intent.setClass(this, WebSocketService.class);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
 
-        allowControl = App.getSharedPreferences().getBoolean("allowControl", false);
+//        allowControl = App.getSharedPreferences().getBoolean("allowControl", false);
+        allowControl = true;
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 //        setSupportActionBar(binding.toolbar);
@@ -102,11 +105,9 @@ public class MainActivity extends RxAppCompatActivity implements StatusFragment.
                         break;
                     case R.id.setting:
                         binding.viewpager.setCurrentItem(1, false);
-
                         break;
                     case R.id.user:
                         binding.viewpager.setCurrentItem(2, false);
-
                         break;
                 }
                 return true;

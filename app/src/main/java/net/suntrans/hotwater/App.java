@@ -1,6 +1,7 @@
 package net.suntrans.hotwater;
 
 import android.content.Intent;
+import android.view.ViewGroup;
 
 import com.tencent.bugly.crashreport.CrashReport;
 
@@ -17,6 +18,7 @@ public class App extends AppBase {
         super.onCreate();
         CrashReport.initCrashReport(getApplicationContext(), "ee82d6b8f4", false);
         startService(new Intent(this, WebSocketService.class));
+
     }
 
 }

@@ -37,7 +37,7 @@ public class LoginActivity extends net.suntrans.looney.login.LoginActivity {
 
                     @Override
                     public void onError(Throwable e) {
-                        UiUtils.showToast("账号或密码错误");
+                        UiUtils.showToast("连接服务器失败");
                         dialog.dismiss();
 
                     }

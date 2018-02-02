@@ -34,6 +34,8 @@ import net.suntrans.looney.widgets.LoadingDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -185,7 +187,7 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
                     }
                 });
     }
-
+    DecimalFormat fnum  =   new  DecimalFormat("##0.00");
     private void initView(Read3 read3) {
         handler.removeCallbacksAndMessages(null);
         LogUtil.i("WendusettingFragment", read3.toString());
@@ -214,12 +216,21 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
 
         binding.jireman.setText(read3.Jire_level_full_ID);
         binding.henwenman.setText(read3.Hengwen_level_full_ID);
-        binding.tiaopinzhouqi.setText(read3.Set_period_ID);
-        binding.shuiyasheding.setText(read3.SetSupply_press_ID);
-        binding.SetFeirePressID.setText(read3.SetFeire_press_ID);
-        binding.SupplyPressID.setText(read3.Supply_press_ID);
+
+
+
+//        binding.SupplyPressID.setText(read3.Supply_press_ID);
         binding.FeirePressID.setText(read3.Feire_press_ID);
         binding.SetJireTempSafeID.setText(read3.SetJire_temp_safe_ID);
+        float shuiyasheding = Float.valueOf(read3.SetSupply_press_ID)/10;
+        float SetFeirePressID = Float.valueOf(read3.SetFeire_press_ID)/10;
+        float Set_period_ID = Float.valueOf(read3.Set_period_ID)/10;
+
+        binding.shuiyasheding.setText(fnum.format(shuiyasheding));
+        binding.SetFeirePressID.setText(fnum.format(SetFeirePressID));
+        binding.tiaopinzhouqi.setText(fnum.format(Set_period_ID));
+
+
 
         handler.removeCallbacksAndMessages(null);
         if (dialog != null) {
@@ -368,9 +379,14 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
             return;
         }
         JSONObject jsonObject = new JSONObject();
+        String name = datas.get(currentSelectedId);
+        if (name.equals("SetSupply_press_ID")||name.equals("SetFeire_press_ID")||name.equals("SetWindow_press_ID")){
+            value = Float.valueOf(value)*10 +"";
+        }
+        System.out.println(name+":"+value);
         try {
             jsonObject.put("action", "settings");
-            jsonObject.put("name", datas.get(currentSelectedId));
+            jsonObject.put("name", name);
             jsonObject.put("parameter", value);
             isSetting = true;
             if (activity.binder != null) {

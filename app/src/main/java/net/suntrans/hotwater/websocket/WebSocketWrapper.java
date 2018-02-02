@@ -19,8 +19,8 @@ import okio.ByteString;
 
 public final class WebSocketWrapper extends WebSocketListener {
     private final String TAG = this.getClass().getSimpleName();
-    private final String url = "ws://183.236.25.192:8890";
-//    private final String url = "ws://172.16.15.247:8080/websocket";
+//    private final String url = "ws://183.236.25.192:8890";
+    private final String url = "ws://183.236.25.192:24200";
     private okhttp3.WebSocket socket;
     private final OkHttpClient client;
     private final Request request;
