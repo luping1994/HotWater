@@ -21,8 +21,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback;
 import com.chad.library.adapter.base.listener.OnItemSwipeListener;
 
-import net.suntrans.hotwater.MainActivity;
-import net.suntrans.hotwater.R;
+
 import net.suntrans.hotwater.bean.WarningHis;
 import net.suntrans.hotwater.database.AppDatabase;
 import net.suntrans.hotwater.database.DatabaseUtils;
