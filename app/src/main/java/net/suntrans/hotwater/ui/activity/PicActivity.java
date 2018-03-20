@@ -173,7 +173,7 @@ public class PicActivity extends AppCompatActivity implements View.OnClickListen
 
 
 //        webview.loadUrl("file:///android_asset/hotsystem/hotwater.html");
-        webview.loadUrl("http://ht.suntrans-cloud.com/hotwater.html");
+        webview.loadUrl("http://ht.suntrans-cloud.com/lanzhou/hotwater.html");
     }
 
     private void setUpFullScreen() {
