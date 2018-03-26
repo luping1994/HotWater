@@ -1,6 +1,4 @@
 package net.suntrans.hotwater.ui.fragment;
-
-
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;

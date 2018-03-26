@@ -21,6 +21,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -30,6 +31,7 @@ import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import net.suntrans.hotwater.bean.CmdMsg;
 import net.suntrans.hotwater.databinding.ActivityMainBinding;
+import net.suntrans.hotwater.ui.activity.PicActivity;
 import net.suntrans.hotwater.ui.fragment.SettingFragment;
 import net.suntrans.hotwater.ui.fragment.StatusFragment;
 import net.suntrans.hotwater.ui.fragment.UserFragment;

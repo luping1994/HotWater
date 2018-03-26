@@ -1,6 +1,7 @@
 package net.suntrans.hotwater.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.RadioGroup;
 
 import net.suntrans.hotwater.R;
 import net.suntrans.hotwater.databinding.FragmentStatusBinding;
+import net.suntrans.hotwater.ui.activity.PicActivity;
 
 /**
  * A status {@link Fragment} .
@@ -91,7 +93,6 @@ public class StatusFragment extends Fragment {
                     binding.viewpager.setCurrentItem(0,false);
                 }else {
                     binding.viewpager.setCurrentItem(1,false);
-
                 }
             }
         });
@@ -115,6 +116,14 @@ public class StatusFragment extends Fragment {
             }
         });
 //        binding.tablayout.setupWithViewPager(binding.viewpager);
+
+        view.findViewById(R.id.tushi)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), PicActivity.class));
+                    }
+                });
     }
 
     public void onButtonPressed(Uri uri) {

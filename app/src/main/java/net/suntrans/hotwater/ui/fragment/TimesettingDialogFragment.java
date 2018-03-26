@@ -36,6 +36,7 @@ import net.suntrans.hotwater.utils.RxBus;
 import net.suntrans.hotwater.utils.UiUtils;
 import net.suntrans.hotwater.utils.Utils;
 
+import net.suntrans.hotwater.widgets.FullScreenDialog;
 import net.suntrans.looney.widgets.LoadingDialog;
 
 import org.json.JSONException;

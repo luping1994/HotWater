@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
                     android:checked="true"
-                    android:text="运行参数" />
+                    android:text="温度水位" />
 
                 <RadioButton
                     android:id="@+id/radio1"
@@ -47,20 +47,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
-                    android:text="运行状态" />
+                    android:text="工作时间" />
 
             </net.suntrans.looney.widgets.SegmentedGroup>
-            <TextView
-                android:id="@+id/tushi"
-                android:text="@string/zhuantaitu"
-                android:paddingRight="16dp"
-                android:textColor="@color/white"
-                android:layout_alignParentRight="true"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
         </RelativeLayout>
-
         <net.suntrans.hotwater.widgets.InnerViewpager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"

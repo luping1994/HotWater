@@ -4,5 +4,5 @@
     <item
         app:showAsAction="always"
         android:id="@+id/pic"
-        android:title="图示" />
+        android:title="状态图" />
 </menu>

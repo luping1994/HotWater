@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -23,6 +22,8 @@ import android.webkit.WebViewClient;
 import android.widget.RadioButton;
 import android.widget.ToggleButton;
 
+
+import com.github.clans.fab.FloatingActionButton;
 
 import net.suntrans.hotwater.App;
 import net.suntrans.hotwater.R;

@@ -1,0 +1,1253 @@
+<layout>
+
+    <net.suntrans.hotwater.widgets.ScrollChildSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="net.suntrans.hotwater.ui.fragment.WendusettingFragment">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:id="@+id/fanhui"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:background="#f1f1f1">
+                            <ImageView
+                                android:layout_marginLeft="16dp"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_arrow_"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:background="@color/white"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/temp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="8dp"
+                                android:text="温度设置"
+                                android:textColor="#000000"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="16dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="防爆温度:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/fangbaoWendu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@+id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="℃" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="允许温度:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/yunxuwendu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="℃" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="防冻温度:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/fandongwendu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="℃" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="温差循环-上限:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/yuzhi_top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="℃" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="温差循环-下限:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/yuzhi_low"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="℃" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="热水转移温度:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/zhuanshuiwendu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="℃" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="恒温水箱补水温度:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/henbushuiwendu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="℃" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="洗浴回水温度:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/xuyuhuiwendu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="℃" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="食堂回水温度:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/shitanghuiwendu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="℃" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="集热水箱保护温度:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/SetJire_temp_safe_ID"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="℃" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:background="#f1f1f1" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:background="@color/white"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/shuiwei" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="8dp"
+                                android:text="其他设置"
+                                android:textColor="#000000"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="供水水压设定值:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/shuiyasheding"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="MPa" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="废热水压设定值:"
+                                android:textColor="@color/colorPrimary"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+
+                            <TextView
+                                android:id="@+id/SetFeire_press_ID"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:gravity="center"
+                                android:text="MPa"
+                                android:layout_alignBaseline="@+id/SetFeire_press_ID"
+                                android:layout_alignBottom="@+id/SetFeire_press_ID"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true" />
+
+                        </RelativeLayout>
+
+                        <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:background="#f1f1f1" />-->
+
+                        <RelativeLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="热水供应水压:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/Supply_press_ID"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="MPa" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="废热循环水压:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/Feire_press_ID"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="MPa" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="调压窗口:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/tiaopinzhouqi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="MPa" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#f1f1f1" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:background="#f1f1f1" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:background="@color/white"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/shuiwei" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="8dp"
+                                android:text="液位设置"
+                                android:textColor="#000000"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="16dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="集热水箱保护水位:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/jireyewei"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="%" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="集热水箱最大水位:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/jiregaoyewei"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="%" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="补水高液位:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/bushuigaoyewei"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="%" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="补水低液位:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/bushuidiyewei"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="%" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="恒温水箱保护水位:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/henwenyewei"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="%" />
+
+                        </RelativeLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="恒温水箱最高液位:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/SetHengwen_level_max_ID"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="%" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="洗浴待供液位:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/daigongyewei"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="%" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="洗浴高峰液位:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/gaofengyewei"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="%" />
+
+                        </RelativeLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="16dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="集热满水位:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/jireman"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="m" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#f1f1f1" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:text="恒温满水位:"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/henwenman"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="8dp"
+                                android:layout_toLeftOf="@+id/unit"
+                                android:background="@drawable/tx_bg"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="--"
+                                android:textColor="@color/mainTextColor" />
+
+                            <TextView
+                                android:id="@id/unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="m" />
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+    </net.suntrans.hotwater.widgets.ScrollChildSwipeRefreshLayout>
+
+</layout>
