@@ -30,6 +30,8 @@ import net.suntrans.hotwater.api.RetrofitHelper;
 import net.suntrans.hotwater.bean.CmdMsg;
 import net.suntrans.hotwater.bean.Read2;
 import net.suntrans.hotwater.bean.Read2Entity;
+import net.suntrans.hotwater.ui.fragment.TimesettingDialogFragment;
+import net.suntrans.hotwater.ui.fragment.WendusettingDialogFragment;
 import net.suntrans.hotwater.utils.RxBus;
 import net.suntrans.hotwater.utils.UiUtils;
 import net.suntrans.hotwater.utils.Utils;
