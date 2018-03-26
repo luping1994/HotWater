@@ -26,8 +26,11 @@ import net.suntrans.hotwater.bean.Read3;
 import net.suntrans.hotwater.bean.Read3Entity;
 import net.suntrans.hotwater.databinding.FragmentWendusettingBinding;
 import net.suntrans.hotwater.ui.activity.PicActivity;
+import net.suntrans.hotwater.utils.LogUtil;
 import net.suntrans.hotwater.utils.RxBus;
+import net.suntrans.hotwater.utils.UiUtils;
 import net.suntrans.hotwater.utils.Utils;
+import net.suntrans.hotwater.widgets.FullScreenDialog;
 import net.suntrans.looney.widgets.LoadingDialog;
 
 import org.json.JSONObject;

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import net.suntrans.hotwater.R;
 import net.suntrans.hotwater.utils.LogUtil;
 import net.suntrans.hotwater.utils.UiUtils;
+import net.suntrans.hotwater.widgets.FullScreenDialog;
 
 
 /**
