@@ -26,7 +26,7 @@ public interface Api {
      * @param
      * @return
      */
-    @POST("hotwater_mobile/index.php/home/index/alarm_mobile")
+    @POST("hotwater_mobile2/index/alarm_mobile")
     Observable<WarningEntity> getWarningList();
 
     /**
@@ -36,7 +36,7 @@ public interface Api {
      * @return
      */
     @FormUrlEncoded
-    @POST("hotwater_mobile/index.php/home/index/alarm_mobile_fk")
+    @POST("hotwater_mobile2/index/alarm_mobile_fk")
     Observable<WarningEntity> handlerError(@Field("data_alarm") String data_alarm);
 
     /**
@@ -45,7 +45,7 @@ public interface Api {
      * @param
      * @return
      */
-    @POST("hotwater_mobile/index.php/home/index/read1")
+    @POST("hotwater_mobile2/index/read1")
     Observable<Read1Entity> getRead1();
 
     /**
@@ -54,7 +54,7 @@ public interface Api {
      * @param
      * @return
      */
-    @POST("hotwater_mobile/index.php/home/index/read2")
+    @POST("hotwater_mobile2/index/read2")
     Observable<Read2Entity> getRead2();
 
     /**
@@ -63,7 +63,7 @@ public interface Api {
      * @param
      * @return
      */
-    @POST("hotwater_mobile/index.php/home/index/read3")
+    @POST("hotwater_mobile2/index/read3")
     Observable<Read3Entity> getRead3();
 
     /**
@@ -72,7 +72,7 @@ public interface Api {
      * @param
      * @return
      */
-    @POST("hotwater_mobile/index.php/home/index/read4")
+    @POST("hotwater_mobile2/index/read4")
     Observable<Read4Entity> getRead4();  /**
      * read4
      *
@@ -80,7 +80,7 @@ public interface Api {
      * @return
      */
     @FormUrlEncoded
-    @POST("hotwater_mobile/index.php/home/login/login_auth")
+    @POST("hotwater_mobile2/login/login_auth")
     Observable<AuthEntity> auth(@Field("userId") String userId);
 
     /**
@@ -90,7 +90,7 @@ public interface Api {
      * @return
      */
     @FormUrlEncoded
-    @POST("hotwater_mobile/index.php/home/login/login")
+    @POST("hotwater_mobile2/login/login")
     Observable<LoginEntity> Login(@Field("userId") String userId,@Field("password") String password);
 
 }

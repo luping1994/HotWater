@@ -13,6 +13,7 @@ import net.suntrans.looney.AppBase;
  */
 
 public class App extends AppBase {
+    public static String user_id="0";
     @Override
     public void onCreate() {
         super.onCreate();

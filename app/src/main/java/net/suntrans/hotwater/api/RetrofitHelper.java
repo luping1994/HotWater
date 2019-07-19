@@ -26,7 +26,8 @@ public class RetrofitHelper {
 //    public static final String BASE_URL = "http://g.suntrans.net:8088/SuntransTest-Peace/";
 //    public static final String BASE_URL = "http://gszy.suntrans-cloud.com:8080/gszyapp/";
 //    public static final String BASE_URL = "http://183.236.25.192:8896/";
-    public static final String BASE_URL = "http://183.236.25.192:24206/";
+//    public static final String BASE_URL = "http://183.236.25.192:24206/";
+    public static final String BASE_URL = "http://ht3.suntrans-cloud.com/";
 
     private static OkHttpClient mOkHttpClient;
 

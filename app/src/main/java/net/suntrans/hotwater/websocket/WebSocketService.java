@@ -17,6 +17,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 
+import net.suntrans.hotwater.App;
 import net.suntrans.hotwater.MainActivity;
 import net.suntrans.hotwater.bean.CmdMsg;
 import net.suntrans.hotwater.bean.Message;
@@ -27,6 +28,7 @@ import net.suntrans.hotwater.utils.LogUtil;
 import net.suntrans.hotwater.utils.RxBus;
 import net.suntrans.hotwater.utils.UiUtils;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -47,7 +49,6 @@ public class WebSocketService extends Service implements WebSocketWrapper.onRece
     public static Map<String, String> warningDictionaries;
     private NotificationManager nm;
     private static final int NOTIFICATION_ID = 1;
-
 
     @Override
     public void onCreate() {
@@ -71,6 +72,13 @@ public class WebSocketService extends Service implements WebSocketWrapper.onRece
         binder = new ibinder() {
             @Override
             public boolean sendOrder(String order) {
+                try {
+                    JSONObject jsonObject = new JSONObject(order);
+                    jsonObject.put("user_id",App.user_id);
+                    order = jsonObject.toString();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 boolean isSuccess = webSocketWrapper.sendMessage(order);
                 if (!isSuccess) {
                     webSocketWrapper.connect();

@@ -14,4 +14,9 @@ public class LoginEntity {
 
     public int code;
     public String message;
+    public Info info;
+
+    public static class Info{
+       public String id;
+    }
 }

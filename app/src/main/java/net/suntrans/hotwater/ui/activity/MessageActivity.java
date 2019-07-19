@@ -15,28 +15,22 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.chad.library.adapter.base.BaseItemDraggableAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback;
 import com.chad.library.adapter.base.listener.OnItemSwipeListener;
-
-
 import net.suntrans.hotwater.R;
 import net.suntrans.hotwater.bean.WarningHis;
 import net.suntrans.hotwater.database.AppDatabase;
 import net.suntrans.hotwater.database.DatabaseUtils;
 import net.suntrans.hotwater.databinding.ActivityHisBinding;
 import net.suntrans.hotwater.ui.DefaultDecoration;
-
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Created by Looney on 2017/10/16.
  * Des:
  */
-
 public class MessageActivity extends AppCompatActivity {
 
     private ActivityHisBinding binding;
@@ -49,8 +43,10 @@ public class MessageActivity extends AppCompatActivity {
         binding.toolbarWarper.toolbar.setTitle("异常提示");
         setSupportActionBar(binding.toolbarWarper.toolbar);
         ActionBar supportActionBar = getSupportActionBar();
-        supportActionBar.setDisplayHomeAsUpEnabled(true);
-        supportActionBar.setDefaultDisplayHomeAsUpEnabled(true);
+       if(supportActionBar!=null){
+           supportActionBar.setDisplayHomeAsUpEnabled(true);
+           supportActionBar.setDisplayShowHomeEnabled(true);
+       }
         datas = new ArrayList<>();
         adapter = new MyAdapter(R.layout.activity_msg_cen, datas);
         binding.recyclerview.setAdapter(adapter);

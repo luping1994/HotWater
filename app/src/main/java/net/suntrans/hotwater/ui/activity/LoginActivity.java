@@ -1,6 +1,9 @@
 package net.suntrans.hotwater.ui.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
+
+import com.pgyersdk.update.PgyUpdateManager;
 
 import net.suntrans.hotwater.App;
 import net.suntrans.hotwater.MainActivity;
@@ -20,6 +23,12 @@ import rx.schedulers.Schedulers;
 
 public class LoginActivity extends net.suntrans.looney.login.LoginActivity {
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        PgyUpdateManager.register(this, "net.suntrans.hotwater.fileProvider");
+    }
 
     private Subscription subscribe;
     private Subscription subscribe1;
@@ -44,13 +53,15 @@ public class LoginActivity extends net.suntrans.looney.login.LoginActivity {
 
                     @Override
                     public void onNext(LoginEntity loginEntity) {
-                        dialog.dismiss();
                         if (loginEntity.code == 1) {
+                            App.user_id = loginEntity.info.id;
                             App.getSharedPreferences().edit().putString("username", username)
                                     .putString("password", password)
-                                    .commit();
+                                    .putString("user_id",loginEntity.info.id)
+                                    .apply();
                             checkAuth(username);
                         } else {
+                            dialog.dismiss();
                             UiUtils.showToast("账号或密码错误");
                         }
                     }
@@ -89,9 +100,9 @@ public class LoginActivity extends net.suntrans.looney.login.LoginActivity {
                     public void onNext(AuthEntity loginEntity) {
                         dialog.dismiss();
                         if ("1".equals(loginEntity.info.token)) {
-                            App.getSharedPreferences().edit().putBoolean("allowControl", false).commit();
+                            App.getSharedPreferences().edit().putBoolean("allowControl", false).apply();
                         } else {
-                            App.getSharedPreferences().edit().putBoolean("allowControl", true).commit();
+                            App.getSharedPreferences().edit().putBoolean("allowControl", true).apply();
                         }
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();

@@ -173,10 +173,9 @@ public class PicActivity extends AppCompatActivity implements View.OnClickListen
                 super.onPageFinished(view, url);
             }
         });
-
-
 //        webview.loadUrl("file:///android_asset/hotsystem/hotwater.html");
         webview.loadUrl("http://ht.suntrans-cloud.com/lanzhou/hotwater.html");
+//        webview.loadUrl("http://ht3.suntrans-cloud.com/hotwater3/index.php/index/index.html");
     }
 
     private void setUpFullScreen() {

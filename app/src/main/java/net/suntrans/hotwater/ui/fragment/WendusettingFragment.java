@@ -383,9 +383,10 @@ public class WendusettingFragment extends LazyLoadFragment implements View.OnCli
         if (name.equals("SetSupply_press_ID")||name.equals("SetFeire_press_ID")||name.equals("SetWindow_press_ID")){
             value = Float.valueOf(value)*10 +"";
         }
-        System.out.println(name+":"+value);
         try {
             jsonObject.put("action", "settings");
+//            jsonObject.put("user_id", user_id);
+
             jsonObject.put("name", name);
             jsonObject.put("parameter", value);
             isSetting = true;

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 
+import net.suntrans.hotwater.App;
 import net.suntrans.hotwater.MainActivity;
 import net.suntrans.hotwater.R;
 import net.suntrans.hotwater.api.RetrofitHelper;
@@ -62,7 +63,7 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
     private Read2 read2;
     private LoadingDialog dialog;
     private Observable<Read2Entity> observable;
-
+//    private String user_id="0";
 
     public WorkstateFragment() {
     }
@@ -91,7 +92,7 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+//        user_id = App.getSharedPreferences().getString("user_id","0");
         updateState(false);
         binding.zidong.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +105,7 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("action", "settings");
+//                    jsonObject.put("user_id", user_id);
 
                     jsonObject.put("name", "Operation_mode_ID");
                     jsonObject.put("parameter", "1");
@@ -142,6 +144,7 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("action", "settings");
+//                    jsonObject.put("user_id", user_id);
 
                     jsonObject.put("name", "Operation_mode_ID");
                     jsonObject.put("parameter", "0");
@@ -422,6 +425,7 @@ public class WorkstateFragment extends LazyLoadFragment implements CompoundButto
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("action", "settings");
+//            jsonObject.put("user_id", user_id);
 
             switch (buttonView.getId()) {
                 case R.id.tynB1:
